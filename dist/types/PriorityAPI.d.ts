@@ -297,4 +297,9 @@ export interface IPriority_New_Invoice_Response {
     FOLLOWUPIV: number;
     IVTYPE: string;
 }
+export interface ISellerOrder {
+    LastDigits: string;
+    TotalPrice: number;
+    OrderDate: string;
+}
 //# sourceMappingURL=PriorityAPI.d.ts.map
