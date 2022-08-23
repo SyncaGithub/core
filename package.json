@@ -1,6 +1,6 @@
 {
 	"name": "@synca/common",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "Synca Application Core Librarry",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
 		"type": "git",
 		"url": "git+https://github.com/SyncaGithub/core.git"
 	},
-	"author": "Shaked Aharon",
+	"author": "Shaked Aharon @Synca",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/SyncaGithub/core/issues"
@@ -21,7 +21,10 @@
 	"homepage": "https://github.com/SyncaGithub/core#readme",
 	"dependencies": {
 		"@nestjs/common": "^9.0.11",
+		"@types/bcrypt": "^5.0.0",
 		"@types/node": "^18.7.11",
+		"bcrypt": "^5.0.1",
+		"mongoose": "^6.5.2",
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^3.0.2",
 		"rxjs": "^7.5.6",
