@@ -1,4 +1,5 @@
 import { Types, Document, Model } from "mongoose";
+import { IJobHistory } from "../models";
 import { IJob } from "../models/Job.model";
 import {
 	EActionStatus,
@@ -34,18 +35,6 @@ export interface IOrder {
 	OrderDate: string;
 	//#TODO: create generic order interface
 	//       that can implement priority order for now
-}
-
-export interface IJobHistory extends Document {
-	userId: Types.ObjectId;
-	dateStart: string;
-	actionType: EActionType;
-	dateEnd: string;
-	status: EActionStatus;
-	error?: string;
-	modifiedCount: number;
-	failedCount: number;
-	maxModifiedCount: number;
 }
 
 export interface IJobFinish {
