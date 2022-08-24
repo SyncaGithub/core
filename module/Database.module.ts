@@ -10,11 +10,11 @@ import {
 
 export interface IDatabaseModuleOptions {
 	dbConnectionString: string;
-	User: boolean;
-	Client: boolean;
-	Product: boolean;
-	Job: boolean;
-	JobHistory: boolean;
+	User?: boolean;
+	Client?: boolean;
+	Product?: boolean;
+	Job?: boolean;
+	JobHistory?: boolean;
 }
 
 @Module({})
