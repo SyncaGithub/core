@@ -15,8 +15,8 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = __importDefault(require("mongoose"));
 const models_1 = require("../models");
 let DatabaseModule = DatabaseModule_1 = class DatabaseModule {
-    static register(dbConnectionString) {
-        const providers = DatabaseModule_1.generateDbProviders(dbConnectionString);
+    static register(options) {
+        const providers = DatabaseModule_1.generateDbProviders(options);
         return {
             module: DatabaseModule_1,
             imports: [],
@@ -24,22 +24,42 @@ let DatabaseModule = DatabaseModule_1 = class DatabaseModule {
             exports: [...providers],
         };
     }
-    static generateDbProviders(dbConnectionString) {
+    static generateDbProviders(options) {
         const dbProviders = [];
         dbProviders.push({
             provide: "DATABASE_CONNECTION",
-            useFactory: () => mongoose_1.default.connect(dbConnectionString),
+            useFactory: () => mongoose_1.default.connect(options.dbConnectionString),
         });
-        dbProviders.push({
-            provide: "CLIENT_MODEL",
-            useFactory: (connection) => connection.model("Client", models_1.ClientSchema),
-            inject: ["DATABASE_CONNECTION"],
-        });
-        dbProviders.push({
-            provide: "PRODUCT_MODEL",
-            useFactory: (connection) => connection.model("Product", models_1.ProductSchema),
-            inject: ["DATABASE_CONNECTION"],
-        });
+        options.User &&
+            dbProviders.push({
+                provide: "USER_MODEL",
+                useFactory: (connection) => connection.model("User", models_1.UserSchema),
+                inject: ["DATABASE_CONNECTION"],
+            });
+        options.Client &&
+            dbProviders.push({
+                provide: "CLIENT_MODEL",
+                useFactory: (connection) => connection.model("Client", models_1.ClientSchema),
+                inject: ["DATABASE_CONNECTION"],
+            });
+        options.Product &&
+            dbProviders.push({
+                provide: "PRODUCT_MODEL",
+                useFactory: (connection) => connection.model("Product", models_1.ProductSchema),
+                inject: ["DATABASE_CONNECTION"],
+            });
+        options.Job &&
+            dbProviders.push({
+                provide: "JOB_MODEL",
+                useFactory: (connection) => connection.model("Job", models_1.JobSchema),
+                inject: ["DATABASE_CONNECTION"],
+            });
+        options.JobHistory &&
+            dbProviders.push({
+                provide: "JOB_HISTORY_MODEL",
+                useFactory: (connection) => connection.model("JobHistory", models_1.JobHistorySchema),
+                inject: ["DATABASE_CONNECTION"],
+            });
         return dbProviders;
     }
 };
