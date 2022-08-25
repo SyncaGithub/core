@@ -8,6 +8,7 @@ import {
 	ProductSchema,
 	UserSchema,
 } from "../models";
+import { User } from "../models/User.model copy";
 
 export interface IDatabaseModuleOptions {
 	dbConnectionString: string;
@@ -32,7 +33,12 @@ export class DatabaseModule {
 		const providers = DatabaseModule.generateDbProviders(options);
 		return {
 			module: DatabaseModule,
-			imports: [MongooseModule.forRoot(options.dbConnectionString)],
+			imports: [
+				MongooseModule.forRoot(options.dbConnectionString),
+				MongooseModule.forFeature([
+					{ name: User.name, schema: UserSchema },
+				]),
+			],
 			providers: [...providers],
 			exports: [...providers],
 		};
@@ -48,7 +54,7 @@ export class DatabaseModule {
 
 		options.User &&
 			dbProviders.push({
-				provide: "USER_MODEL",
+				provide: DatabaseProviders.User,
 				useFactory: (connection: mongoose.Connection) =>
 					connection.model("User", UserSchema),
 				inject: ["DATABASE_CONNECTION"],
@@ -56,7 +62,7 @@ export class DatabaseModule {
 
 		options.Client &&
 			dbProviders.push({
-				provide: "CLIENT_MODEL",
+				provide: DatabaseProviders.Client,
 				useFactory: (connection: mongoose.Connection) =>
 					connection.model("Client", ClientSchema),
 				inject: ["DATABASE_CONNECTION"],
@@ -64,7 +70,7 @@ export class DatabaseModule {
 
 		options.Product &&
 			dbProviders.push({
-				provide: "PRODUCT_MODEL",
+				provide: DatabaseProviders.Product,
 				useFactory: (connection: mongoose.Connection) =>
 					connection.model("Product", ProductSchema),
 				inject: ["DATABASE_CONNECTION"],
@@ -72,14 +78,14 @@ export class DatabaseModule {
 
 		options.Job &&
 			dbProviders.push({
-				provide: "JOB_MODEL",
+				provide: DatabaseProviders.Job,
 				useFactory: (connection: mongoose.Connection) =>
 					connection.model("Job", JobSchema),
 				inject: ["DATABASE_CONNECTION"],
 			});
 		options.JobHistory &&
 			dbProviders.push({
-				provide: "JOB_HISTORY_MODEL",
+				provide: DatabaseProviders.JobHistory,
 				useFactory: (connection: mongoose.Connection) =>
 					connection.model("JobHistory", JobHistorySchema),
 				inject: ["DATABASE_CONNECTION"],
