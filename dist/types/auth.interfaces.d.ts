@@ -1,4 +1,4 @@
-import { IUser } from "../models/User.model";
+import { IUser } from "../models/oldUser.model";
 import { EActionStatus, EActionType } from "./jobs.enums";
 export interface IAuthService {
     findById(id: string): Promise<IUser>;

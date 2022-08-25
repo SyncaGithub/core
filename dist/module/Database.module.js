@@ -11,7 +11,7 @@ exports.DatabaseModule = exports.DatabaseProviders = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const models_1 = require("../models");
-const User_model_copy_1 = require("../models/User.model copy");
+const User_model_1 = require("../models/User.model");
 var DatabaseProviders;
 (function (DatabaseProviders) {
     DatabaseProviders["User"] = "USER_MODEL";
@@ -28,7 +28,7 @@ let DatabaseModule = DatabaseModule_1 = class DatabaseModule {
             imports: [
                 mongoose_1.MongooseModule.forRoot(options.dbConnectionString),
                 mongoose_1.MongooseModule.forFeature([
-                    { name: User_model_copy_1.User.name, schema: models_1.UserSchema },
+                    { name: User_model_1.User.name, schema: models_1.UserSchema },
                 ]),
             ],
             providers: [...providers],

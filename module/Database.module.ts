@@ -8,7 +8,7 @@ import {
 	ProductSchema,
 	UserSchema,
 } from "../models";
-import { User } from "../models/User.model copy";
+import { User } from "../models/User.model";
 
 export interface IDatabaseModuleOptions {
 	dbConnectionString: string;
