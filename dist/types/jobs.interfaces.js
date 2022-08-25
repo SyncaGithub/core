@@ -1,3 +1,3 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=PriorityAPI.js.map
+//# sourceMappingURL=jobs.interfaces.js.map

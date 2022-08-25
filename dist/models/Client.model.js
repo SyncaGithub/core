@@ -2,16 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientSchema = void 0;
 const mongoose_1 = require("mongoose");
-const types_1 = require("../types");
+const jobs_enums_1 = require("../types/jobs.enums");
 exports.ClientSchema = new mongoose_1.Schema({
     userId: { type: mongoose_1.Schema.Types.ObjectId, ref: "User", required: true },
     status: {
         type: String,
-        enum: types_1.EntityStatus,
-        default: types_1.EntityStatus.READY,
+        enum: jobs_enums_1.EntityStatus,
+        default: jobs_enums_1.EntityStatus.READY,
     },
     workWithClients: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "Client" }],
-    clientType: { type: String, enum: types_1.EClientType, required: true },
+    clientType: { type: String, enum: jobs_enums_1.EClientType, required: true },
     nickname: { type: String, required: true },
     barcodeTag: String,
     sellPriceMultiple: { type: Number, default: 1 },
@@ -52,7 +52,7 @@ exports.ClientSchema = new mongoose_1.Schema({
     ],
 }, { timestamps: true, versionKey: false });
 exports.ClientSchema.methods.isClientBusy = async function () {
-    if (this.status === types_1.EntityStatus.WORKING) {
+    if (this.status === jobs_enums_1.EntityStatus.WORKING) {
         return Promise.reject("Client is busy");
     }
     else {

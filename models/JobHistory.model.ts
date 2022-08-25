@@ -1,5 +1,5 @@
 import { Document, Model, Schema, Types } from "mongoose";
-import { EActionType, EActionStatus } from "../types";
+import { EActionStatus, EActionType } from "../types/jobs.enums";
 
 export interface IJobHistory extends Document {
 	userId: Types.ObjectId;

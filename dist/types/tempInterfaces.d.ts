@@ -1,7 +1,4 @@
-import { Types } from "mongoose";
-import { IJobHistory } from "../models";
-import { IJob } from "../models/Job.model";
-import { EActionType, EntityStatus } from "./tempEnums";
+import { EntityStatus } from "./jobs.enums";
 export interface BaseEntity {
     userId: String;
     status: EntityStatus;
@@ -27,14 +24,10 @@ export interface IOrder {
     LastDigits: string;
     OrderDate: string;
 }
-export interface IJobFinish {
-    job: IJob;
-    finishedJob: EActionType;
-    jobHistoryData?: Partial<IJobHistory>;
-}
-export interface IUpdateJobHistory {
-    jobHistoryId: Types.ObjectId | string;
-    dataToUpdate: Partial<IJobHistory>;
+export interface ISellerOrder {
+    LastDigits: string;
+    TotalPrice: number;
+    OrderDate: string;
 }
 export interface IClientFilters {
     userId: string;

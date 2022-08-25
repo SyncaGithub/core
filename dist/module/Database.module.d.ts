@@ -7,6 +7,13 @@ export interface IDatabaseModuleOptions {
     Job?: boolean;
     JobHistory?: boolean;
 }
+export declare enum DatabaseProviders {
+    User = "USER_MODEL",
+    Client = "CLIENT_MODEL",
+    Product = "PRODUCT_MODEL",
+    Job = "JOB_MODEL",
+    JobHistory = "JOB_HISTORY_MODEL"
+}
 export declare class DatabaseModule {
     static register(options: IDatabaseModuleOptions): DynamicModule;
     static generateDbProviders(options: IDatabaseModuleOptions): Provider<any>[];

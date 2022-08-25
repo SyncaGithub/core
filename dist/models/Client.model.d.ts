@@ -1,5 +1,5 @@
 import { Document, Model, Schema, Types } from "mongoose";
-import { EntityStatus, EClientType } from "../types";
+import { EClientType, EntityStatus } from "../types/jobs.enums";
 export interface IClient extends Document {
     userId: Types.ObjectId;
     status: EntityStatus;

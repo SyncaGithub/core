@@ -1,5 +1,6 @@
 import { Document, Model, Schema, Types } from "mongoose";
-import { EActionType, ECashcowOrderStatus, EJobStatus, IOrder } from "../types";
+import { ECashcowOrderStatus, IOrder } from "../types";
+import { EActionType, EJobStatus } from "../types/jobs.enums";
 export interface IJob extends Document {
     _id: string;
     actions: EActionType[];

@@ -1,5 +1,5 @@
 import { IUser } from "../models/User.model";
-import { EActionStatus, EActionType } from "./auth.enums";
+import { EActionStatus, EActionType } from "./jobs.enums";
 
 export interface IAuthService {
 	findById(id: string): Promise<IUser>;
@@ -9,7 +9,7 @@ export interface IAuthService {
 	): Promise<ILoginOrRegisterResponse>;
 	changePassword(
 		changePassword: IChangePassword
-	): Promise<IChangePasswordRespone>;
+	): Promise<IChangePasswordResponse>;
 }
 
 export interface ILoginOrRegister {
@@ -29,7 +29,7 @@ export interface IChangePassword {
 	newPassword: string;
 }
 
-export interface IChangePasswordRespone {
+export interface IChangePasswordResponse {
 	message: string;
 }
 

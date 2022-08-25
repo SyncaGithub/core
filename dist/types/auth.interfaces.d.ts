@@ -1,10 +1,10 @@
 import { IUser } from "../models/User.model";
-import { EActionStatus, EActionType } from "./auth.enums";
+import { EActionStatus, EActionType } from "./jobs.enums";
 export interface IAuthService {
     findById(id: string): Promise<IUser>;
     login(loginOrRegister: ILoginOrRegister): Promise<ILoginOrRegisterResponse>;
     register(loginOrRegister: ILoginOrRegister): Promise<ILoginOrRegisterResponse>;
-    changePassword(changePassword: IChangePassword): Promise<IChangePasswordRespone>;
+    changePassword(changePassword: IChangePassword): Promise<IChangePasswordResponse>;
 }
 export interface ILoginOrRegister {
     email: string;
@@ -20,7 +20,7 @@ export interface IChangePassword {
     oldPassword: string;
     newPassword: string;
 }
-export interface IChangePasswordRespone {
+export interface IChangePasswordResponse {
     message: string;
 }
 export interface IAction {
