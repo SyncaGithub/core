@@ -12,6 +12,8 @@ export class User {
 	password: string;
 	@Prop()
 	isActivated: boolean;
+
+	comparePasswords: Promise<boolean>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
