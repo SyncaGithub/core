@@ -1,11 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ECashcowOrderStatus = exports.EQtyType = exports.EClientType = void 0;
-var EClientType;
-(function (EClientType) {
-    EClientType["PRIORITY"] = "PRIORITY";
-    EClientType["CASHCOW"] = "CASHCOW";
-})(EClientType = exports.EClientType || (exports.EClientType = {}));
+exports.ECashcowOrderStatus = exports.EQtyType = void 0;
 var EQtyType;
 (function (EQtyType) {
     EQtyType["UNIT"] = "UNIT";

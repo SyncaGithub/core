@@ -1,7 +1,3 @@
-export declare enum EClientType {
-    PRIORITY = "PRIORITY",
-    CASHCOW = "CASHCOW"
-}
 export declare enum EQtyType {
     UNIT = "UNIT",
     BOX = "BOX"

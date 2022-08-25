@@ -1,5 +1,5 @@
 import { Schema, Model, Document, Types } from "mongoose";
-import { EClientType, EQtyType } from "../types/tempEnums";
+import { EClientType, EQtyType } from "../types";
 
 export interface IProduct extends Document {
 	userId: Types.ObjectId;

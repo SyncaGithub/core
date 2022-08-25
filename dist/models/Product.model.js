@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductSchema = void 0;
 const mongoose_1 = require("mongoose");
-const tempEnums_1 = require("../types/tempEnums");
+const types_1 = require("../types");
 exports.ProductSchema = new mongoose_1.Schema({
     userId: { type: mongoose_1.Schema.Types.ObjectId, ref: "User", required: true },
     clientId: {
@@ -10,7 +10,7 @@ exports.ProductSchema = new mongoose_1.Schema({
         ref: "Client",
         required: true,
     },
-    clientType: { type: String, enum: tempEnums_1.EClientType, required: true },
+    clientType: { type: String, enum: types_1.EClientType, required: true },
     futureOrdersFromClient: Number,
     sellBarcode: String,
     barcode: String,
@@ -27,7 +27,7 @@ exports.ProductSchema = new mongoose_1.Schema({
     category: String,
     subCategory: String,
     shipingPrice: Number,
-    qtyType: { type: String, enum: tempEnums_1.EQtyType },
+    qtyType: { type: String, enum: types_1.EQtyType },
     description: String,
     mainImage: String,
     images: [String],
