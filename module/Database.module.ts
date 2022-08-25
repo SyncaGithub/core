@@ -1,4 +1,5 @@
 import { DynamicModule, Module, Provider } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
 import mongoose from "mongoose";
 import {
 	ClientSchema,
@@ -17,13 +18,21 @@ export interface IDatabaseModuleOptions {
 	JobHistory?: boolean;
 }
 
+export enum DatabaseProviders {
+	User = "USER_MODEL",
+	Client = "CLIENT_MODEL",
+	Product = "PRODUCT_MODEL",
+	Job = "JOB_MODEL",
+	JobHistory = "JOB_HISTORY_MODEL",
+}
+
 @Module({})
 export class DatabaseModule {
 	static register(options: IDatabaseModuleOptions): DynamicModule {
 		const providers = DatabaseModule.generateDbProviders(options);
 		return {
 			module: DatabaseModule,
-			imports: [],
+			imports: [MongooseModule.forRoot(options.dbConnectionString)],
 			providers: [...providers],
 			exports: [...providers],
 		};
@@ -31,11 +40,11 @@ export class DatabaseModule {
 
 	static generateDbProviders(options: IDatabaseModuleOptions) {
 		const dbProviders: Provider<any>[] = [];
-		dbProviders.push({
-			provide: "DATABASE_CONNECTION",
-			useFactory: (): Promise<typeof mongoose> =>
-				mongoose.connect(options.dbConnectionString),
-		});
+		// dbProviders.push({
+		// 	provide: "DATABASE_CONNECTION",
+		// 	useFactory: (): Promise<typeof mongoose> =>
+		// 		mongoose.connect(options.dbConnectionString),
+		// });
 
 		options.User &&
 			dbProviders.push({
