@@ -1,8 +1,8 @@
-import { IUser } from "../models/oldUser.model";
+import { UserDocument } from "../models/User.model";
 import { EActionStatus, EActionType } from "./jobs.enums";
 
 export interface IAuthService {
-	findById(id: string): Promise<IUser>;
+	findById(id: string): Promise<UserDocument>;
 	login(loginOrRegister: ILoginOrRegister): Promise<ILoginOrRegisterResponse>;
 	register(
 		loginOrRegister: ILoginOrRegister
