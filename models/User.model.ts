@@ -2,7 +2,11 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 import * as bcrypt from "bcrypt";
 
-export type UserDocument = User & Document;
+export type UserDocument = User & Document & UserMethods;
+
+export interface UserMethods {
+	comparePasswords(password: string): Promise<boolean>;
+}
 
 @Schema()
 export class User {
@@ -12,8 +16,6 @@ export class User {
 	password: string;
 	@Prop()
 	isActivated: boolean;
-
-	comparePasswords: Promise<boolean>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
