@@ -23,12 +23,14 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Document } from "mongoose";
-export declare type UserDocument = User & Document;
+export declare type UserDocument = User & Document & UserMethods;
+export interface UserMethods {
+    comparePasswords(password: string): Promise<boolean>;
+}
 export declare class User {
     email: string;
     password: string;
     isActivated: boolean;
-    comparePasswords: Promise<boolean>;
 }
 export declare const UserSchema: import("mongoose").Schema<User, import("mongoose").Model<User, any, any, any, any>, {}, {}, {}, {}, "type", User>;
 //# sourceMappingURL=User.model.d.ts.map
