@@ -9,9 +9,6 @@
 		"build": "rimraf dist && tsc",
 		"prepublish": "npm run build"
 	},
-	"directions": {
-		"/": "./src/"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/SyncaGithub/core.git"
