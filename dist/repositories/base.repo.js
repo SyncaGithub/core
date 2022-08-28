@@ -29,9 +29,6 @@ class BaseRepo {
         this.model.findOneAndDelete(filter).exec();
         return;
     }
-    create(entity) {
-        return new this.model(entity);
-    }
 }
 exports.BaseRepo = BaseRepo;
 //# sourceMappingURL=Base.repo.js.map
