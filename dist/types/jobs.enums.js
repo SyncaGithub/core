@@ -20,7 +20,7 @@ var EActionStatus;
 var EJobStatus;
 (function (EJobStatus) {
     EJobStatus["RUNNING"] = "RUNNING";
-    EJobStatus["STOPED"] = "STOPED";
+    EJobStatus["STOPPED"] = "STOPPED";
 })(EJobStatus = exports.EJobStatus || (exports.EJobStatus = {}));
 var EActionType;
 (function (EActionType) {

@@ -1,10 +1,48 @@
-import { Document, Model, Schema, Types } from "mongoose";
-import { EClientType, EntityStatus } from "../types/jobs.enums";
-export interface IClient extends Document {
-    userId: Types.ObjectId;
+import mongoose, { Document } from "mongoose";
+import { EClientType, EntityStatus, IRawPriorityProduct } from "../types";
+import { IPopulated, IRaw } from "./types";
+import { User } from "./User.model";
+export declare type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | null = null> = Client<T, P> & Document;
+export interface ClientMethods {
+    isClientBusy: () => Promise<boolean>;
+}
+export declare type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
+export declare class CashcowClientConfiguration {
+    store_id: number;
+    token: string;
+}
+export declare class PriorityProductFilter {
+    key: string;
+    value: string;
+    operator: string;
+}
+export declare class PriorityClientConfiguration {
+    username: string;
+    password: string;
+    baseUrl: string;
+    agentName: string;
+    paymentCode: string;
+    cashNumber: string;
+    customerNumber: string;
+    productsEndPoint: string;
+    invoiceEndPoint: string;
+    ordersEndPoint: string;
+    priceKey: string;
+    getProductsFilters: PriorityProductFilter[];
+    getProductsExpand: string;
+    getProductsSelect: string;
+    productMap: {
+        [key: string]: keyof IRawPriorityProduct;
+    };
+}
+export declare class Client<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> {
+    user: P extends IRaw ? mongoose.Types.ObjectId : User;
     status: EntityStatus;
     clientType: EClientType;
-    workWithClients: Types.ObjectId[];
+    configuration: T;
+    priority: PriorityClientConfiguration;
+    cashcow: CashcowClientConfiguration;
+    workWithClients: Client[];
     nickname: string;
     barcodeTag: string;
     sellPriceMultiple: number;
@@ -12,41 +50,10 @@ export interface IClient extends Document {
     lastUpdate: string;
     isTempCategory: boolean;
     tempCategory: string;
-    priority: {
-        username: string;
-        password: string;
-        baseUrl: string;
-        agentName: string;
-        paymentCode: string;
-        cashNumber: string;
-        customerNumber: string;
-        productsEndPoint: string;
-        invoiceEndPoint: string;
-        ordersEndPoint: string;
-        priceKey: string;
-        getProductsFilters: {
-            key: string;
-            value: string;
-            operator: string;
-        }[];
-        getProductsExpand: string;
-        getProductsSelect: string;
-        productMap: {
-            [key: string]: string;
-        };
-    };
-    cashcow: {
-        store_id: number;
-        token: string;
-    };
     isUsingWhiteList: boolean;
-    whiteListProducts: Types.ObjectId[];
+    whiteListProducts: mongoose.Types.ObjectId[];
     isUsingBlackList: boolean;
-    blackListProducts: Types.ObjectId[];
-    isClientBusy: () => Promise<boolean>;
+    blackListProducts: mongoose.Types.ObjectId[];
 }
-export interface IClientModel extends Model<IClient> {
-    isClientBusy: () => Promise<boolean>;
-}
-export declare const ClientSchema: Schema<IClient, IClientModel, IClientModel, {}, {}, {}, "type", IClient>;
+export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", Client<unknown, IPopulated | IRaw>>;
 //# sourceMappingURL=Client.model.d.ts.map

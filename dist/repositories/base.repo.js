@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseRepo = void 0;
 class BaseRepo {
-    constructor(model) {
-        this.model = model;
+    constructor(_connection, _model) {
+        this.model = _model;
+        this.connection = _connection;
     }
     list(filter) {
         return this.model.find(filter).exec();
@@ -11,8 +12,13 @@ class BaseRepo {
     findById(id) {
         return this.model.findById(id).exec();
     }
-    add(entity) {
-        return this.model.create(entity);
+    findOne(filter) {
+        return this.model.findOne(filter).exec();
+    }
+    async add(entity) {
+        const newEntity = await this.model.create(entity);
+        newEntity.validateSync();
+        return (await newEntity.save());
     }
     update(filter, dataToUpdate) {
         return this.model
@@ -23,6 +29,9 @@ class BaseRepo {
         this.model.findOneAndDelete(filter).exec();
         return;
     }
+    create(entity) {
+        return new this.model(entity);
+    }
 }
 exports.BaseRepo = BaseRepo;
-//# sourceMappingURL=base.repo.js.map
+//# sourceMappingURL=Base.repo.js.map

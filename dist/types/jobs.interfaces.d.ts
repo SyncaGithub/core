@@ -1,13 +1,13 @@
 import { Types } from "mongoose";
-import { IJob, IJobHistory } from "../models";
+import { JobDocument, JobHistoryDocument } from "../models";
 import { EActionType } from "./jobs.enums";
 export interface IJobFinish {
-    job: IJob;
+    job: JobDocument;
     finishedJob: EActionType;
-    jobHistoryData?: Partial<IJobHistory>;
+    jobHistoryData?: Partial<JobHistoryDocument>;
 }
 export interface IUpdateJobHistory {
     jobHistoryId: Types.ObjectId | string;
-    dataToUpdate: Partial<IJobHistory>;
+    dataToUpdate: Partial<JobHistoryDocument>;
 }
 //# sourceMappingURL=jobs.interfaces.d.ts.map

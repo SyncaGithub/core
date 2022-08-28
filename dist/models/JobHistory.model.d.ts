@@ -1,17 +1,17 @@
-import { Document, Model, Schema, Types } from "mongoose";
-import { EActionStatus, EActionType } from "../types/jobs.enums";
-export interface IJobHistory extends Document {
-    userId: Types.ObjectId;
+import mongoose, { Document } from "mongoose";
+import { IPopulated, IRaw } from "./types";
+import { User } from "./User.model";
+export declare type JobHistoryDocument<P extends IPopulated | IRaw = IRaw> = JobHistory<P> & Document;
+export declare class JobHistory<P extends IPopulated | IRaw = IRaw> {
+    user: P extends IRaw ? mongoose.Types.ObjectId : User;
     dateStart: string;
-    actionType: EActionType;
+    actionType: string;
     dateEnd: string;
-    status: EActionStatus;
-    error?: string;
+    status: string;
     modifiedCount: number;
     failedCount: number;
     maxModifiedCount: number;
+    error: String;
 }
-export interface IJobHistoryModel extends Model<IJobHistory> {
-}
-export declare const JobHistorySchema: Schema<IJobHistory, IJobHistoryModel, {}, {}, {}, {}, "type", IJobHistory>;
+export declare const JobHistorySchema: mongoose.Schema<JobHistory<IPopulated | IRaw>, mongoose.Model<JobHistory<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", JobHistory<IPopulated | IRaw>>;
 //# sourceMappingURL=JobHistory.model.d.ts.map

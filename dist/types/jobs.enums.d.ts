@@ -13,7 +13,7 @@ export declare enum EActionStatus {
 }
 export declare enum EJobStatus {
     RUNNING = "RUNNING",
-    STOPED = "STOPED"
+    STOPPED = "STOPPED"
 }
 export declare enum EActionType {
     PRIORITY_SEND_ORDER = "PRIORITY_SEND_ORDER",

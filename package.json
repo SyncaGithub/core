@@ -9,6 +9,9 @@
 		"build": "rimraf dist && tsc",
 		"prepublish": "npm run build"
 	},
+	"directions": {
+		"/": "./src/"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/SyncaGithub/core.git"
@@ -20,6 +23,7 @@
 	},
 	"homepage": "https://github.com/SyncaGithub/core#readme",
 	"dependencies": {
+		"@nestjs/axios": "^0.1.0",
 		"@nestjs/common": "^9.0.11",
 		"@nestjs/core": "^9.0.11",
 		"@nestjs/microservices": "^9.0.11",

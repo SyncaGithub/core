@@ -1,41 +1,46 @@
-import { Schema, Model, Document, Types } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 import { EClientType, EQtyType } from "../types";
-export interface IProduct extends Document {
-    userId: Types.ObjectId;
-    clientId: Types.ObjectId;
+import { Client } from "./Client.model";
+import { IPopulated, IRaw } from "./types";
+import { User } from "./User.model";
+export declare type ProductDocument<P extends IPopulated | IRaw = IRaw> = Product<P> & Document;
+export declare class ProductFail<P extends IPopulated | IRaw = IRaw> {
+    client: P extends IRaw ? mongoose.Types.ObjectId : Client;
+    data: Schema.Types.Mixed;
+    config: Schema.Types.Mixed;
+    url: string;
+}
+export declare class Product<P extends IPopulated | IRaw = IRaw> {
+    user: P extends IRaw ? mongoose.Types.ObjectId : User;
+    client: P extends IRaw ? mongoose.Types.ObjectId : Client;
     clientType: EClientType;
-    futureOrdersFromClient?: number;
+    futureOrdersFromClient: number;
     sellBarcode: string;
     barcode: string;
     clientBarcode: string;
-    priceHistory?: number[];
+    priceHistory: number[];
     costPrice: number;
     sellPrice: number;
-    discountPrice?: number;
+    discountPrice: number;
     qty: number;
-    containerQty?: number;
-    isDisplay?: boolean;
-    displayQty?: number;
+    containerQty: number;
+    isDisplay: boolean;
+    displayQty: number;
     name: string;
     category: string;
-    subCategory?: string;
-    shipingPrice?: number;
+    subCategory: string;
+    shippingPrice: number;
     qtyType: EQtyType;
-    description?: string;
+    description: string;
     mainImage: string;
-    images?: string[];
-    priceListName?: string;
-    updatedAt?: string;
-    createdAt?: string;
-    fail: {
-        clientId: Types.ObjectId;
-        config?: any;
-        data?: any;
-        url?: string;
-    }[];
-    lastSending?: Map<string, string>;
+    images: string[];
+    priceListName: string;
+    updatedAt: string;
+    createdAt: string;
+    fail: ProductFail[];
+    lastSending: Map<string, string>;
     needImageCompression: boolean;
-    hasBennCompressed: boolean;
+    hasBeenCompressed: boolean;
 }
-export declare const ProductSchema: Schema<IProduct, Model<IProduct, {}, {}, {}, any>, {}, {}, {}, {}, "type", IProduct>;
+export declare const ProductSchema: mongoose.Schema<Product<IPopulated | IRaw>, mongoose.Model<Product<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", Product<IPopulated | IRaw>>;
 //# sourceMappingURL=Product.model.d.ts.map
