@@ -8,6 +8,7 @@
 		"declarationMap": true,
 		"sourceMap": true,
 		"outDir": "./dist",
+		"rootDir": "./",
 		"strict": true,
 		"noImplicitAny": false,
 		"strictNullChecks": false,
@@ -15,5 +16,12 @@
 		"esModuleInterop": true,
 		"emitDecoratorMetadata": true
 	},
-	"exclude": ["node_modules", "dist", "old models"]
+	"exclude": ["node_modules", "dist", "old models"],
+	"include": [
+		"./models/**/*",
+		"./modules/**/*",
+		"./repositories/**/*",
+		"./types/**/*",
+		"./utils/**/*"
+	]
 }

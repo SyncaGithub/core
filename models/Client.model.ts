@@ -6,7 +6,7 @@ import { User, UserDocument } from "./User.model";
 
 export type ClientDocument<
 	T = ClientConfigurationTypes,
-	P extends IPopulated | null = null
+	P extends IPopulated | IRaw = IRaw
 > = Client<T, P> & Document;
 
 export interface ClientMethods {
