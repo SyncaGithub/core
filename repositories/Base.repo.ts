@@ -1,14 +1,8 @@
-import {
-	Connection,
-	FilterQuery,
-	HydratedDocument,
-	Model,
-	ObjectId,
-} from "mongoose";
+import mongoose, { Connection, FilterQuery, Model } from "mongoose";
 
 export interface IBaseRepo<Entity = any> {
 	list(filter: FilterQuery<Entity>): Promise<Entity[]>;
-	findById(id: string | ObjectId): Promise<Entity>;
+	findById(id: string | mongoose.Types.ObjectId): Promise<Entity>;
 	add(entity: Partial<Entity>): Promise<Entity>;
 	update(
 		filter: FilterQuery<Entity>,
@@ -28,7 +22,7 @@ export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
 	list(filter: FilterQuery<Entity>): Promise<Entity[]> {
 		return this.model.find(filter).exec();
 	}
-	findById(id: string | ObjectId): Promise<Entity> {
+	findById(id: string | mongoose.Types.ObjectId): Promise<Entity> {
 		return this.model.findById(id).exec();
 	}
 	findOne(filter: FilterQuery<Entity>): Promise<Entity> {
