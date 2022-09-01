@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import { EClientType, EntityStatus, IRawPriorityProduct } from "../types";
+import { EClientType, EntityStatus } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
 export declare type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
@@ -31,9 +31,7 @@ export declare class PriorityClientConfiguration {
     getProductsFilters: PriorityProductFilter[];
     getProductsExpand: string;
     getProductsSelect: string;
-    productMap: {
-        [key: string]: keyof IRawPriorityProduct;
-    };
+    productMap: any;
 }
 export declare class Client<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;

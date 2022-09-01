@@ -117,7 +117,7 @@ __decorate([
     __metadata("design:type", String)
 ], PriorityClientConfiguration.prototype, "getProductsSelect", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(mongoose_2.Schema.Types.Mixed),
+    (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.Mixed }),
     __metadata("design:type", Object)
 ], PriorityClientConfiguration.prototype, "productMap", void 0);
 exports.PriorityClientConfiguration = PriorityClientConfiguration;
