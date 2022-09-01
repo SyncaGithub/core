@@ -27,7 +27,7 @@
 		"@nestjs/mongoose": "^9.2.0",
 		"bcrypt": "^5.0.1",
 		"ioredis": "^5.2.3",
-		"mongoose": "^6.5.3",
+		"mongoose": "^6.5.4",
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^3.0.2",
 		"rxjs": "^7.5.6"

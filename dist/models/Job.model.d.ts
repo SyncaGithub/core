@@ -9,22 +9,22 @@ export declare class Action<P extends IPopulated | IRaw = IRaw> {
     action: string;
 }
 export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
-    client: P extends IRaw ? ObjectId : Client;
-    isFullFetch: boolean;
-    isDisplayOnly: boolean;
-    startNow: boolean;
-    sellerClientId: mongoose.Types.ObjectId;
+    client?: P extends IRaw ? ObjectId : Client;
+    isFullFetch?: boolean;
+    isDisplayOnly?: boolean;
+    startNow?: boolean;
+    sellerClientId?: mongoose.Types.ObjectId;
     orders?: IOrder[];
-    cashcowOrderStatus: ECashcowOrderStatus;
+    cashcowOrderStatus?: ECashcowOrderStatus;
 }
 export declare class Job<P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
     actionList: Action[];
-    status: string;
-    startHour: string;
-    startMinute: string;
-    jobHistoryId: string;
-    configuration: JobConfiguration;
+    status?: string;
+    startHour?: string;
+    startMinute?: string;
+    jobHistoryId?: string;
+    configuration?: JobConfiguration;
     currentActionHistoryId?: string;
     currentActinIndex: number;
 }

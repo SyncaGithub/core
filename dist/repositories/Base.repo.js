@@ -21,7 +21,8 @@ class BaseRepo {
     async add(entity) {
         const newEntity = await this._model.create(entity);
         newEntity.validateSync();
-        return (await newEntity.save());
+        await newEntity.save();
+        return newEntity;
     }
     update(filter, dataToUpdate) {
         return this._model

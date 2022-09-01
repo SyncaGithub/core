@@ -57,7 +57,8 @@ export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
 	async add(entity: Partial<Entity>): Promise<Entity> {
 		const newEntity = await this._model.create(entity);
 		newEntity.validateSync();
-		return (await newEntity.save()) as Entity;
+		await newEntity.save();
+		return newEntity;
 	}
 	update(
 		filter: FilterQuery<Entity>,

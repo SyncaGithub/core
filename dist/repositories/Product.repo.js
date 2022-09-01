@@ -22,6 +22,7 @@ let ProductRepo = class ProductRepo extends Base_repo_1.BaseRepo {
     constructor(connection, productModel) {
         super(connection, productModel);
         this.connection = connection;
+        this.productModel = productModel;
     }
     generateHashTableFromProductsList(products, primaryKey = "barcode") {
         return products.reduce((obj, item) => Object.assign(obj, { [item[primaryKey]]: item }), {});
