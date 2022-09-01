@@ -17,6 +17,7 @@ export type ClientConfigurationTypes =
 	| PriorityClientConfiguration
 	| CashcowClientConfiguration;
 
+@Schema({ _id: false, versionKey: false })
 export class CashcowClientConfiguration {
 	@Prop()
 	store_id: number;
@@ -25,6 +26,7 @@ export class CashcowClientConfiguration {
 	token: string;
 }
 
+@Schema({ _id: false, versionKey: false })
 export class PriorityProductFilter {
 	@Prop()
 	key: string;
@@ -36,6 +38,7 @@ export class PriorityProductFilter {
 	operator: string;
 }
 
+@Schema({ _id: false, versionKey: false })
 export class PriorityClientConfiguration {
 	@Prop()
 	username: string;
