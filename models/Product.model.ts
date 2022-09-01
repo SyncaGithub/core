@@ -16,7 +16,7 @@ export class ProductFail<P extends IPopulated | IRaw = IRaw> {
 	data: Schema.Types.Mixed;
 
 	@Prop()
-	config: Schema.Types.Mixed;
+	config?: Schema.Types.Mixed;
 
 	@Prop()
 	url: string;

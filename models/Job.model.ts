@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, ObjectId } from "mongoose";
 import { ECashcowOrderStatus, IOrder } from "../types";
 import { EActionType, EJobStatus } from "../types/jobs.enums";
 import { Client } from "./Client.model";
@@ -10,25 +10,25 @@ export type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 
 export class Action<P extends IPopulated | IRaw = IRaw> {
 	@Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "Client" } })
-	client: P extends IRaw ? mongoose.Types.ObjectId : Client;
+	client: P extends IRaw ? ObjectId : Client;
 
 	@Prop({ enum: EActionType, required: true })
 	action: string;
 }
 export class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
 	@Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "Client" } })
-	client: P extends IRaw ? mongoose.Types.ObjectId : Client;
+	client?: P extends IRaw ? ObjectId : Client;
 
 	@Prop()
-	isFullFetch: boolean;
+	isFullFetch?: boolean;
 
 	@Prop()
-	isDisplayOnly: boolean;
+	isDisplayOnly?: boolean;
 
-	startNow: boolean;
-	sellerClientId: mongoose.Types.ObjectId;
+	startNow?: boolean;
+	sellerClientId?: mongoose.Types.ObjectId;
 	orders?: IOrder[];
-	cashcowOrderStatus: ECashcowOrderStatus;
+	cashcowOrderStatus?: ECashcowOrderStatus;
 }
 
 @Schema({ timestamps: true })
@@ -40,19 +40,19 @@ export class Job<P extends IPopulated | IRaw = IRaw> {
 	actionList: Action[];
 
 	@Prop({ enum: EJobStatus, default: EJobStatus.STOPPED })
-	status: string;
+	status?: string;
 
 	@Prop({ required: true })
-	startHour: string;
+	startHour?: string;
 
 	@Prop({ required: true })
-	startMinute: string;
+	startMinute?: string;
 
 	@Prop()
-	jobHistoryId: string;
+	jobHistoryId?: string;
 
 	@Prop(JobConfiguration)
-	configuration: JobConfiguration;
+	configuration?: JobConfiguration;
 
 	currentActionHistoryId?: string;
 	currentActinIndex: number;

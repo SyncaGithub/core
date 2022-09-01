@@ -1,8 +1,24 @@
-import mongoose, { Connection, FilterQuery, Model } from "mongoose";
+import {
+	Connection,
+	FilterQuery,
+	HydratedDocument,
+	Model,
+	ObjectId,
+	Query,
+} from "mongoose";
+import { Populated, Raw } from "../models";
 
 export interface IBaseRepo<Entity = any> {
 	list(filter: FilterQuery<Entity>): Promise<Entity[]>;
-	findById(id: string | mongoose.Types.ObjectId): Promise<Entity>;
+	find(
+		filter: FilterQuery<Entity>
+	): Query<
+		HydratedDocument<Entity, {}, {}>[],
+		HydratedDocument<Entity, {}, {}>,
+		{},
+		Entity
+	>;
+	findById(id: string | ObjectId): Promise<Entity>;
 	add(entity: Partial<Entity>): Promise<Entity>;
 	update(
 		filter: FilterQuery<Entity>,
@@ -13,23 +29,33 @@ export interface IBaseRepo<Entity = any> {
 }
 
 export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
-	private readonly model: Model<Entity>;
-	private readonly connection: Connection;
-	constructor(_connection: Connection, _model: Model<Entity>) {
-		this.model = _model;
-		this.connection = _connection;
+	private readonly _model: Model<Entity>;
+	private readonly _connection: Connection;
+	constructor(connection: Connection, model: Model<Entity>) {
+		this._model = model;
+		this._connection = connection;
+	}
+	find(
+		filter: FilterQuery<Entity>
+	): Query<
+		HydratedDocument<Entity, {}, {}>[],
+		HydratedDocument<Entity, {}, {}>,
+		{},
+		Entity
+	> {
+		return this._model.find(filter);
 	}
 	list(filter: FilterQuery<Entity>): Promise<Entity[]> {
-		return this.model.find(filter).exec();
+		return this._model.find(filter).exec();
 	}
-	findById(id: string | mongoose.Types.ObjectId): Promise<Entity> {
-		return this.model.findById(id).exec();
+	findById(id: string | ObjectId): Promise<Entity> {
+		return this._model.findById(id).exec();
 	}
 	findOne(filter: FilterQuery<Entity>): Promise<Entity> {
-		return this.model.findOne(filter).exec();
+		return this._model.findOne(filter).exec();
 	}
 	async add(entity: Partial<Entity>): Promise<Entity> {
-		const newEntity = await this.model.create(entity);
+		const newEntity = await this._model.create(entity);
 		newEntity.validateSync();
 		return (await newEntity.save()) as Entity;
 	}
@@ -37,12 +63,12 @@ export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
 		filter: FilterQuery<Entity>,
 		dataToUpdate: Partial<Entity>
 	): Promise<Entity> {
-		return this.model
+		return this._model
 			.findOneAndUpdate(filter, dataToUpdate, { new: true })
 			.exec();
 	}
 	delete(filter: FilterQuery<Entity>): Promise<void> {
-		this.model.findOneAndDelete(filter).exec();
+		this._model.findOneAndDelete(filter).exec();
 		return;
 	}
 }

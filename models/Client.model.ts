@@ -2,12 +2,12 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document, Schema as MongooseSchema } from "mongoose";
 import { EClientType, EntityStatus, IRawPriorityProduct } from "../types";
 import { IPopulated, IRaw } from "./types";
-import { User, UserDocument } from "./User.model";
+import { User } from "./User.model";
 
 export type ClientDocument<
 	T = ClientConfigurationTypes,
 	P extends IPopulated | IRaw = IRaw
-> = Client<T, P> & Document;
+> = Client<T, P> & Document & ClientMethods;
 
 export interface ClientMethods {
 	isClientBusy: () => Promise<boolean>;
