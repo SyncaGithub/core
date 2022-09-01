@@ -17,7 +17,6 @@ export type ClientConfigurationTypes =
 	| PriorityClientConfiguration
 	| CashcowClientConfiguration;
 
-@Schema({ _id: false, versionKey: false })
 export class CashcowClientConfiguration {
 	@Prop()
 	store_id: number;
@@ -26,7 +25,6 @@ export class CashcowClientConfiguration {
 	token: string;
 }
 
-@Schema({ _id: false, versionKey: false })
 export class PriorityProductFilter {
 	@Prop()
 	key: string;
@@ -38,7 +36,6 @@ export class PriorityProductFilter {
 	operator: string;
 }
 
-@Schema({ _id: false, versionKey: false })
 export class PriorityClientConfiguration {
 	@Prop()
 	username: string;
@@ -82,8 +79,8 @@ export class PriorityClientConfiguration {
 	@Prop()
 	getProductsSelect: string;
 
-	@Prop(MongooseSchema.Types.Mixed)
-	productMap: { [key: string]: keyof IRawPriorityProduct };
+	@Prop({ type: MongooseSchema.Types.Mixed })
+	productMap: any;
 }
 
 @Schema({ timestamps: true })
