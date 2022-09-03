@@ -13,3 +13,7 @@ export enum ECashcowOrderStatus {
 	Cancaled = 8,
 	Claimed = 9,
 }
+
+export enum EInject {
+	Queue = "QUEUE_SERVICE",
+}
