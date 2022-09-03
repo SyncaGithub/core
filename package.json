@@ -6,6 +6,7 @@
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"exports": {
+		"./": "./dist",
 		"./modules": "./dist/modules",
 		"./models": "./dist/models",
 		"./types": "./dist/types",
@@ -16,7 +17,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "rimraf dist && tsc",
 		"prepublish": "npm run build",
-		"updateversion": "git add -A && git commit -m 'Update version number' && git push"
+		"updateversion": "git add -A && git commit -m 'Update version number' && git push",
+		"updatejson": "git add -A && git commit -m 'Update package.json' && git push"
 	},
 	"repository": {
 		"type": "git",
