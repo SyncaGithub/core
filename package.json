@@ -15,7 +15,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "rimraf dist && tsc",
-		"prepublish": "npm run build"
+		"prepublish": "npm run build",
+		"updateversion": "git add -A && git commit -m 'Update version number' && git push"
 	},
 	"repository": {
 		"type": "git",
