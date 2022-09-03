@@ -16,5 +16,6 @@ __exportStar(require("./jobs.interfaces"), exports);
 __exportStar(require("./priority.enums"), exports);
 __exportStar(require("./priority.interfaces"), exports);
 __exportStar(require("./tempInterfaces"), exports);
+__exportStar(require("./inject.enums"), exports);
 __exportStar(require("./tempEnums"), exports);
 //# sourceMappingURL=index.js.map

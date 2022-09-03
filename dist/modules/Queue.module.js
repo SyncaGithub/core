@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QueueModule = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
+const inject_enums_1 = require("../types/inject.enums");
 let QueueModule = QueueModule_1 = class QueueModule {
     static register(port) {
         return {
@@ -17,7 +18,7 @@ let QueueModule = QueueModule_1 = class QueueModule {
             imports: [
                 microservices_1.ClientsModule.register([
                     {
-                        name: "QUEUE_SERVICE",
+                        name: inject_enums_1.Inject.Queue,
                         transport: microservices_1.Transport.REDIS,
                         options: {
                             host: "localhost",
