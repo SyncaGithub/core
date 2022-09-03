@@ -1,6 +1,6 @@
 import { DynamicModule, Module } from "@nestjs/common";
 import { ClientsModule, Transport } from "@nestjs/microservices";
-import { Inject } from "../types/inject.enums";
+import { SyncaInject } from "../types/general.enums";
 
 @Module({})
 export class QueueModule {
@@ -10,7 +10,7 @@ export class QueueModule {
 			imports: [
 				ClientsModule.register([
 					{
-						name: Inject.Queue,
+						name: SyncaInject.Queue,
 						transport: Transport.REDIS,
 						options: {
 							host: "localhost",
