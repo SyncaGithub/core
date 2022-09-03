@@ -16,7 +16,11 @@ const types_1 = require("../types");
 class ProductFail {
 }
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.ObjectId, ref: "Client", required: true }),
+    (0, mongoose_1.Prop)({
+        type: mongoose_2.Schema.Types.ObjectId,
+        ref: "Client",
+        required: true,
+    }),
     __metadata("design:type", Object)
 ], ProductFail.prototype, "client", void 0);
 __decorate([
@@ -32,14 +36,18 @@ __decorate([
     __metadata("design:type", String)
 ], ProductFail.prototype, "url", void 0);
 exports.ProductFail = ProductFail;
-class Product {
-}
+let Product = class Product {
+};
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.ObjectId, ref: "User", required: true }),
     __metadata("design:type", Object)
 ], Product.prototype, "user", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.ObjectId, ref: "Client", required: true }),
+    (0, mongoose_1.Prop)({
+        type: mongoose_2.Schema.Types.ObjectId,
+        ref: "Client",
+        required: true,
+    }),
     __metadata("design:type", Object)
 ], Product.prototype, "client", void 0);
 __decorate([
@@ -154,6 +162,9 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
 ], Product.prototype, "hasBeenCompressed", void 0);
+Product = __decorate([
+    (0, mongoose_1.Schema)({ timestamps: true })
+], Product);
 exports.Product = Product;
 exports.ProductSchema = mongoose_1.SchemaFactory.createForClass(Product);
 //# sourceMappingURL=Product.model.js.map

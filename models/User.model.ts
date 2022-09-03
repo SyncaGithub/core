@@ -8,7 +8,7 @@ export interface UserMethods {
 	comparePasswords(password: string): Promise<boolean>;
 }
 
-@Schema()
+@Schema({ timestamps: true })
 export class User {
 	@Prop()
 	email: string;

@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema as MongooseSchema, Document } from "mongoose";
 import { EClientType, EQtyType } from "../types";
 import { Client } from "./Client.model";
 import { IPopulated, IRaw } from "./types";
@@ -6,8 +6,8 @@ import { User } from "./User.model";
 export declare type ProductDocument<P extends IPopulated | IRaw = IRaw> = Product<P> & Document;
 export declare class ProductFail<P extends IPopulated | IRaw = IRaw> {
     client: P extends IRaw ? mongoose.Types.ObjectId : Client;
-    data: Schema.Types.Mixed;
-    config?: Schema.Types.Mixed;
+    data: MongooseSchema.Types.Mixed;
+    config?: MongooseSchema.Types.Mixed;
     url: string;
 }
 export declare class Product<P extends IPopulated | IRaw = IRaw> {

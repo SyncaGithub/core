@@ -1,5 +1,5 @@
-import { Prop, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { Schema, Document, Types } from "mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import mongoose, { Schema as MongooseSchema, Document, Types } from "mongoose";
 import { EClientType, EQtyType } from "../types";
 import { Client } from "./Client.model";
 import { IPopulated, IRaw } from "./types";
@@ -9,24 +9,33 @@ export type ProductDocument<P extends IPopulated | IRaw = IRaw> = Product<P> &
 	Document;
 
 export class ProductFail<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: Schema.Types.ObjectId, ref: "Client", required: true })
+	@Prop({
+		type: MongooseSchema.Types.ObjectId,
+		ref: "Client",
+		required: true,
+	})
 	client: P extends IRaw ? mongoose.Types.ObjectId : Client;
 
-	@Prop(Schema.Types.Mixed)
-	data: Schema.Types.Mixed;
+	@Prop(MongooseSchema.Types.Mixed)
+	data: MongooseSchema.Types.Mixed;
 
 	@Prop()
-	config?: Schema.Types.Mixed;
+	config?: MongooseSchema.Types.Mixed;
 
 	@Prop()
 	url: string;
 }
 
+@Schema({ timestamps: true })
 export class Product<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: Schema.Types.ObjectId, ref: "User", required: true })
+	@Prop({ type: MongooseSchema.Types.ObjectId, ref: "User", required: true })
 	user: P extends IRaw ? mongoose.Types.ObjectId : User;
 
-	@Prop({ type: Schema.Types.ObjectId, ref: "Client", required: true })
+	@Prop({
+		type: MongooseSchema.Types.ObjectId,
+		ref: "Client",
+		required: true,
+	})
 	client: P extends IRaw ? mongoose.Types.ObjectId : Client;
 
 	@Prop({ type: String, enum: EClientType, required: true })
@@ -104,7 +113,7 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 	@Prop({ type: [ProductFail], default: [] })
 	fail: ProductFail[];
 
-	@Prop({ type: Schema.Types.Map, of: String, default: new Map() })
+	@Prop({ type: MongooseSchema.Types.Map, of: String, default: new Map() })
 	lastSending: Map<string, string>;
 
 	@Prop()
