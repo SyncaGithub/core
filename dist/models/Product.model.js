@@ -13,8 +13,8 @@ exports.ProductSchema = exports.Product = exports.ProductFail = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const types_1 = require("../types");
-class ProductFail {
-}
+let ProductFail = class ProductFail {
+};
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Schema.Types.ObjectId,
@@ -35,6 +35,9 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], ProductFail.prototype, "url", void 0);
+ProductFail = __decorate([
+    (0, mongoose_1.Schema)({ _id: true, versionKey: false, timestamps: true })
+], ProductFail);
 exports.ProductFail = ProductFail;
 let Product = class Product {
 };
