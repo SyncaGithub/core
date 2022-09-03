@@ -1,2 +1,2 @@
-export * from "./Qeue.module";
+export * from "./Queue.module";
 // export * from "./Database.module";
