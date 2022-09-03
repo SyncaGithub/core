@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QueueModule = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
-const general_enums_1 = require("../types/general.enums");
+const tempEnums_1 = require("../types/tempEnums");
 let QueueModule = QueueModule_1 = class QueueModule {
     static register(port) {
         return {
@@ -18,7 +18,7 @@ let QueueModule = QueueModule_1 = class QueueModule {
             imports: [
                 microservices_1.ClientsModule.register([
                     {
-                        name: general_enums_1.SyncaInject.Queue,
+                        name: tempEnums_1.EInject.Queue,
                         transport: microservices_1.Transport.REDIS,
                         options: {
                             host: "localhost",

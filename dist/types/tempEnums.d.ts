@@ -12,4 +12,7 @@ export declare enum ECashcowOrderStatus {
     Cancaled = 8,
     Claimed = 9
 }
+export declare enum EInject {
+    Queue = "QUEUE_SERVICE"
+}
 //# sourceMappingURL=tempEnums.d.ts.map

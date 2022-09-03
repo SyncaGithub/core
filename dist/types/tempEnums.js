@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ECashcowOrderStatus = exports.EQtyType = void 0;
+exports.EInject = exports.ECashcowOrderStatus = exports.EQtyType = void 0;
 var EQtyType;
 (function (EQtyType) {
     EQtyType["UNIT"] = "UNIT";
@@ -17,4 +17,8 @@ var ECashcowOrderStatus;
     ECashcowOrderStatus[ECashcowOrderStatus["Cancaled"] = 8] = "Cancaled";
     ECashcowOrderStatus[ECashcowOrderStatus["Claimed"] = 9] = "Claimed";
 })(ECashcowOrderStatus = exports.ECashcowOrderStatus || (exports.ECashcowOrderStatus = {}));
+var EInject;
+(function (EInject) {
+    EInject["Queue"] = "QUEUE_SERVICE";
+})(EInject = exports.EInject || (exports.EInject = {}));
 //# sourceMappingURL=tempEnums.js.map
