@@ -88,10 +88,10 @@ export class Client<
 	T = ClientConfigurationTypes,
 	P extends IPopulated | IRaw = IRaw
 > {
-	@Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "User" } })
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
 	user: P extends IRaw ? mongoose.Types.ObjectId : User;
 
-	@Prop({ type: String, enum: EntityStatus, required: true })
+	@Prop({ type: String, enum: EntityStatus, default: EntityStatus.READY })
 	status: EntityStatus;
 
 	@Prop({ type: String, enum: EClientType, required: true })
@@ -106,7 +106,7 @@ export class Client<
 	@Prop(CashcowClientConfiguration)
 	cashcow: CashcowClientConfiguration;
 
-	@Prop([{ type: { type: mongoose.Schema.Types.ObjectId, ref: "Client" } }])
+	@Prop([{ type: mongoose.Schema.Types.ObjectId, ref: "Client" }])
 	workWithClients: Client[];
 
 	@Prop()

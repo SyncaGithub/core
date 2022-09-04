@@ -20,7 +20,7 @@ const User_model_1 = require("./User.model");
 class Action {
 }
 __decorate([
-    (0, mongoose_1.Prop)({ type: { type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" } }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }),
     __metadata("design:type", Object)
 ], Action.prototype, "client", void 0);
 __decorate([
@@ -31,7 +31,7 @@ exports.Action = Action;
 class JobConfiguration {
 }
 __decorate([
-    (0, mongoose_1.Prop)({ type: { type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" } }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }),
     __metadata("design:type", Object)
 ], JobConfiguration.prototype, "client", void 0);
 __decorate([
@@ -46,7 +46,7 @@ exports.JobConfiguration = JobConfiguration;
 let Job = class Job {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: { type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" } }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
     __metadata("design:type", Object)
 ], Job.prototype, "user", void 0);
 __decorate([

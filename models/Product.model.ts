@@ -8,7 +8,6 @@ import { User } from "./User.model";
 export type ProductDocument<P extends IPopulated | IRaw = IRaw> = Product<P> &
 	Document;
 
-@Schema({ _id: true, versionKey: false, timestamps: true })
 export class ProductFail<P extends IPopulated | IRaw = IRaw> {
 	@Prop({
 		type: MongooseSchema.Types.ObjectId,
@@ -111,7 +110,7 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 	@Prop()
 	createdAt: string;
 
-	@Prop({ type: [ProductFail], default: [] })
+	@Prop([{ type: ProductFail, default: [] }])
 	fail: ProductFail[];
 
 	@Prop({ type: MongooseSchema.Types.Map, of: String, default: new Map() })

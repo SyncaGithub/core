@@ -9,14 +9,14 @@ import { User } from "./User.model";
 export type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 
 export class Action<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "Client" } })
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Client" })
 	client: P extends IRaw ? ObjectId : Client;
 
 	@Prop({ enum: EActionType, required: true })
 	action: string;
 }
 export class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "Client" } })
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Client" })
 	client?: P extends IRaw ? ObjectId : Client;
 
 	@Prop()
@@ -33,7 +33,7 @@ export class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
 
 @Schema({ timestamps: true })
 export class Job<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "User" } })
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
 	user: P extends IRaw ? mongoose.Types.ObjectId : User;
 
 	@Prop([Action])

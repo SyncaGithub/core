@@ -124,11 +124,11 @@ exports.PriorityClientConfiguration = PriorityClientConfiguration;
 let Client = class Client {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: { type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" } }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
     __metadata("design:type", Object)
 ], Client.prototype, "user", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: String, enum: types_1.EntityStatus, required: true }),
+    (0, mongoose_1.Prop)({ type: String, enum: types_1.EntityStatus, default: types_1.EntityStatus.READY }),
     __metadata("design:type", String)
 ], Client.prototype, "status", void 0);
 __decorate([
@@ -148,7 +148,7 @@ __decorate([
     __metadata("design:type", CashcowClientConfiguration)
 ], Client.prototype, "cashcow", void 0);
 __decorate([
-    (0, mongoose_1.Prop)([{ type: { type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" } }]),
+    (0, mongoose_1.Prop)([{ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }]),
     __metadata("design:type", Array)
 ], Client.prototype, "workWithClients", void 0);
 __decorate([

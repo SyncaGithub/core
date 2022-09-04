@@ -9,7 +9,7 @@ export type JobHistoryDocument<P extends IPopulated | IRaw = IRaw> =
 
 @Schema({ timestamps: true })
 export class JobHistory<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: "User" } })
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
 	user: P extends IRaw ? mongoose.Types.ObjectId : User;
 
 	@Prop({ required: true })

@@ -19,7 +19,7 @@ const jobs_enums_1 = require("../types/jobs.enums");
 let JobHistory = class JobHistory {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: { type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" } }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
     __metadata("design:type", Object)
 ], JobHistory.prototype, "user", void 0);
 __decorate([
