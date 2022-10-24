@@ -167,7 +167,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Product.prototype, "hasBeenCompressed", void 0);
 Product = __decorate([
-    (0, mongoose_1.Schema)({ timestamps: true })
+    (0, mongoose_1.Schema)({ timestamps: false })
 ], Product);
 exports.Product = Product;
 exports.ProductSchema = mongoose_1.SchemaFactory.createForClass(Product);

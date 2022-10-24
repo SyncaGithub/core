@@ -26,7 +26,7 @@ export class ProductFail<P extends IPopulated | IRaw = IRaw> {
 	url: string;
 }
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: false })
 export class Product<P extends IPopulated | IRaw = IRaw> {
 	@Prop({ type: MongooseSchema.Types.ObjectId, ref: "User", required: true })
 	user: P extends IRaw ? mongoose.Types.ObjectId : User;
