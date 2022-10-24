@@ -37,6 +37,7 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     priceListName: string;
     updatedAt: string;
     createdAt: string;
+    lastUpdate: string;
     fail: ProductFail[];
     lastSending: Map<string, string>;
     needImageCompression: boolean;

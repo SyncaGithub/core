@@ -110,6 +110,9 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 	@Prop()
 	createdAt: string;
 
+	@Prop()
+	lastUpdate: string;
+
 	@Prop([{ type: ProductFail, default: [] }])
 	fail: ProductFail[];
 

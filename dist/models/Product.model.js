@@ -147,6 +147,10 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "createdAt", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Product.prototype, "lastUpdate", void 0);
+__decorate([
     (0, mongoose_1.Prop)([{ type: ProductFail, default: [] }]),
     __metadata("design:type", Array)
 ], Product.prototype, "fail", void 0);
