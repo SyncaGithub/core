@@ -65,11 +65,23 @@ export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
 		dataToUpdate: Partial<Entity>
 	): Promise<Entity> {
 		return this._model
-			.findOneAndUpdate(filter, dataToUpdate, { new: true })
+			.findOneAndUpdate(filter, dataToUpdate, {
+				returnDocument: "after",
+				returnOriginal: false,
+			})
 			.exec();
 	}
 	delete(filter: FilterQuery<Entity>): Promise<void> {
 		this._model.findOneAndDelete(filter).exec();
 		return;
+	}
+
+	async addMany(entities: Partial<Entity>[]): Promise<Entity[]> {
+		const newEntities = await this._model.insertMany(entities);
+		newEntities.forEach(async (e) => {
+			await e.validateSync();
+			await e.save();
+		});
+		return newEntities;
 	}
 }

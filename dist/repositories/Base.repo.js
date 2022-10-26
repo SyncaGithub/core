@@ -26,12 +26,23 @@ class BaseRepo {
     }
     update(filter, dataToUpdate) {
         return this._model
-            .findOneAndUpdate(filter, dataToUpdate, { new: true })
+            .findOneAndUpdate(filter, dataToUpdate, {
+            returnDocument: "after",
+            returnOriginal: false,
+        })
             .exec();
     }
     delete(filter) {
         this._model.findOneAndDelete(filter).exec();
         return;
+    }
+    async addMany(entities) {
+        const newEntities = await this._model.insertMany(entities);
+        newEntities.forEach(async (e) => {
+            await e.validateSync();
+            await e.save();
+        });
+        return newEntities;
     }
 }
 exports.BaseRepo = BaseRepo;

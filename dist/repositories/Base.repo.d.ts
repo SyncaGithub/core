@@ -19,5 +19,6 @@ export declare abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity
     add(entity: Partial<Entity>): Promise<Entity>;
     update(filter: FilterQuery<Entity>, dataToUpdate: Partial<Entity>): Promise<Entity>;
     delete(filter: FilterQuery<Entity>): Promise<void>;
+    addMany(entities: Partial<Entity>[]): Promise<Entity[]>;
 }
 //# sourceMappingURL=Base.repo.d.ts.map
