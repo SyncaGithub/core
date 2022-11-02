@@ -16,7 +16,6 @@ exports.JobSchema = exports.Job = exports.JobConfiguration = exports.Action = vo
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = __importDefault(require("mongoose"));
 const jobs_enums_1 = require("../types/jobs.enums");
-const User_model_1 = require("./User.model");
 class Action {
 }
 __decorate([
@@ -46,11 +45,11 @@ exports.JobConfiguration = JobConfiguration;
 let Job = class Job {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User", required: true }),
     __metadata("design:type", Object)
 ], Job.prototype, "user", void 0);
 __decorate([
-    (0, mongoose_1.Prop)([Action]),
+    (0, mongoose_1.Prop)({ type: [Action], required: true, default: [] }),
     __metadata("design:type", Array)
 ], Job.prototype, "actionList", void 0);
 __decorate([
@@ -58,11 +57,11 @@ __decorate([
     __metadata("design:type", String)
 ], Job.prototype, "status", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, mongoose_1.Prop)({ required: true, type: String }),
     __metadata("design:type", String)
 ], Job.prototype, "startHour", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, mongoose_1.Prop)({ required: true, type: String }),
     __metadata("design:type", String)
 ], Job.prototype, "startMinute", void 0);
 __decorate([
@@ -77,5 +76,5 @@ Job = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Job);
 exports.Job = Job;
-exports.JobSchema = mongoose_1.SchemaFactory.createForClass(User_model_1.User);
+exports.JobSchema = mongoose_1.SchemaFactory.createForClass(Job);
 //# sourceMappingURL=Job.model.js.map

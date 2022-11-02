@@ -19,7 +19,7 @@ class BaseRepo {
         return this._model.findOne(filter).exec();
     }
     async add(entity) {
-        const newEntity = await this._model.create(entity);
+        const newEntity = new this._model(entity);
         newEntity.validateSync();
         await newEntity.save();
         return newEntity;

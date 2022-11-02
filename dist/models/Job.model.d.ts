@@ -28,5 +28,5 @@ export declare class Job<P extends IPopulated | IRaw = IRaw> {
     currentActionHistoryId?: string;
     currentActinIndex: number;
 }
-export declare const JobSchema: mongoose.Schema<User, mongoose.Model<User, any, any, any, any>, {}, {}, {}, {}, "type", User>;
+export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", Job<IPopulated | IRaw>>;
 //# sourceMappingURL=Job.model.d.ts.map
