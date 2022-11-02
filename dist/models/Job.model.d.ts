@@ -21,8 +21,8 @@ export declare class Job<P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
     actionList: Action[];
     status?: string;
-    startHour?: string;
-    startMinute?: string;
+    startHour: string;
+    startMinute: string;
     jobHistoryId?: string;
     configuration?: JobConfiguration;
     currentActionHistoryId?: string;

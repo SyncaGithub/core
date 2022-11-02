@@ -43,10 +43,10 @@ export class Job<P extends IPopulated | IRaw = IRaw> {
 	status?: string;
 
 	@Prop({ required: true })
-	startHour?: string;
+	startHour: string;
 
 	@Prop({ required: true })
-	startMinute?: string;
+	startMinute: string;
 
 	@Prop()
 	jobHistoryId?: string;
