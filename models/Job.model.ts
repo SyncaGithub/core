@@ -8,12 +8,17 @@ import { User } from "./User.model";
 
 export type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 
+@Schema({ timestamps: false, _id: false, versionKey: false })
 export class Action<P extends IPopulated | IRaw = IRaw> {
-	client: ObjectId;
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Client" })
+	client: P extends IRaw ? ObjectId : Client;
 
 	@Prop({ enum: EActionType, required: true })
 	action: string;
 }
+
+export const JobActionSchema = SchemaFactory.createForClass(Action);
+
 export class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
 	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Client" })
 	client?: P extends IRaw ? ObjectId : Client;
@@ -35,7 +40,7 @@ export class Job<P extends IPopulated | IRaw = IRaw> {
 	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true })
 	user: P extends IRaw ? mongoose.Types.ObjectId : User;
 
-	@Prop({ type: [Action], required: true, default: [] })
+	@Prop({ type: [JobActionSchema], required: true, default: [] })
 	actionList: Action[];
 
 	@Prop({ enum: EJobStatus, default: EJobStatus.STOPPED })

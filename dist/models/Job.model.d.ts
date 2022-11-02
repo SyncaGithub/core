@@ -5,9 +5,10 @@ import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
 export declare type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 export declare class Action<P extends IPopulated | IRaw = IRaw> {
-    client: ObjectId;
+    client: P extends IRaw ? ObjectId : Client;
     action: string;
 }
+export declare const JobActionSchema: mongoose.Schema<Action<IPopulated | IRaw>, mongoose.Model<Action<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", Action<IPopulated | IRaw>>;
 export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
     client?: P extends IRaw ? ObjectId : Client;
     isFullFetch?: boolean;

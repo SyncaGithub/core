@@ -12,17 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JobSchema = exports.Job = exports.JobConfiguration = exports.Action = void 0;
+exports.JobSchema = exports.Job = exports.JobConfiguration = exports.JobActionSchema = exports.Action = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = __importDefault(require("mongoose"));
 const jobs_enums_1 = require("../types/jobs.enums");
-class Action {
-}
+let Action = class Action {
+};
+__decorate([
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }),
+    __metadata("design:type", Object)
+], Action.prototype, "client", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ enum: jobs_enums_1.EActionType, required: true }),
     __metadata("design:type", String)
 ], Action.prototype, "action", void 0);
+Action = __decorate([
+    (0, mongoose_1.Schema)({ timestamps: false, _id: false, versionKey: false })
+], Action);
 exports.Action = Action;
+exports.JobActionSchema = mongoose_1.SchemaFactory.createForClass(Action);
 class JobConfiguration {
 }
 __decorate([
@@ -45,7 +53,7 @@ __decorate([
     __metadata("design:type", Object)
 ], Job.prototype, "user", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: [Action], required: true, default: [] }),
+    (0, mongoose_1.Prop)({ type: [exports.JobActionSchema], required: true, default: [] }),
     __metadata("design:type", Array)
 ], Job.prototype, "actionList", void 0);
 __decorate([
