@@ -9,8 +9,7 @@ import { User } from "./User.model";
 export type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 
 export class Action<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Client" })
-	client: P extends IRaw ? ObjectId : Client;
+	client: ObjectId;
 
 	@Prop({ enum: EActionType, required: true })
 	action: string;

@@ -5,7 +5,7 @@ import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
 export declare type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 export declare class Action<P extends IPopulated | IRaw = IRaw> {
-    client: P extends IRaw ? ObjectId : Client;
+    client: ObjectId;
     action: string;
 }
 export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {

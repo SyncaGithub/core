@@ -19,10 +19,6 @@ const jobs_enums_1 = require("../types/jobs.enums");
 class Action {
 }
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }),
-    __metadata("design:type", Object)
-], Action.prototype, "client", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ enum: jobs_enums_1.EActionType, required: true }),
     __metadata("design:type", String)
 ], Action.prototype, "action", void 0);
