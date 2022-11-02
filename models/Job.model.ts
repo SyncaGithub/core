@@ -33,19 +33,19 @@ export class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
 
 @Schema({ timestamps: true })
 export class Job<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true })
 	user: P extends IRaw ? mongoose.Types.ObjectId : User;
 
-	@Prop([Action])
+	@Prop({ type: [Action], required: true, default: [] })
 	actionList: Action[];
 
 	@Prop({ enum: EJobStatus, default: EJobStatus.STOPPED })
 	status?: string;
 
-	@Prop({ required: true })
+	@Prop({ required: true, type: String })
 	startHour: string;
 
-	@Prop({ required: true })
+	@Prop({ required: true, type: String })
 	startMinute: string;
 
 	@Prop()
