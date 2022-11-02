@@ -58,4 +58,4 @@ export class Job<P extends IPopulated | IRaw = IRaw> {
 	currentActinIndex: number;
 }
 
-export const JobSchema = SchemaFactory.createForClass(User);
+export const JobSchema = SchemaFactory.createForClass(Job);
