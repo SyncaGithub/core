@@ -5,6 +5,8 @@ import {
 	Model,
 	ObjectId,
 	Query,
+	UpdateQuery,
+	UpdateWithAggregationPipeline,
 } from "mongoose";
 import { Populated, Raw } from "../models";
 
@@ -83,5 +85,12 @@ export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
 			await e.save();
 		});
 		return newEntities;
+	}
+
+	updateMany(
+		filter?: FilterQuery<Entity>,
+		update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>
+	) {
+		return this._model.updateMany(filter, update);
 	}
 }

@@ -1,4 +1,4 @@
-import { Connection, FilterQuery, HydratedDocument, Model, ObjectId, Query } from "mongoose";
+import { Connection, FilterQuery, HydratedDocument, Model, ObjectId, Query, UpdateQuery, UpdateWithAggregationPipeline } from "mongoose";
 export interface IBaseRepo<Entity = any> {
     list(filter: FilterQuery<Entity>): Promise<Entity[]>;
     find(filter: FilterQuery<Entity>): Query<HydratedDocument<Entity, {}, {}>[], HydratedDocument<Entity, {}, {}>, {}, Entity>;
@@ -20,5 +20,6 @@ export declare abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity
     update(filter: FilterQuery<Entity>, dataToUpdate: Partial<Entity>): Promise<Entity>;
     delete(filter: FilterQuery<Entity>): Promise<void>;
     addMany(entities: Partial<Entity>[]): Promise<Entity[]>;
+    updateMany(filter?: FilterQuery<Entity>, update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>): Query<import("mongodb").UpdateResult, HydratedDocument<Entity, {}, {}>, {}, Entity>;
 }
 //# sourceMappingURL=Base.repo.d.ts.map

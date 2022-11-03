@@ -44,6 +44,9 @@ class BaseRepo {
         });
         return newEntities;
     }
+    updateMany(filter, update) {
+        return this._model.updateMany(filter, update);
+    }
 }
 exports.BaseRepo = BaseRepo;
 //# sourceMappingURL=Base.repo.js.map
