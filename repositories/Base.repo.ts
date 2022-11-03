@@ -28,6 +28,10 @@ export interface IBaseRepo<Entity = any> {
 	): Promise<Entity>;
 	delete(filter: FilterQuery<Entity>): Promise<void>;
 	findOne(filter: FilterQuery<Entity>): Promise<Entity>;
+	updateMany(
+		filter?: FilterQuery<Entity>,
+		update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>
+	): Promise<any>;
 }
 
 export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
@@ -91,6 +95,6 @@ export abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
 		filter?: FilterQuery<Entity>,
 		update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>
 	) {
-		return this._model.updateMany(filter, update);
+		return this._model.updateMany(filter, update).exec();
 	}
 }

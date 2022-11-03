@@ -7,6 +7,7 @@ export interface IBaseRepo<Entity = any> {
     update(filter: FilterQuery<Entity>, dataToUpdate: Partial<Entity>): Promise<Entity>;
     delete(filter: FilterQuery<Entity>): Promise<void>;
     findOne(filter: FilterQuery<Entity>): Promise<Entity>;
+    updateMany(filter?: FilterQuery<Entity>, update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>): Promise<any>;
 }
 export declare abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity> {
     private readonly _model;
@@ -20,6 +21,6 @@ export declare abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity
     update(filter: FilterQuery<Entity>, dataToUpdate: Partial<Entity>): Promise<Entity>;
     delete(filter: FilterQuery<Entity>): Promise<void>;
     addMany(entities: Partial<Entity>[]): Promise<Entity[]>;
-    updateMany(filter?: FilterQuery<Entity>, update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>): Query<import("mongodb").UpdateResult, HydratedDocument<Entity, {}, {}>, {}, Entity>;
+    updateMany(filter?: FilterQuery<Entity>, update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>): Promise<import("mongodb").UpdateResult>;
 }
 //# sourceMappingURL=Base.repo.d.ts.map

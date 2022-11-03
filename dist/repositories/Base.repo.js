@@ -45,7 +45,7 @@ class BaseRepo {
         return newEntities;
     }
     updateMany(filter, update) {
-        return this._model.updateMany(filter, update);
+        return this._model.updateMany(filter, update).exec();
     }
 }
 exports.BaseRepo = BaseRepo;
