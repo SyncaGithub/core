@@ -169,6 +169,14 @@ __decorate([
 ], Client.prototype, "sellPriceFormula", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
+    __metadata("design:type", Number)
+], Client.prototype, "minPriceForFreeDelivery", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Client.prototype, "deliveryBarcode", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Client.prototype, "lastUpdate", void 0);
 __decorate([

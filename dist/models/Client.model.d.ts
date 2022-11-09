@@ -45,6 +45,8 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     barcodeTag: string;
     sellPriceMultiple: number;
     sellPriceFormula: string;
+    minPriceForFreeDelivery: number;
+    deliveryBarcode: string;
     lastUpdate: string;
     isTempCategory: boolean;
     tempCategory: string;

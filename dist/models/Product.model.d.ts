@@ -33,6 +33,7 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     qtyType: EQtyType;
     description: string;
     mainImage: string;
+    mainImageSize: string;
     images: string[];
     priceListName: string;
     updatedAt: string;

@@ -98,6 +98,9 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 	@Prop()
 	mainImage: string;
 
+	@Prop()
+	mainImageSize: string;
+
 	@Prop([String])
 	images: string[];
 

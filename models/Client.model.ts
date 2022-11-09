@@ -122,6 +122,12 @@ export class Client<
 	sellPriceFormula: string;
 
 	@Prop()
+	minPriceForFreeDelivery: number;
+
+	@Prop()
+	deliveryBarcode: string;
+
+	@Prop()
 	lastUpdate: string;
 
 	@Prop()

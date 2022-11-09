@@ -131,6 +131,10 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "mainImage", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Product.prototype, "mainImageSize", void 0);
+__decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)
 ], Product.prototype, "images", void 0);
