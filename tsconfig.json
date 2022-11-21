@@ -23,6 +23,7 @@
 		"./repositories/**/*",
 		"./types/**/*",
 		"./utils/**/*",
+		"./services/**/*",
 		"./index.ts"
 	]
 }
