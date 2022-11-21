@@ -3,10 +3,10 @@ import { ClientsModule, Transport } from "@nestjs/microservices";
 import { EInject } from "../types/tempEnums";
 
 @Module({})
-export class QueueModule {
+export class ImagesModule {
 	static register(port: number): DynamicModule {
 		return {
-			module: QueueModule,
+			module: ImagesModule,
 			imports: [
 				ClientsModule.register([
 					{

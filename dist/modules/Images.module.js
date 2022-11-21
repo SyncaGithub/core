@@ -5,16 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var QueueModule_1;
+var ImagesModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueueModule = void 0;
+exports.ImagesModule = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 const tempEnums_1 = require("../types/tempEnums");
-let QueueModule = QueueModule_1 = class QueueModule {
+let ImagesModule = ImagesModule_1 = class ImagesModule {
     static register(port) {
         return {
-            module: QueueModule_1,
+            module: ImagesModule_1,
             imports: [
                 microservices_1.ClientsModule.register([
                     {
@@ -32,8 +32,8 @@ let QueueModule = QueueModule_1 = class QueueModule {
         };
     }
 };
-QueueModule = QueueModule_1 = __decorate([
+ImagesModule = ImagesModule_1 = __decorate([
     (0, common_1.Module)({})
-], QueueModule);
-exports.QueueModule = QueueModule;
+], ImagesModule);
+exports.ImagesModule = ImagesModule;
 //# sourceMappingURL=Images.module.js.map
