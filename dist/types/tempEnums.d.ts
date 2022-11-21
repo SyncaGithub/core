@@ -13,6 +13,7 @@ export declare enum ECashcowOrderStatus {
     Claimed = 9
 }
 export declare enum EInject {
-    Queue = "QUEUE_SERVICE"
+    Queue = "QUEUE_SERVICE",
+    Images = "IMAGES_SERVICE"
 }
 //# sourceMappingURL=tempEnums.d.ts.map

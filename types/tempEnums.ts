@@ -16,4 +16,5 @@ export enum ECashcowOrderStatus {
 
 export enum EInject {
 	Queue = "QUEUE_SERVICE",
+	Images = "IMAGES_SERVICE",
 }
