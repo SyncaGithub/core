@@ -32,6 +32,8 @@ export class ImagesService implements OnModuleInit {
 	}
 
 	async compressImageFromUrl(
+		AWS_S3_KEY_ID: string,
+		AWS_S3_KEY: string,
 		imageUrl: string,
 		imageName: string
 	): Promise<string | void> {
@@ -40,8 +42,8 @@ export class ImagesService implements OnModuleInit {
 			this.logger.debug("got soruce object");
 			const result = compressedSource.store({
 				service: "s3",
-				aws_access_key_id: process.env.AWS_S3_KEY_ID,
-				aws_secret_access_key: process.env.AWS_S3_KEY,
+				aws_access_key_id: AWS_S3_KEY_ID,
+				aws_secret_access_key: AWS_S3_KEY,
 				region: "eu-central-1",
 				headers: {
 					"Cache-Control": "public, max-age=31536000",
