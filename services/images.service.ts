@@ -38,7 +38,9 @@ export class ImagesService implements OnModuleInit {
 		imageName: string
 	): Promise<string | void> {
 		try {
-			this.logger.debug(`image to compress: ${imageUrl}`);
+			this.logger.debug(
+				`image to compress: ${encodeURIComponent(imageName)}`
+			);
 			const compressedSource = this.tinyPngService.fromUrl(imageUrl);
 			this.logger.debug(compressedSource, "compressedSource");
 			const result = compressedSource.store({
@@ -49,7 +51,7 @@ export class ImagesService implements OnModuleInit {
 				headers: {
 					"Cache-Control": "public, max-age=31536000",
 				},
-				path: "synca-bucket/products/" + imageName,
+				path: "synca-bucket/products/" + encodeURIComponent(imageName),
 			});
 			const location = await result.location();
 			this.logger.debug("got result: " + location);
