@@ -38,8 +38,9 @@ export class ImagesService implements OnModuleInit {
 		imageName: string
 	): Promise<string | void> {
 		try {
+			this.logger.debug(`image to compress: ${imageUrl}`);
 			const compressedSource = this.tinyPngService.fromUrl(imageUrl);
-			this.logger.debug("got soruce object");
+			this.logger.debug(compressedSource, "compressedSource");
 			const result = compressedSource.store({
 				service: "s3",
 				aws_access_key_id: AWS_S3_KEY_ID,
