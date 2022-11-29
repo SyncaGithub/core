@@ -38,11 +38,7 @@ export class ImagesService implements OnModuleInit {
 		imageName: string
 	): Promise<string | void> {
 		try {
-			this.logger.debug(
-				`image to compress: ${encodeURIComponent(imageName)}`
-			);
 			const compressedSource = this.tinyPngService.fromUrl(imageUrl);
-			this.logger.debug(compressedSource, "compressedSource");
 			const result = compressedSource.store({
 				service: "s3",
 				aws_access_key_id: AWS_S3_KEY_ID,
@@ -54,7 +50,6 @@ export class ImagesService implements OnModuleInit {
 				path: "synca-bucket/products/" + encodeURIComponent(imageName),
 			});
 			const location = await result.location();
-			this.logger.debug("got result: " + location);
 			return Promise.resolve(await location);
 		} catch (error) {
 			return Promise.reject(error);

@@ -170,6 +170,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
 ], Product.prototype, "hasBeenCompressed", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Product.prototype, "compressedImageUrl", void 0);
 Product = __decorate([
     (0, mongoose_1.Schema)({ timestamps: false })
 ], Product);

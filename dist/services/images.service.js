@@ -45,9 +45,7 @@ let ImagesService = class ImagesService {
     }
     async compressImageFromUrl(AWS_S3_KEY_ID, AWS_S3_KEY, imageUrl, imageName) {
         try {
-            this.logger.debug(`image to compress: ${encodeURIComponent(imageName)}`);
             const compressedSource = this.tinyPngService.fromUrl(imageUrl);
-            this.logger.debug(compressedSource, "compressedSource");
             const result = compressedSource.store({
                 service: "s3",
                 aws_access_key_id: AWS_S3_KEY_ID,
@@ -59,7 +57,6 @@ let ImagesService = class ImagesService {
                 path: "synca-bucket/products/" + encodeURIComponent(imageName),
             });
             const location = await result.location();
-            this.logger.debug("got result: " + location);
             return Promise.resolve(await location);
         }
         catch (error) {
