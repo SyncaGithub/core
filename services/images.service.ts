@@ -45,7 +45,7 @@ export class ImagesService implements OnModuleInit {
 				aws_secret_access_key: AWS_S3_KEY,
 				region: "eu-central-1",
 				headers: {
-					"Cache-Control": "public, max-age=31536000",
+					// "Cache-Control": "public, max-age=31536000", //Make images delete automatic after the specified period
 				},
 				path: "synca-bucket/products/" + encodeURIComponent(imageName),
 			});
