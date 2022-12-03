@@ -23,8 +23,9 @@ export class ImagesService implements OnModuleInit {
 			this.tinyPngService.key = key;
 			this.tinyPngService.validate((err) => {
 				if (err) return rej(err);
-				this.logger.debug("pass validation");
-				this.logger.debug(this.tinyPngService.compressionCount);
+				this.logger.debug(
+					`[Compression Service] Successfully connected to the server and retrieve access. Amount of compression used this month: ${this.tinyPngService.compressionCount}`
+				);
 				return res();
 				// Validation of API key failed.
 			});
