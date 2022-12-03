@@ -35,7 +35,8 @@ export class ImagesService implements OnModuleInit {
 		AWS_S3_KEY_ID: string,
 		AWS_S3_KEY: string,
 		imageUrl: string,
-		imageName: string
+		imageName: string,
+		clientId: string
 	): Promise<string | void> {
 		try {
 			const compressedSource = this.tinyPngService.fromUrl(imageUrl);
@@ -47,7 +48,9 @@ export class ImagesService implements OnModuleInit {
 				headers: {
 					// "Cache-Control": "public, max-age=31536000", //Make images delete automatic after the specified period
 				},
-				path: "synca-bucket/products/" + encodeURIComponent(imageName),
+				path:
+					`synca-bucket/clients/${clientId}/products/` +
+					encodeURIComponent(imageName),
 			});
 			const location = await result.location();
 			return Promise.resolve(await location);

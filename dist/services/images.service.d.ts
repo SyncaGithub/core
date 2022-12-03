@@ -5,6 +5,6 @@ export declare class ImagesService implements OnModuleInit {
     constructor();
     onModuleInit(): void;
     connect(key: string): Promise<void>;
-    compressImageFromUrl(AWS_S3_KEY_ID: string, AWS_S3_KEY: string, imageUrl: string, imageName: string): Promise<string | void>;
+    compressImageFromUrl(AWS_S3_KEY_ID: string, AWS_S3_KEY: string, imageUrl: string, imageName: string, clientId: string): Promise<string | void>;
 }
 //# sourceMappingURL=images.service.d.ts.map
