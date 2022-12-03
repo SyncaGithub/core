@@ -44,7 +44,9 @@ let ImagesService = class ImagesService {
     async compressImageFromUrl(AWS_S3_KEY_ID, AWS_S3_KEY, imageUrl, imageName, clientId) {
         try {
             const compressedSource = this.tinyPngService.fromUrl(imageUrl);
-            const result = compressedSource.store({
+            const result = compressedSource
+                .convert({ type: "image/jpeg" })
+                .store({
                 service: "s3",
                 aws_access_key_id: AWS_S3_KEY_ID,
                 aws_secret_access_key: AWS_S3_KEY,
@@ -52,8 +54,7 @@ let ImagesService = class ImagesService {
                 headers: {
                 // "Cache-Control": "public, max-age=31536000", //Make images delete automatic after the specified period
                 },
-                path: `synca-bucket/clients/${clientId}/products/` +
-                    encodeURIComponent(imageName),
+                path: `synca-bucket/clients/${clientId}/products/${encodeURIComponent(imageName)}.jpeg`,
             });
             const location = await result.location();
             return Promise.resolve(await location);
