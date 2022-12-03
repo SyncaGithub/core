@@ -25,8 +25,7 @@ let ImagesService = class ImagesService {
         this.tinyPngService.validate((err) => {
             if (err)
                 throw err;
-            this.logger.debug("pass validation");
-            this.logger.debug(this.tinyPngService.compressionCount);
+            this.logger.debug(`[Compression Service] Successfully connected to the server and retrieve access. Amount of compression used this month: ${this.tinyPngService.compressionCount}`);
             // Validation of API key failed.
         });
     }
