@@ -32,6 +32,7 @@ var EActionType;
     EActionType["CASHCOW_FETCH_TOTALORDER"] = "CASHCOW_FETCH_TOTALORDER";
     EActionType["CASHCOW_SEND_PRODUCTS"] = "CASHCOW_SEND_PRODUCTS";
     EActionType["CASHCOW_LOAD_EXCEL"] = "CASHCOW_LOAD_EXCEL";
+    EActionType["CASHCOW_UPDATE_ORDER"] = "CASHCOW_UPDATE_ORDER";
     EActionType["IMAGE_COMPRESSION"] = "IMAGE_COMPRESSION";
 })(EActionType = exports.EActionType || (exports.EActionType = {}));
 //# sourceMappingURL=jobs.enums.js.map
