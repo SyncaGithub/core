@@ -4,5 +4,7 @@ export * from "./jobs.interfaces";
 export * from "./priority.enums";
 export * from "./priority.interfaces";
 export * from "./tempInterfaces";
+export * from "./cashcow.interfaces";
+export * from "./cashcow.enums";
 export * from "./tempEnums";
 //# sourceMappingURL=index.d.ts.map
