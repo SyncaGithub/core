@@ -2,11 +2,11 @@ import mongoose, { Document } from "mongoose";
 import { EClientType, EntityStatus } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
-export declare type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
+export type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
 export interface ClientMethods {
     isClientBusy: () => Promise<boolean>;
 }
-export declare type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
+export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
 export declare class CashcowClientConfiguration {
     store_id: number;
     token: string;
@@ -55,5 +55,5 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     isUsingBlackList: boolean;
     blackListProducts: mongoose.Types.ObjectId[];
 }
-export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", Client<unknown, IPopulated | IRaw>>;
+export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IPopulated | IRaw>>;
 //# sourceMappingURL=Client.model.d.ts.map

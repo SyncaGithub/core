@@ -3,12 +3,12 @@ import { ECashcowOrderStatus, IOrder } from "../types";
 import { Client } from "./Client.model";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
-export declare type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
+export type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 export declare class Action<P extends IPopulated | IRaw = IRaw> {
     client: P extends IRaw ? ObjectId : Client;
     action: string;
 }
-export declare const JobActionSchema: mongoose.Schema<Action<IPopulated | IRaw>, mongoose.Model<Action<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", Action<IPopulated | IRaw>>;
+export declare const JobActionSchema: mongoose.Schema<Action<IPopulated | IRaw>, mongoose.Model<Action<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Action<IPopulated | IRaw>>;
 export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
     client?: P extends IRaw ? ObjectId : Client;
     isFullFetch?: boolean;
@@ -29,5 +29,5 @@ export declare class Job<P extends IPopulated | IRaw = IRaw> {
     currentActionHistoryId?: string;
     currentActinIndex: number;
 }
-export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, "type", Job<IPopulated | IRaw>>;
+export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IPopulated | IRaw>>;
 //# sourceMappingURL=Job.model.d.ts.map
