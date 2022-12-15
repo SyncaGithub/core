@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -124,6 +120,14 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.Mixed }),
     __metadata("design:type", Object)
 ], PriorityClientConfiguration.prototype, "productMap", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], PriorityClientConfiguration.prototype, "isUsingSummaryPage", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], PriorityClientConfiguration.prototype, "usingWARHSNAME", void 0);
 exports.PriorityClientConfiguration = PriorityClientConfiguration;
 let Client = class Client {
 };

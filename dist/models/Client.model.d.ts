@@ -2,11 +2,11 @@ import mongoose, { Document } from "mongoose";
 import { EClientType, EntityStatus } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
-export type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
+export declare type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
 export interface ClientMethods {
     isClientBusy: () => Promise<boolean>;
 }
-export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
+export declare type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
 export declare class CashcowClientConfiguration {
     store_id: number;
     token: string;
@@ -32,6 +32,8 @@ export declare class PriorityClientConfiguration {
     getProductsExpand: string;
     getProductsSelect: string;
     productMap: any;
+    isUsingSummaryPage: boolean;
+    usingWARHSNAME: string;
 }
 export declare class Client<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;

@@ -3,7 +3,7 @@ import { EClientType, EQtyType } from "../types";
 import { Client } from "./Client.model";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
-export type ProductDocument<P extends IPopulated | IRaw = IRaw> = Product<P> & Document;
+export declare type ProductDocument<P extends IPopulated | IRaw = IRaw> = Product<P> & Document;
 export declare class ProductFail<P extends IPopulated | IRaw = IRaw> {
     client: P extends IRaw ? mongoose.Types.ObjectId : Client;
     data: MongooseSchema.Types.Mixed;

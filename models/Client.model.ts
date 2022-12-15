@@ -81,6 +81,12 @@ export class PriorityClientConfiguration {
 
 	@Prop({ type: MongooseSchema.Types.Mixed })
 	productMap: any;
+
+	@Prop()
+	isUsingSummaryPage: boolean;
+
+	@Prop()
+	usingWARHSNAME: string;
 }
 
 @Schema({ timestamps: true })
