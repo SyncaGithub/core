@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document, Schema as MongooseSchema } from "mongoose";
-import { EClientType, EntityStatus, IRawPriorityProduct } from "../types";
+import { EClientType, EntityStatus, EProductSellProperty, IRawPriorityProduct } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
 
@@ -69,6 +69,9 @@ export class PriorityClientConfiguration {
 
 	@Prop()
 	priceKey: string;
+
+	@Prop({enum: EProductSellProperty, type: String, default: EProductSellProperty.BARCODE})
+	sellBarcodeKey: EProductSellProperty;
 
 	@Prop([PriorityProductFilter])
 	getProductsFilters: PriorityProductFilter[];

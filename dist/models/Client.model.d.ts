@@ -1,12 +1,12 @@
 import mongoose, { Document } from "mongoose";
-import { EClientType, EntityStatus } from "../types";
+import { EClientType, EntityStatus, EProductSellProperty } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
-export declare type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
+export type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
 export interface ClientMethods {
     isClientBusy: () => Promise<boolean>;
 }
-export declare type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
+export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
 export declare class CashcowClientConfiguration {
     store_id: number;
     token: string;
@@ -28,6 +28,7 @@ export declare class PriorityClientConfiguration {
     invoiceEndPoint: string;
     ordersEndPoint: string;
     priceKey: string;
+    sellBarcodeKey: EProductSellProperty;
     getProductsFilters: PriorityProductFilter[];
     getProductsExpand: string;
     getProductsSelect: string;

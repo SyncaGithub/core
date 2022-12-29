@@ -38,7 +38,7 @@ export interface IPriority_PARTPACK_SUBFORM {
 export interface IPriority_PARTBALANCE_SUBFORM {
     TBALANCE: number;
     WARHSNAME: string;
-    LOCNAME: string | "0";
+    LOCNAME?: string | "0";
     VELOCITY?: number;
     TYPE?: string | "D";
     STZONECODE?: null;

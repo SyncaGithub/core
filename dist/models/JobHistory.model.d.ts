@@ -1,7 +1,7 @@
 import mongoose, { Document } from "mongoose";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
-export declare type JobHistoryDocument<P extends IPopulated | IRaw = IRaw> = JobHistory<P> & Document;
+export type JobHistoryDocument<P extends IPopulated | IRaw = IRaw> = JobHistory<P> & Document;
 export declare class JobHistory<P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
     dateStart: string;

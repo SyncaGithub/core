@@ -6,4 +6,8 @@ export declare enum EInject {
     Queue = "QUEUE_SERVICE",
     Images = "IMAGES_SERVICE"
 }
+export declare enum EProductSellProperty {
+    SKU = "SKU",
+    BARCODE = "BARCODE"
+}
 //# sourceMappingURL=tempEnums.d.ts.map
