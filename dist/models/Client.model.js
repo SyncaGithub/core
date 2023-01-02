@@ -232,4 +232,14 @@ exports.ClientSchema.methods.isClientBusy = async function () {
         return Promise.resolve(false);
     }
 };
+exports.ClientSchema.methods.startWorking = async function () {
+    try {
+        await this.isClientBusy();
+        this.status = types_1.EntityStatus.WORKING;
+        await this.save();
+    }
+    catch (e) {
+        throw new Error("Failed to start a job, Client already working");
+    }
+};
 //# sourceMappingURL=Client.model.js.map

@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import { JobDocument, JobHistoryDocument } from "../models";
 import { EActionType } from "./jobs.enums";
 
@@ -9,6 +8,6 @@ export interface IJobFinish {
 }
 
 export interface IUpdateJobHistory {
-	jobHistoryId: ObjectId;
+	jobHistoryId: String;
 	dataToUpdate: Partial<JobHistoryDocument>;
 }

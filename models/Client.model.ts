@@ -11,6 +11,7 @@ export type ClientDocument<
 
 export interface ClientMethods {
 	isClientBusy: () => Promise<boolean>;
+	startWorking: () => Promise<void>;
 }
 
 export type ClientConfigurationTypes =
@@ -70,7 +71,7 @@ export class PriorityClientConfiguration {
 	@Prop()
 	priceKey: string;
 
-	@Prop({enum: EProductSellProperty, type: String, default: EProductSellProperty.BARCODE})
+	@Prop({ enum: EProductSellProperty, type: String, default: EProductSellProperty.BARCODE })
 	sellBarcodeKey: EProductSellProperty;
 
 	@Prop([PriorityProductFilter])
@@ -167,3 +168,13 @@ ClientSchema.methods.isClientBusy = async function (): Promise<boolean> {
 		return Promise.resolve(false);
 	}
 };
+
+ClientSchema.methods.startWorking = async function (): Promise<void> {
+	try {
+		await this.isClientBusy();
+		this.status = EntityStatus.WORKING;
+		await this.save();
+	}catch (e) {
+		throw new Error("Failed to start a job, Client already working");
+	}
+}
