@@ -10,8 +10,8 @@ export type ClientDocument<
 > = Client<T, P> & Document & ClientMethods;
 
 export interface ClientMethods {
-	isClientBusy: () => Promise<boolean>;
-	startWorking: () => Promise<void>;
+	startWorking: <T = ClientDocument>() =>  Promise<T>;
+	finishWorking: <T = ClientDocument>() =>  Promise<T>;
 }
 
 export type ClientConfigurationTypes =
@@ -161,20 +161,28 @@ export class Client<
 
 export const ClientSchema = SchemaFactory.createForClass(Client);
 
-ClientSchema.methods.isClientBusy = async function (): Promise<boolean> {
+ClientSchema.methods.startWorking = async function<T = ClientDocument> (): Promise<T> {
 	if (this.status === EntityStatus.WORKING) {
-		return Promise.reject("Client is busy");
-	} else {
-		return Promise.resolve(false);
+		throw new Error("Failed to start a job, Client already WORKING.");
 	}
-};
-
-ClientSchema.methods.startWorking = async function (): Promise<void> {
 	try {
-		await this.isClientBusy();
 		this.status = EntityStatus.WORKING;
 		await this.save();
-	}catch (e) {
-		throw new Error("Failed to start a job, Client already working");
+		return this as T;
+	} catch (e) {
+		throw new Error("Failed to start a job, Failed to update client status.");
+	}
+}
+
+ClientSchema.methods.finishWorking = async function<T = ClientDocument> (): Promise<T> {
+	if (this.status === EntityStatus.READY) {
+		throw new Error("Failed to finish a job, Client already READY.");
+	}
+	try {
+		this.status = EntityStatus.READY;
+		await this.save();
+		return this as T;
+	} catch (e) {
+		throw new Error("Failed to start a job, Failed to update client status.");
 	}
 }

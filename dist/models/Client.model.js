@@ -224,22 +224,30 @@ Client = __decorate([
 ], Client);
 exports.Client = Client;
 exports.ClientSchema = mongoose_1.SchemaFactory.createForClass(Client);
-exports.ClientSchema.methods.isClientBusy = async function () {
-    if (this.status === types_1.EntityStatus.WORKING) {
-        return Promise.reject("Client is busy");
-    }
-    else {
-        return Promise.resolve(false);
-    }
-};
 exports.ClientSchema.methods.startWorking = async function () {
+    if (this.status === types_1.EntityStatus.WORKING) {
+        throw new Error("Failed to start a job, Client already WORKING.");
+    }
     try {
-        await this.isClientBusy();
         this.status = types_1.EntityStatus.WORKING;
         await this.save();
+        return this;
     }
     catch (e) {
-        throw new Error("Failed to start a job, Client already working");
+        throw new Error("Failed to start a job, Failed to update client status.");
+    }
+};
+exports.ClientSchema.methods.finishWorking = async function () {
+    if (this.status === types_1.EntityStatus.READY) {
+        throw new Error("Failed to finish a job, Client already READY.");
+    }
+    try {
+        this.status = types_1.EntityStatus.READY;
+        await this.save();
+        return this;
+    }
+    catch (e) {
+        throw new Error("Failed to start a job, Failed to update client status.");
     }
 };
 //# sourceMappingURL=Client.model.js.map
