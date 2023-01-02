@@ -11,7 +11,7 @@ export type ClientDocument<
 
 export interface ClientMethods {
 	startWorking: <T = ClientDocument>() =>  Promise<T>;
-	finishWorking: <T = ClientDocument>() =>  Promise<T>;
+	finishWorking: <T = ClientDocument>(updateDate?:string) =>  Promise<T>;
 }
 
 export type ClientConfigurationTypes =
@@ -174,12 +174,13 @@ ClientSchema.methods.startWorking = async function<T = ClientDocument> (): Promi
 	}
 }
 
-ClientSchema.methods.finishWorking = async function<T = ClientDocument> (): Promise<T> {
+ClientSchema.methods.finishWorking = async function<T = ClientDocument> (updateDate?:string): Promise<T> {
 	if (this.status === EntityStatus.READY) {
 		throw new Error("Failed to finish a job, Client already READY.");
 	}
 	try {
 		this.status = EntityStatus.READY;
+		if(updateDate){this.lastUpdate = updateDate;}
 		await this.save();
 		return this as T;
 	} catch (e) {

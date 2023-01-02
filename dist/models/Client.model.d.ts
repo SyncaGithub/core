@@ -5,7 +5,7 @@ import { User } from "./User.model";
 export type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
 export interface ClientMethods {
     startWorking: <T = ClientDocument>() => Promise<T>;
-    finishWorking: <T = ClientDocument>() => Promise<T>;
+    finishWorking: <T = ClientDocument>(updateDate?: string) => Promise<T>;
 }
 export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
 export declare class CashcowClientConfiguration {

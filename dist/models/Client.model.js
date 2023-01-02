@@ -237,12 +237,15 @@ exports.ClientSchema.methods.startWorking = async function () {
         throw new Error("Failed to start a job, Failed to update client status.");
     }
 };
-exports.ClientSchema.methods.finishWorking = async function () {
+exports.ClientSchema.methods.finishWorking = async function (updateDate) {
     if (this.status === types_1.EntityStatus.READY) {
         throw new Error("Failed to finish a job, Client already READY.");
     }
     try {
         this.status = types_1.EntityStatus.READY;
+        if (updateDate) {
+            this.lastUpdate = updateDate;
+        }
         await this.save();
         return this;
     }
