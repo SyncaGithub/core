@@ -8,6 +8,6 @@ export interface IJobFinish {
 }
 
 export interface IUpdateJobHistory {
-	jobHistoryId: String;
+	jobHistoryId: string;
 	dataToUpdate: Partial<JobHistoryDocument>;
 }

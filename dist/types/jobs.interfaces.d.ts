@@ -6,7 +6,7 @@ export interface IJobFinish {
     jobHistoryData?: Partial<JobHistoryDocument>;
 }
 export interface IUpdateJobHistory {
-    jobHistoryId: String;
+    jobHistoryId: string;
     dataToUpdate: Partial<JobHistoryDocument>;
 }
 //# sourceMappingURL=jobs.interfaces.d.ts.map

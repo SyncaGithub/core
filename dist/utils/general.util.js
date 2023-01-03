@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTimeInIsraelTimezone = exports.obsToPromise = void 0;
+exports.getISOInIsraelTimezone = exports.obsToPromise = void 0;
 const rxjs_1 = require("rxjs");
 // Utills
 const obsToPromise = (obs) => {
@@ -14,7 +14,7 @@ const obsToPromise = (obs) => {
     });
 };
 exports.obsToPromise = obsToPromise;
-const getTimeInIsraelTimezone = () => {
+const getISOInIsraelTimezone = () => {
     const tempDate = new Date();
     const currentMonth = tempDate.getMonth() + 1;
     const currentDay = tempDate.getDay() + 1;
@@ -30,7 +30,7 @@ const getTimeInIsraelTimezone = () => {
     }
     const hoursOffset = isSummer ? 3 : 2;
     tempDate.setHours(tempDate.getHours() + hoursOffset);
-    return tempDate;
+    return tempDate.toISOString();
 };
-exports.getTimeInIsraelTimezone = getTimeInIsraelTimezone;
+exports.getISOInIsraelTimezone = getISOInIsraelTimezone;
 //# sourceMappingURL=general.util.js.map

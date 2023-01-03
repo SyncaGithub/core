@@ -19,7 +19,7 @@ export const obsToPromise = <T = any>(
 	});
 };
 
-export const getTimeInIsraelTimezone = (): Date => {
+export const getISOInIsraelTimezone = (): string => {
 	const tempDate = new Date();
     const currentMonth = tempDate.getMonth() + 1;
     const currentDay = tempDate.getDay() + 1;
@@ -31,5 +31,5 @@ export const getTimeInIsraelTimezone = (): Date => {
     }
     const hoursOffset = isSummer ? 3 : 2;
     tempDate.setHours(tempDate.getHours() + hoursOffset);
-	return tempDate
+	return tempDate.toISOString();
 }
