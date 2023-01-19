@@ -10,8 +10,8 @@ export type ClientDocument<
 > = Client<T, P> & Document & ClientMethods;
 
 export interface ClientMethods {
-	startWorking: <T = ClientDocument>() =>  Promise<T>;
-	finishWorking: <T = ClientDocument>(updateDate?:string) =>  Promise<T>;
+	startWorking<T = ClientDocument>():  Promise<T>;
+	finishWorking<T = ClientDocument>(updateDate?:string):  Promise<T>;
 }
 
 export type ClientConfigurationTypes =
