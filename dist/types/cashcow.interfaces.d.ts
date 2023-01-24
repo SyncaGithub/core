@@ -129,11 +129,19 @@ export interface ICashcowOrderProduct {
     cost_price: number;
     sku: string;
 }
-export interface ICashcowAddOrUpdateResponse {
+export interface ICashcowProductAddOrUpdateResponse {
     id: number;
     is_existing_updated: boolean;
     success: boolean;
     error: string;
+}
+export interface ICashcowOrderUpdateResponse {
+    id: number;
+    is_updated: boolean;
+    is_order_status_changed: boolean;
+    token: string;
+    response_time: string;
+    state_id: number;
 }
 export interface IConvertToApiObjectParams {
     token: string;
