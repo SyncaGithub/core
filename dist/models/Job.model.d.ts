@@ -14,7 +14,7 @@ export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
     isFullFetch?: boolean;
     isDisplayOnly?: boolean;
     startNow?: boolean;
-    sellerClientId?: mongoose.Types.ObjectId;
+    sellerClientId?: mongoose.Schema.Types.ObjectId | string;
     orders?: IOrder[];
     cashcowOrderStatus?: ECashcowOrderStatus;
 }

@@ -30,7 +30,7 @@ export class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
 	isDisplayOnly?: boolean;
 
 	startNow?: boolean;
-	sellerClientId?: mongoose.Types.ObjectId;
+	sellerClientId?: mongoose.Schema.Types.ObjectId | string;
 	orders?: IOrder[];
 	cashcowOrderStatus?: ECashcowOrderStatus;
 }
