@@ -95,6 +95,7 @@ export default class PriorityConverter implements IPriorityConverter {
             if (
                 client.configuration.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
             ) {
+                if(client.nickname === 'rGallery' && obj.LOCNAME === 'R'){continue;}
                 quantity += obj.TBALANCE;
             }
         }
