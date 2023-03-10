@@ -11,14 +11,12 @@ export class CashcowConverter {
 
     static convertProductToCashcowFormat(
         product: ProductDocument,
-        token: string,
-        store_id: number,
         client: ClientDocument,
         isExisting = false
     ): ICashcowAddOrUpdateObject {
         const temp: ICashcowAddOrUpdateObject = {
-            token,
-            store_id,
+            token: client.cashcow.token,
+            store_id: client.cashcow.store_id,
             is_override_existing_product: true,
             is_restore_deleted_items: true,
             sku: product.sellBarcode,

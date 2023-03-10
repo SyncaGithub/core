@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CashcowConverter = void 0;
 class CashcowConverter {
-    static convertProductToCashcowFormat(product, token, store_id, client, isExisting = false) {
+    static convertProductToCashcowFormat(product, client, isExisting = false) {
         var _a;
         const temp = {
-            token,
-            store_id,
+            token: client.cashcow.token,
+            store_id: client.cashcow.store_id,
             is_override_existing_product: true,
             is_restore_deleted_items: true,
             sku: product.sellBarcode,

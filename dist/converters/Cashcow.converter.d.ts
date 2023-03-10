@@ -4,6 +4,6 @@ export interface ICashcowConverter {
     convertProductToCashcowFormat: (product: ProductDocument, token: string, store_id: number) => {};
 }
 export declare class CashcowConverter {
-    static convertProductToCashcowFormat(product: ProductDocument, token: string, store_id: number, client: ClientDocument, isExisting?: boolean): ICashcowAddOrUpdateObject;
+    static convertProductToCashcowFormat(product: ProductDocument, client: ClientDocument, isExisting?: boolean): ICashcowAddOrUpdateObject;
 }
 //# sourceMappingURL=Cashcow.converter.d.ts.map
