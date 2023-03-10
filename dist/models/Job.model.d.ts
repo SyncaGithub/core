@@ -8,11 +8,7 @@ export declare class Action<P extends IPopulated | IRaw = IRaw> {
     client: P extends IRaw ? ObjectId : Client;
     action: string;
 }
-export declare const JobActionSchema: mongoose.Schema<Action<IPopulated | IRaw>, mongoose.Model<Action<IPopulated | IRaw>, any, any, any, mongoose.Document<unknown, any, Action<IPopulated | IRaw>> & Omit<Action<IPopulated | IRaw> & {
-    _id: mongoose.Types.ObjectId;
-}, never>, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Action<IPopulated | IRaw>, mongoose.Document<unknown, {}, mongoose.FlatRecord<Action<IPopulated | IRaw>>> & Omit<mongoose.FlatRecord<Action<IPopulated | IRaw>> & {
-    _id: mongoose.Types.ObjectId;
-}, never>>;
+export declare const JobActionSchema: mongoose.Schema<Action<IPopulated | IRaw>, mongoose.Model<Action<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Action<IPopulated | IRaw>>;
 export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
     client?: P extends IRaw ? ObjectId : Client;
     isFullFetch?: boolean;
@@ -33,9 +29,5 @@ export declare class Job<P extends IPopulated | IRaw = IRaw> {
     currentActionHistoryId?: string;
     currentActinIndex: number;
 }
-export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, mongoose.Document<unknown, any, Job<IPopulated | IRaw>> & Omit<Job<IPopulated | IRaw> & {
-    _id: mongoose.Types.ObjectId;
-}, never>, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IPopulated | IRaw>, mongoose.Document<unknown, {}, mongoose.FlatRecord<Job<IPopulated | IRaw>>> & Omit<mongoose.FlatRecord<Job<IPopulated | IRaw>> & {
-    _id: mongoose.Types.ObjectId;
-}, never>>;
+export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IPopulated | IRaw>>;
 //# sourceMappingURL=Job.model.d.ts.map
