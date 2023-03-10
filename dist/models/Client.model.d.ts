@@ -11,6 +11,7 @@ export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClie
 export declare class CashcowClientConfiguration {
     store_id: number;
     token: string;
+    keysToIgnoreInExistingProduct: string[];
 }
 export declare class PriorityProductFilter {
     key: string;

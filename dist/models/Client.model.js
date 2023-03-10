@@ -46,6 +46,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], CashcowClientConfiguration.prototype, "token", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String], default: [] }),
+    __metadata("design:type", Array)
+], CashcowClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
 exports.CashcowClientConfiguration = CashcowClientConfiguration;
 class PriorityProductFilter {
 }

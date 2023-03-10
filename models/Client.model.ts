@@ -10,8 +10,8 @@ export type ClientDocument<
 > = Client<T, P> & Document & ClientMethods;
 
 export interface ClientMethods {
-	startWorking<T = ClientDocument>():  Promise<T>;
-	finishWorking<T = ClientDocument>(updateDate?:string):  Promise<T>;
+	startWorking<T = ClientDocument>(): Promise<T>;
+	finishWorking<T = ClientDocument>(updateDate?: string): Promise<T>;
 }
 
 export type ClientConfigurationTypes =
@@ -24,6 +24,9 @@ export class CashcowClientConfiguration {
 
 	@Prop()
 	token: string;
+
+	@Prop({ type: [String], default: [] })
+	keysToIgnoreInExistingProduct: string[]
 }
 
 export class PriorityProductFilter {
@@ -164,7 +167,7 @@ export class Client<
 
 export const ClientSchema = SchemaFactory.createForClass(Client);
 
-ClientSchema.methods.startWorking = async function<T = ClientDocument> (): Promise<T> {
+ClientSchema.methods.startWorking = async function <T = ClientDocument>(): Promise<T> {
 	if (this.status === EntityStatus.WORKING) {
 		throw new Error("Failed to start a job, Client already WORKING.");
 	}
@@ -177,13 +180,13 @@ ClientSchema.methods.startWorking = async function<T = ClientDocument> (): Promi
 	}
 }
 
-ClientSchema.methods.finishWorking = async function<T = ClientDocument> (updateDate?:string): Promise<T> {
+ClientSchema.methods.finishWorking = async function <T = ClientDocument>(updateDate?: string): Promise<T> {
 	if (this.status === EntityStatus.READY) {
 		throw new Error("Failed to finish a job, Client already READY.");
 	}
 	try {
 		this.status = EntityStatus.READY;
-		if(updateDate){this.lastUpdate = updateDate;}
+		if (updateDate) { this.lastUpdate = updateDate; }
 		await this.save();
 		return this as T;
 	} catch (e) {
