@@ -11,7 +11,9 @@ class CashcowConverter {
             is_restore_deleted_items: true,
             sku: product.sellBarcode,
             prices: {
-                sell_price: product.sellPrice
+                sell_price: product.sellPrice,
+                retail_price: product.discountPrice,
+                cost_price: product.costPrice,
             },
             title: product.name,
             main_category_name: product.category,
