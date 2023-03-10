@@ -7,7 +7,7 @@ class PriorityConverter {
         const futureOrdersFromClient = this.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
         const { category, subcategory } = this.getCategories(rawProduct, client);
         const { isDisplay, displayQty, containerQty } = this.getPackageData(rawProduct.PARTPACK_SUBFORM);
-        const { costPrice, sellPrice, discountPrice } = this.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.configuration.priceKey, isDisplay, displayQty);
+        const { costPrice, sellPrice, discountPrice } = this.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.priority.priceKey, isDisplay, displayQty);
         const name = this.getName(rawProduct, client);
         const description = this.getDescription(rawProduct, client);
         const sellBarcode = this.getSellBarcode(rawProduct, client);
@@ -29,7 +29,7 @@ class PriorityConverter {
             futureOrdersFromClient,
             displayQty,
             containerQty: containerQty,
-            mainImage: this.getImageEndpoint(rawProduct[client.configuration.productMap['mainImage']], client.configuration.baseUrl),
+            mainImage: this.getImageEndpoint(rawProduct[client.priority.productMap['mainImage']], client.priority.baseUrl),
             subCategory: subcategory,
             description,
             lastUpdate: lastUpdateISO
@@ -66,13 +66,13 @@ class PriorityConverter {
         return description;
     }
     getQuantity(client, LOGCOUNTERS_SUBFORM, PARTBALANCE_SUBFORM) {
-        if (client.configuration.isUsingSummaryPage &&
+        if (client.priority.isUsingSummaryPage &&
             LOGCOUNTERS_SUBFORM.length > 0) {
             return LOGCOUNTERS_SUBFORM[0].SELLBALANCE;
         }
         let quantity = 0;
         for (const obj of PARTBALANCE_SUBFORM) {
-            if (client.configuration.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())) {
+            if (client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())) {
                 if (client.nickname === 'rGallery' && obj.LOCNAME === 'R') {
                     continue;
                 }
@@ -102,7 +102,7 @@ class PriorityConverter {
     }
     getSellBarcode(rawProduct, client) {
         let sellBarcode = '';
-        switch (client.configuration.sellBarcodeKey) {
+        switch (client.priority.sellBarcodeKey) {
             case types_1.EProductSellProperty.SKU:
                 sellBarcode = client.barcodeTag
                     ? client.barcodeTag + rawProduct.PARTNAME

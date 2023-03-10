@@ -2,19 +2,19 @@ import { ClientDocument, IRaw, PriorityClientConfiguration, ProductDocument } fr
 import { EClientType, EProductSellProperty, IPriority_LOGCOUNTERS_SUBFORM, IPriority_PARTBALANCE_SUBFORM, IPriority_PARTINCUSTPLISTS_SUBFORM, IPriority_PARTPACK_SUBFORM, IRawPriorityProduct, PriorityClientPriceKey } from '../types';
 
 export interface IPriorityConverter {
-    convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument<PriorityClientConfiguration>, lastUpdateISO: string): Partial<ProductDocument>;
+    convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument>;
     // convertOrderToSyncaFormat(): void;
     // convertProductToPriorityFormat(): void;
     // convertOrderToPriorityFormat(): void;
 }
 
 export class PriorityConverter implements IPriorityConverter {
-    convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument<PriorityClientConfiguration, IRaw>, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
+    convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
 
         const futureOrdersFromClient = this.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
         const { category, subcategory } = this.getCategories(rawProduct, client);
         const { isDisplay, displayQty, containerQty } = this.getPackageData(rawProduct.PARTPACK_SUBFORM);
-        const { costPrice, sellPrice, discountPrice } = this.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.configuration.priceKey as PriorityClientPriceKey, isDisplay, displayQty);
+        const { costPrice, sellPrice, discountPrice } = this.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.priority.priceKey as PriorityClientPriceKey, isDisplay, displayQty);
         const name = this.getName(rawProduct, client);
         const description = this.getDescription(rawProduct, client);
         const sellBarcode = this.getSellBarcode(rawProduct, client);
@@ -38,8 +38,8 @@ export class PriorityConverter implements IPriorityConverter {
             displayQty,
             containerQty: containerQty,
             mainImage: this.getImageEndpoint(
-                rawProduct[client.configuration.productMap['mainImage'] as string],
-                client.configuration.baseUrl
+                rawProduct[client.priority.productMap['mainImage'] as string],
+                client.priority.baseUrl
             ),
             subCategory: subcategory,
             description,
@@ -80,12 +80,12 @@ export class PriorityConverter implements IPriorityConverter {
     }
 
     private getQuantity(
-        client: ClientDocument<PriorityClientConfiguration>,
+        client: ClientDocument,
         LOGCOUNTERS_SUBFORM: IPriority_LOGCOUNTERS_SUBFORM[],
         PARTBALANCE_SUBFORM: IPriority_PARTBALANCE_SUBFORM[]
     ): number {
         if (
-            client.configuration.isUsingSummaryPage &&
+            client.priority.isUsingSummaryPage &&
             LOGCOUNTERS_SUBFORM.length > 0
         ) {
             return LOGCOUNTERS_SUBFORM[0].SELLBALANCE;
@@ -93,7 +93,7 @@ export class PriorityConverter implements IPriorityConverter {
         let quantity = 0;
         for (const obj of PARTBALANCE_SUBFORM) {
             if (
-                client.configuration.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
+                client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
             ) {
                 if(client.nickname === 'rGallery' && obj.LOCNAME === 'R'){continue;}
                 quantity += obj.TBALANCE;
@@ -129,9 +129,9 @@ export class PriorityConverter implements IPriorityConverter {
         return LOGCOUNTERS_SUBFORM[0].PORDERS;
     }
 
-    private getSellBarcode(rawProduct: IRawPriorityProduct, client: ClientDocument<PriorityClientConfiguration>) {
+    private getSellBarcode(rawProduct: IRawPriorityProduct, client: ClientDocument) {
         let sellBarcode = '';
-        switch (client.configuration.sellBarcodeKey) {
+        switch (client.priority.sellBarcodeKey) {
             case EProductSellProperty.SKU:
                 sellBarcode = client.barcodeTag
                     ? client.barcodeTag + rawProduct.PARTNAME
