@@ -57,5 +57,9 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     isUsingBlackList: boolean;
     blackListProducts: mongoose.Types.ObjectId[];
 }
-export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IPopulated | IRaw>>;
+export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, mongoose.Document<unknown, any, Client<unknown, IPopulated | IRaw>> & Omit<Client<unknown, IPopulated | IRaw> & {
+    _id: mongoose.Types.ObjectId;
+}, never>, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IPopulated | IRaw>, mongoose.Document<unknown, {}, mongoose.FlatRecord<Client<unknown, IPopulated | IRaw>>> & Omit<mongoose.FlatRecord<Client<unknown, IPopulated | IRaw>> & {
+    _id: mongoose.Types.ObjectId;
+}, never>>;
 //# sourceMappingURL=Client.model.d.ts.map

@@ -1,4 +1,4 @@
-import mongoose, { Schema as MongooseSchema, Document } from "mongoose";
+import mongoose, { Schema as MongooseSchema, Document, Types } from "mongoose";
 import { EClientType, EQtyType } from "../types";
 import { Client } from "./Client.model";
 import { IPopulated, IRaw } from "./types";
@@ -45,5 +45,9 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     hasBeenCompressed: boolean;
     compressedImageUrl: string;
 }
-export declare const ProductSchema: mongoose.Schema<Product<IPopulated | IRaw>, mongoose.Model<Product<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product<IPopulated | IRaw>>;
+export declare const ProductSchema: mongoose.Schema<Product<IPopulated | IRaw>, mongoose.Model<Product<IPopulated | IRaw>, any, any, any, mongoose.Document<unknown, any, Product<IPopulated | IRaw>> & Omit<Product<IPopulated | IRaw> & {
+    _id: Types.ObjectId;
+}, never>, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product<IPopulated | IRaw>, mongoose.Document<unknown, {}, mongoose.FlatRecord<Product<IPopulated | IRaw>>> & Omit<mongoose.FlatRecord<Product<IPopulated | IRaw>> & {
+    _id: Types.ObjectId;
+}, never>>;
 //# sourceMappingURL=Product.model.d.ts.map

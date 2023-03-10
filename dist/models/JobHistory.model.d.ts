@@ -13,5 +13,9 @@ export declare class JobHistory<P extends IPopulated | IRaw = IRaw> {
     maxModifiedCount: number;
     error: String;
 }
-export declare const JobHistorySchema: mongoose.Schema<JobHistory<IPopulated | IRaw>, mongoose.Model<JobHistory<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, JobHistory<IPopulated | IRaw>>;
+export declare const JobHistorySchema: mongoose.Schema<JobHistory<IPopulated | IRaw>, mongoose.Model<JobHistory<IPopulated | IRaw>, any, any, any, mongoose.Document<unknown, any, JobHistory<IPopulated | IRaw>> & Omit<JobHistory<IPopulated | IRaw> & {
+    _id: mongoose.Types.ObjectId;
+}, never>, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, JobHistory<IPopulated | IRaw>, mongoose.Document<unknown, {}, mongoose.FlatRecord<JobHistory<IPopulated | IRaw>>> & Omit<mongoose.FlatRecord<JobHistory<IPopulated | IRaw>> & {
+    _id: mongoose.Types.ObjectId;
+}, never>>;
 //# sourceMappingURL=JobHistory.model.d.ts.map

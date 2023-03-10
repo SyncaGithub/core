@@ -32,5 +32,9 @@ export declare class User {
     password: string;
     isActivated: boolean;
 }
-export declare const UserSchema: import("mongoose").Schema<User, import("mongoose").Model<User, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, User>;
+export declare const UserSchema: import("mongoose").Schema<User, import("mongoose").Model<User, any, any, any, Document<unknown, any, User> & Omit<User & {
+    _id: import("mongoose").Types.ObjectId;
+}, never>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, User, Document<unknown, {}, import("mongoose").FlatRecord<User>> & Omit<import("mongoose").FlatRecord<User> & {
+    _id: import("mongoose").Types.ObjectId;
+}, never>>;
 //# sourceMappingURL=User.model.d.ts.map
