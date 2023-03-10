@@ -156,6 +156,14 @@ __decorate([
     __metadata("design:type", Object)
 ], Client.prototype, "configuration", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(PriorityClientConfiguration),
+    __metadata("design:type", PriorityClientConfiguration)
+], Client.prototype, "priority", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(CashcowClientConfiguration),
+    __metadata("design:type", CashcowClientConfiguration)
+], Client.prototype, "cashcow", void 0);
+__decorate([
     (0, mongoose_1.Prop)([{ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }]),
     __metadata("design:type", Array)
 ], Client.prototype, "workWithClients", void 0);

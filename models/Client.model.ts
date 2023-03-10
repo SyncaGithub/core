@@ -110,6 +110,12 @@ export class Client<
 	@Prop({ type: mongoose.Schema.Types.Mixed })
 	configuration: T;
 
+	@Prop(PriorityClientConfiguration)
+	priority: PriorityClientConfiguration;
+
+	@Prop(CashcowClientConfiguration)
+	cashcow: CashcowClientConfiguration;
+
 	@Prop([{ type: mongoose.Schema.Types.ObjectId, ref: "Client" }])
 	workWithClients: Client[];
 

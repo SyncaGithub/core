@@ -42,6 +42,8 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     status: EntityStatus;
     clientType: EClientType;
     configuration: T;
+    priority: PriorityClientConfiguration;
+    cashcow: CashcowClientConfiguration;
     workWithClients: Client[];
     nickname: string;
     barcodeTag: string;
