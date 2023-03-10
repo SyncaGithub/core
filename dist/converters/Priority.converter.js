@@ -79,6 +79,9 @@ class PriorityConverter {
                 quantity += obj.TBALANCE;
             }
         }
+        if (client.nickname === 'win-priority') {
+            quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
+        }
         return quantity;
     }
     static getCategories(rawProduct, client) {
