@@ -3,15 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PriorityConverter = void 0;
 const types_1 = require("../types");
 class PriorityConverter {
-    convertProductToSyncaFormat(rawProduct, client, lastUpdateISO) {
-        const futureOrdersFromClient = this.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
-        const { category, subcategory } = this.getCategories(rawProduct, client);
-        const { isDisplay, displayQty, containerQty } = this.getPackageData(rawProduct.PARTPACK_SUBFORM);
-        const { costPrice, sellPrice, discountPrice } = this.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.priority.priceKey, isDisplay, displayQty);
-        const name = this.getName(rawProduct, client);
-        const description = this.getDescription(rawProduct, client);
-        const sellBarcode = this.getSellBarcode(rawProduct, client);
-        const qty = this.getQuantity(client, rawProduct.LOGCOUNTERS_SUBFORM, rawProduct.PARTBALANCE_SUBFORM);
+    static convertProductToSyncaFormat(rawProduct, client, lastUpdateISO) {
+        const futureOrdersFromClient = PriorityConverter.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
+        const { category, subcategory } = PriorityConverter.getCategories(rawProduct, client);
+        const { isDisplay, displayQty, containerQty } = PriorityConverter.getPackageData(rawProduct.PARTPACK_SUBFORM);
+        const { costPrice, sellPrice, discountPrice } = PriorityConverter.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.priority.priceKey, isDisplay, displayQty);
+        const name = PriorityConverter.getName(rawProduct, client);
+        const description = PriorityConverter.getDescription(rawProduct, client);
+        const sellBarcode = PriorityConverter.getSellBarcode(rawProduct, client);
+        const qty = PriorityConverter.getQuantity(client, rawProduct.LOGCOUNTERS_SUBFORM, rawProduct.PARTBALANCE_SUBFORM);
         return {
             user: client.user,
             clientType: types_1.EClientType.PRIORITY,
@@ -35,7 +35,7 @@ class PriorityConverter {
             lastUpdate: lastUpdateISO
         };
     }
-    getName(rawProduct, client) {
+    static getName(rawProduct, client) {
         let name = rawProduct.PARTDES || '';
         switch (client.nickname) {
             case 'win-priority':
@@ -54,8 +54,8 @@ class PriorityConverter {
         }
         return name;
     }
-    getDescription(rawProduct, client) {
-        let description;
+    static getDescription(rawProduct, client) {
+        let description = undefined;
         switch (client.nickname) {
             case 'win-priority':
                 description = rawProduct.ITAI_WS_DES;
@@ -65,7 +65,7 @@ class PriorityConverter {
         }
         return description;
     }
-    getQuantity(client, LOGCOUNTERS_SUBFORM, PARTBALANCE_SUBFORM) {
+    static getQuantity(client, LOGCOUNTERS_SUBFORM, PARTBALANCE_SUBFORM) {
         if (client.priority.isUsingSummaryPage &&
             LOGCOUNTERS_SUBFORM.length > 0) {
             return LOGCOUNTERS_SUBFORM[0].SELLBALANCE;
@@ -81,7 +81,7 @@ class PriorityConverter {
         }
         return quantity;
     }
-    getCategories(rawProduct, client) {
+    static getCategories(rawProduct, client) {
         let category = '', subcategory = '';
         switch (client.nickname) {
             case 'telbar-priority':
@@ -95,12 +95,12 @@ class PriorityConverter {
         }
         return { category, subcategory };
     }
-    getFutureOrders(LOGCOUNTERS_SUBFORM) {
+    static getFutureOrders(LOGCOUNTERS_SUBFORM) {
         if (LOGCOUNTERS_SUBFORM.length === 0)
             return;
         return LOGCOUNTERS_SUBFORM[0].PORDERS;
     }
-    getSellBarcode(rawProduct, client) {
+    static getSellBarcode(rawProduct, client) {
         let sellBarcode = '';
         switch (client.priority.sellBarcodeKey) {
             case types_1.EProductSellProperty.SKU:
@@ -117,7 +117,7 @@ class PriorityConverter {
         }
         return sellBarcode;
     }
-    getPrices(client, PARTINCUSTPLISTS_SUBFORM, priceKey, isDisplay, displayQty) {
+    static getPrices(client, PARTINCUSTPLISTS_SUBFORM, priceKey, isDisplay, displayQty) {
         let costPrice;
         let sellPrice;
         let discountPrice;
@@ -143,7 +143,7 @@ class PriorityConverter {
             sellPrice = costPrice * client.sellPriceMultiple;
             // sellPrice = isDisplay && displayQty? sellPrice * displayQty : sellPrice;
             let temp = sellPrice.toFixed(2);
-            sellPrice = Number(temp.substr(0, temp.length - 1) + '0');
+            sellPrice = Number(temp.substring(0, temp.length - 1) + '0');
         }
         return {
             costPrice,
@@ -151,7 +151,7 @@ class PriorityConverter {
             sellPrice
         };
     }
-    getPackageData(PARTPACK_SUBFORM) {
+    static getPackageData(PARTPACK_SUBFORM) {
         var _a;
         if (!PARTPACK_SUBFORM)
             return { isDisplay: false };
@@ -175,7 +175,7 @@ class PriorityConverter {
         }
         return { isDisplay, displayQty, containerQty };
     }
-    getImageEndpoint(filePath, baseUrl) {
+    static getImageEndpoint(filePath, baseUrl) {
         if (!filePath) {
             return '';
         }
@@ -198,12 +198,12 @@ class PriorityConverter {
         if (filePath.startsWith('../../system/images')) {
             // Telbar images path
             const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
-            baseUrl = baseUrl === null || baseUrl === void 0 ? void 0 : baseUrl.substr(0, baseUrl.indexOf('/odata'));
+            baseUrl = baseUrl === null || baseUrl === void 0 ? void 0 : baseUrl.substring(0, baseUrl.indexOf('/odata'));
             return baseUrl + '/priimages/' + fileName;
         }
-        baseUrl = baseUrl === null || baseUrl === void 0 ? void 0 : baseUrl.substr(0, baseUrl.indexOf('/odata'));
+        baseUrl = baseUrl === null || baseUrl === void 0 ? void 0 : baseUrl.substring(0, baseUrl.indexOf('/odata'));
         const start = baseUrl + '/primail/';
-        const result = start + filePath.substr(filePath.indexOf('mail/') + 5);
+        const result = start + filePath.substring(filePath.indexOf('mail/') + 5);
         return result;
     }
 }

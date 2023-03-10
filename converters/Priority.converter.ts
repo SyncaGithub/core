@@ -1,4 +1,4 @@
-import { ClientDocument, IRaw, PriorityClientConfiguration, ProductDocument } from '../models';
+import { ClientDocument, IRaw, ProductDocument } from '../models';
 import { EClientType, EProductSellProperty, IPriority_LOGCOUNTERS_SUBFORM, IPriority_PARTBALANCE_SUBFORM, IPriority_PARTINCUSTPLISTS_SUBFORM, IPriority_PARTPACK_SUBFORM, IRawPriorityProduct, PriorityClientPriceKey } from '../types';
 
 export interface IPriorityConverter {
@@ -8,17 +8,17 @@ export interface IPriorityConverter {
     // convertOrderToPriorityFormat(): void;
 }
 
-export class PriorityConverter implements IPriorityConverter {
-    convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
+export class PriorityConverter {
+    static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
 
-        const futureOrdersFromClient = this.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
-        const { category, subcategory } = this.getCategories(rawProduct, client);
-        const { isDisplay, displayQty, containerQty } = this.getPackageData(rawProduct.PARTPACK_SUBFORM);
-        const { costPrice, sellPrice, discountPrice } = this.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.priority.priceKey as PriorityClientPriceKey, isDisplay, displayQty);
-        const name = this.getName(rawProduct, client);
-        const description = this.getDescription(rawProduct, client);
-        const sellBarcode = this.getSellBarcode(rawProduct, client);
-        const qty = this.getQuantity(client, rawProduct.LOGCOUNTERS_SUBFORM, rawProduct.PARTBALANCE_SUBFORM);
+        const futureOrdersFromClient = PriorityConverter.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
+        const { category, subcategory } = PriorityConverter.getCategories(rawProduct, client);
+        const { isDisplay, displayQty, containerQty } = PriorityConverter.getPackageData(rawProduct.PARTPACK_SUBFORM);
+        const { costPrice, sellPrice, discountPrice } = PriorityConverter.getPrices(client, rawProduct.PARTINCUSTPLISTS_SUBFORM, client.priority.priceKey as PriorityClientPriceKey, isDisplay, displayQty);
+        const name = PriorityConverter.getName(rawProduct, client);
+        const description = PriorityConverter.getDescription(rawProduct, client);
+        const sellBarcode = PriorityConverter.getSellBarcode(rawProduct, client);
+        const qty = PriorityConverter.getQuantity(client, rawProduct.LOGCOUNTERS_SUBFORM, rawProduct.PARTBALANCE_SUBFORM);
 
         return {
             user: client.user,
@@ -47,7 +47,7 @@ export class PriorityConverter implements IPriorityConverter {
         };
     }
 
-    private getName(rawProduct: IRawPriorityProduct, client: ClientDocument) {
+    private static getName(rawProduct: IRawPriorityProduct, client: ClientDocument) {
         let name = rawProduct.PARTDES || '';
         switch (client.nickname) {
             case 'win-priority':
@@ -67,8 +67,8 @@ export class PriorityConverter implements IPriorityConverter {
         return name;
     }
 
-    private getDescription(rawProduct: IRawPriorityProduct, client: ClientDocument) {
-        let description: string | undefined;
+    private static getDescription(rawProduct: IRawPriorityProduct, client: ClientDocument) {
+        let description: string | undefined = undefined;
         switch (client.nickname) {
             case 'win-priority':
                 description = rawProduct.ITAI_WS_DES;
@@ -79,7 +79,7 @@ export class PriorityConverter implements IPriorityConverter {
         return description;
     }
 
-    private getQuantity(
+    private static getQuantity(
         client: ClientDocument,
         LOGCOUNTERS_SUBFORM: IPriority_LOGCOUNTERS_SUBFORM[],
         PARTBALANCE_SUBFORM: IPriority_PARTBALANCE_SUBFORM[]
@@ -102,7 +102,7 @@ export class PriorityConverter implements IPriorityConverter {
         return quantity;
     }
 
-    private getCategories(rawProduct: IRawPriorityProduct, client: ClientDocument): {
+    private static getCategories(rawProduct: IRawPriorityProduct, client: ClientDocument): {
         category: string;
         subcategory: string;
     } {
@@ -122,14 +122,14 @@ export class PriorityConverter implements IPriorityConverter {
         return { category, subcategory };
     }
 
-    private getFutureOrders(
+    private static getFutureOrders(
         LOGCOUNTERS_SUBFORM: IPriority_LOGCOUNTERS_SUBFORM[]
     ) {
         if (LOGCOUNTERS_SUBFORM.length === 0) return;
         return LOGCOUNTERS_SUBFORM[0].PORDERS;
     }
 
-    private getSellBarcode(rawProduct: IRawPriorityProduct, client: ClientDocument) {
+    private static getSellBarcode(rawProduct: IRawPriorityProduct, client: ClientDocument) {
         let sellBarcode = '';
         switch (client.priority.sellBarcodeKey) {
             case EProductSellProperty.SKU:
@@ -148,7 +148,7 @@ export class PriorityConverter implements IPriorityConverter {
         return sellBarcode;
     }
 
-    private getPrices(
+    private static getPrices(
         client: ClientDocument,
         PARTINCUSTPLISTS_SUBFORM: IPriority_PARTINCUSTPLISTS_SUBFORM[],
         priceKey: PriorityClientPriceKey,
@@ -182,7 +182,7 @@ export class PriorityConverter implements IPriorityConverter {
             sellPrice = costPrice * client.sellPriceMultiple;
             // sellPrice = isDisplay && displayQty? sellPrice * displayQty : sellPrice;
             let temp = sellPrice.toFixed(2);
-            sellPrice = Number(temp.substr(0, temp.length - 1) + '0');
+            sellPrice = Number(temp.substring(0, temp.length - 1) + '0');
         }
 
         return {
@@ -192,7 +192,7 @@ export class PriorityConverter implements IPriorityConverter {
         };
     }
 
-    private getPackageData(PARTPACK_SUBFORM: IPriority_PARTPACK_SUBFORM[]): {
+    private static getPackageData(PARTPACK_SUBFORM: IPriority_PARTPACK_SUBFORM[]): {
         isDisplay: boolean;
         displayQty?: number;
         containerQty?: number;
@@ -223,7 +223,7 @@ export class PriorityConverter implements IPriorityConverter {
         return { isDisplay, displayQty, containerQty };
     }
 
-    private getImageEndpoint(filePath: string, baseUrl: string): string {
+    private static getImageEndpoint(filePath: string, baseUrl: string): string {
         if (!filePath) {
             return '';
         }
@@ -250,12 +250,12 @@ export class PriorityConverter implements IPriorityConverter {
         if (filePath.startsWith('../../system/images')) {
             // Telbar images path
             const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
-            baseUrl = baseUrl?.substr(0, baseUrl.indexOf('/odata'));
+            baseUrl = baseUrl?.substring(0, baseUrl.indexOf('/odata'));
             return baseUrl + '/priimages/' + fileName;
         }
-        baseUrl = baseUrl?.substr(0, baseUrl.indexOf('/odata'));
+        baseUrl = baseUrl?.substring(0, baseUrl.indexOf('/odata'));
         const start = baseUrl + '/primail/';
-        const result = start + filePath.substr(filePath.indexOf('mail/') + 5);
+        const result = start + filePath.substring(filePath.indexOf('mail/') + 5);
         return result;
     }
 }
