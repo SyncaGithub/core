@@ -66,6 +66,7 @@ class PriorityConverter {
         return description;
     }
     static getQuantity(client, LOGCOUNTERS_SUBFORM, PARTBALANCE_SUBFORM) {
+        var _a;
         if (client.priority.isUsingSummaryPage &&
             LOGCOUNTERS_SUBFORM.length > 0) {
             return LOGCOUNTERS_SUBFORM[0].SELLBALANCE;
@@ -79,7 +80,7 @@ class PriorityConverter {
                 quantity += obj.TBALANCE;
             }
         }
-        if (client.nickname === 'win-priority') {
+        if (client.priority.isRemovingOrdersFromQty && ((_a = LOGCOUNTERS_SUBFORM[0]) === null || _a === void 0 ? void 0 : _a.ORDERS)) {
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
         return quantity;

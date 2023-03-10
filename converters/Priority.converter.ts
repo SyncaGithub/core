@@ -99,7 +99,7 @@ export class PriorityConverter {
                 quantity += obj.TBALANCE;
             }
         }
-        if(client.nickname === 'win-priority'){
+        if(client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM[0]?.ORDERS){
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
         return quantity;

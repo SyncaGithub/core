@@ -89,6 +89,9 @@ export class PriorityClientConfiguration {
 	@Prop()
 	isUsingSummaryPage: boolean;
 
+	@Prop()
+	isRemovingOrdersFromQty: boolean;
+
 	@Prop([String])
 	usingWARHSNAME: string[];
 }

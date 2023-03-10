@@ -133,6 +133,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], PriorityClientConfiguration.prototype, "isUsingSummaryPage", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], PriorityClientConfiguration.prototype, "isRemovingOrdersFromQty", void 0);
+__decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)
 ], PriorityClientConfiguration.prototype, "usingWARHSNAME", void 0);

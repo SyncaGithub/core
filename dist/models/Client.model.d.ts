@@ -35,6 +35,7 @@ export declare class PriorityClientConfiguration {
     getProductsSelect: string;
     productMap: any;
     isUsingSummaryPage: boolean;
+    isRemovingOrdersFromQty: boolean;
     usingWARHSNAME: string[];
 }
 export declare class Client<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> {
