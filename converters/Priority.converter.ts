@@ -8,7 +8,7 @@ export interface IPriorityConverter {
     // convertOrderToPriorityFormat(): void;
 }
 
-export default class PriorityConverter implements IPriorityConverter {
+export class PriorityConverter implements IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument<PriorityClientConfiguration, IRaw>, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
 
         const futureOrdersFromClient = this.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);

@@ -1,2 +1,2 @@
-export * as PriorityConverter from "./Priority.converter";
+export * from "./Priority.converter";
 

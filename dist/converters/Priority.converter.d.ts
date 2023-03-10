@@ -3,7 +3,7 @@ import { IRawPriorityProduct } from '../types';
 export interface IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument<PriorityClientConfiguration>, lastUpdateISO: string): Partial<ProductDocument>;
 }
-export default class PriorityConverter implements IPriorityConverter {
+export declare class PriorityConverter implements IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument<PriorityClientConfiguration, IRaw>, lastUpdateISO: string): Partial<ProductDocument<IRaw>>;
     private getName;
     private getDescription;
