@@ -35,15 +35,13 @@ export declare class PriorityClientConfiguration {
     getProductsSelect: string;
     productMap: any;
     isUsingSummaryPage: boolean;
-    usingWARHSNAME: string;
+    usingWARHSNAME: string[];
 }
 export declare class Client<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
     status: EntityStatus;
     clientType: EClientType;
     configuration: T;
-    priority: PriorityClientConfiguration;
-    cashcow: CashcowClientConfiguration;
     workWithClients: Client[];
     nickname: string;
     barcodeTag: string;

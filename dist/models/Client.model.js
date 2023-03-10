@@ -133,8 +133,8 @@ __decorate([
     __metadata("design:type", Boolean)
 ], PriorityClientConfiguration.prototype, "isUsingSummaryPage", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
+    (0, mongoose_1.Prop)([String]),
+    __metadata("design:type", Array)
 ], PriorityClientConfiguration.prototype, "usingWARHSNAME", void 0);
 exports.PriorityClientConfiguration = PriorityClientConfiguration;
 let Client = class Client {
@@ -155,14 +155,6 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.Mixed }),
     __metadata("design:type", Object)
 ], Client.prototype, "configuration", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(PriorityClientConfiguration),
-    __metadata("design:type", PriorityClientConfiguration)
-], Client.prototype, "priority", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(CashcowClientConfiguration),
-    __metadata("design:type", CashcowClientConfiguration)
-], Client.prototype, "cashcow", void 0);
 __decorate([
     (0, mongoose_1.Prop)([{ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }]),
     __metadata("design:type", Array)
