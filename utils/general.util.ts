@@ -2,9 +2,18 @@ import { catchError, Observable, take, tap } from "rxjs";
 import { AxiosResponse, AxiosError } from "axios";
 
 // Utills
-export function get(object, path, defval = null) {
+export function get(object, path: string | string[], defval = null, paths = []) {
+	if (typeof path === 'object') {
+		const temp = path.shift()
+		paths = path;
+		path = temp;
+	}
     if (typeof path === "string") path = path.split(".");
-    return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
+
+    const res = path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
+
+	if(res === defval && path.length > 0) return get(object, paths.shift(), defval, paths);
+	return res;
 }
 
 export const obsToPromise = <T = any>(

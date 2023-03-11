@@ -3,10 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getISOInIsraelTimezone = exports.obsToPromise = exports.get = void 0;
 const rxjs_1 = require("rxjs");
 // Utills
-function get(object, path, defval = null) {
+function get(object, path, defval = null, paths = []) {
+    if (typeof path === 'object') {
+        const temp = path.shift();
+        paths = path;
+        path = temp;
+    }
     if (typeof path === "string")
         path = path.split(".");
-    return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
+    const res = path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
+    if (res === defval && path.length > 0)
+        return get(object, paths.shift(), defval, paths);
+    return res;
 }
 exports.get = get;
 const obsToPromise = (obs) => {
