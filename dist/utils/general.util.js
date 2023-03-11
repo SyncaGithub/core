@@ -4,6 +4,8 @@ exports.getISOInIsraelTimezone = exports.obsToPromise = exports.get = void 0;
 const rxjs_1 = require("rxjs");
 // Utills
 function get(object, path, defval = null, paths = []) {
+    if (path === undefined)
+        return defval;
     if (typeof path === 'object') {
         const temp = path.shift();
         paths = path;
