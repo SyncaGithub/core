@@ -2,6 +2,11 @@ import { catchError, Observable, take, tap } from "rxjs";
 import { AxiosResponse, AxiosError } from "axios";
 
 // Utills
+export function get(object, path, defval = null) {
+    if (typeof path === "string") path = path.split(".");
+    return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
+}
+
 export const obsToPromise = <T = any>(
 	obs: Observable<AxiosResponse<T>>
 ): Promise<AxiosResponse<T> | AxiosError<T>> => {

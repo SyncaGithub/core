@@ -1,8 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getISOInIsraelTimezone = exports.obsToPromise = void 0;
+exports.getISOInIsraelTimezone = exports.obsToPromise = exports.get = void 0;
 const rxjs_1 = require("rxjs");
 // Utills
+function get(object, path, defval = null) {
+    if (typeof path === "string")
+        path = path.split(".");
+    return path.reduce((xs, x) => (xs && xs[x] ? xs[x] : defval), object);
+}
+exports.get = get;
 const obsToPromise = (obs) => {
     return new Promise((resolve, reject) => {
         obs.pipe((0, rxjs_1.take)(1), (0, rxjs_1.catchError)((e) => {

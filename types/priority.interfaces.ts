@@ -35,12 +35,12 @@ export interface IRawPriorityProduct {
 }
 
 export interface IPriority_PARTPACK_SUBFORM {
-	// "PACKCODE": string
+	PACKCODE?: string
 	PACKNAME: string;
 	PACKQUANT: number;
-	// "BARCODE": string,
-	// "FWIN_SELECTED": 'Y' | null,
-	// "PACK": number
+	BARCODE?: string,
+	FWIN_SELECTED?: 'Y' | null,
+	PACK?: number
 }
 
 export interface IPriority_PARTBALANCE_SUBFORM {
@@ -91,6 +91,12 @@ export interface IPriority_PARTINCUSTPLISTS_SUBFORM {
 	UDATE?: string;
 	PLDATE?: string;
 	PLIST?: number;
+
+	// WinStore fields
+	ITAI_PRICE?: number;
+	ITAI_PRICETAX?: number;
+	ITAI_PERCENT?: number;
+	ITAI_PERCENTSALE?: number;
 }
 export interface IPriority_LOGCOUNTERS_SUBFORM {
 	BALANCE: number;
@@ -100,6 +106,11 @@ export interface IPriority_LOGCOUNTERS_SUBFORM {
 	SELLBALANCE: number;
 	UNITNAME4: string;
 	DUMMY: number;
+
+	// WinStore fields
+	PDEALS?: number;
+	DEALS?: number;
+	DOCQ?: number;
 }
 
 export interface IPriority_New_Order_Response {
@@ -251,7 +262,7 @@ export interface IPriority_INVOICE_TPAYMENT2_SUBFORM {
 	QPRICE: number; //Cashcow order price
 }
 
-export interface IPriortiyRawProductToSystemProductMap {}
+export interface IPriortiyRawProductToSystemProductMap { }
 export interface IPrioritySendInvoice {
 	ACCNAME: string; //"100111" Ronen's internet customers
 	CASHNAME: string; //"005" Ronen's cash register number
