@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PriorityConverter = void 0;
 const types_1 = require("../types");
+const utils_1 = require("../utils");
 class PriorityConverter {
     static convertProductToSyncaFormat(rawProduct, client, lastUpdateISO) {
         const futureOrdersFromClient = PriorityConverter.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
@@ -36,23 +37,29 @@ class PriorityConverter {
         };
     }
     static getName(rawProduct, client) {
-        let name = rawProduct.PARTDES || '';
-        switch (client.nickname) {
-            case 'win-priority':
-                name = rawProduct.ITAI_WS_NAME || '';
-                break;
-            case 'telbar-priority':
-                if (!name.includes('(') || !name.includes(')'))
-                    return name;
-                name =
-                    name.substring(0, name.indexOf('(')) +
-                        name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
-                break;
-            default:
-                name = rawProduct.PARTDES;
-                break;
+        let name = (0, utils_1.get)(rawProduct, client.priority.productMap.name, '');
+        if (client.nickname === 'telbar-priority' && name.includes('(') && name.includes(')')) {
+            name =
+                name.substring(0, name.indexOf('(')) +
+                    name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
         }
         return name;
+        // let name = rawProduct.PARTDES || '';
+        // switch (client.nickname) {
+        //     case 'win-priority':
+        //         name = rawProduct.ITAI_WS_NAME || '';
+        //         break;
+        //     case 'telbar-priority':
+        //         if (!name.includes('(') || !name.includes(')')) return name;
+        //         name =
+        //             name.substring(0, name.indexOf('(')) +
+        //             name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
+        //         break;
+        //     default:
+        //         name = rawProduct.PARTDES;
+        //         break;
+        // }
+        // return name;
     }
     static getDescription(rawProduct, client) {
         let description = undefined;

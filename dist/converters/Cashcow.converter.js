@@ -26,6 +26,9 @@ class CashcowConverter {
         if (!((_a = temp.images) === null || _a === void 0 ? void 0 : _a.main_image_url)) {
             delete temp.images;
         }
+        if (!isExisting && client.isTempCategory) {
+            temp.main_category_name = client.tempCategory;
+        }
         if (isExisting) {
             client.cashcow
                 .keysToIgnoreInExistingProduct
