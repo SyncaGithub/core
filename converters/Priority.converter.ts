@@ -49,7 +49,7 @@ export class PriorityConverter {
     }
 
     private static getName(rawProduct: IRawPriorityProduct, client: ClientDocument) {
-        let name = get(rawProduct, client.priority.productMap.name, '');
+        let name = get(rawProduct, Array.from(client.priority.productMap.name ?? []), '');
         if (client.nickname === 'telbar-priority' && name.includes('(') && name.includes(')')) {
             name =
                 name.substring(0, name.indexOf('(')) +

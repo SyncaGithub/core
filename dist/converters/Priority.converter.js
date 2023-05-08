@@ -37,7 +37,8 @@ class PriorityConverter {
         };
     }
     static getName(rawProduct, client) {
-        let name = (0, utils_1.get)(rawProduct, client.priority.productMap.name, '');
+        var _a;
+        let name = (0, utils_1.get)(rawProduct, Array.from((_a = client.priority.productMap.name) !== null && _a !== void 0 ? _a : []), '');
         if (client.nickname === 'telbar-priority' && name.includes('(') && name.includes(')')) {
             name =
                 name.substring(0, name.indexOf('(')) +
