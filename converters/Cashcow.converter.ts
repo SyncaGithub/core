@@ -36,6 +36,10 @@ export class CashcowConverter {
         if (!temp.images?.main_image_url) {
             delete temp.images;
         }
+        if(client.isTempCategory){
+            temp.main_category_name = client.tempCategory;
+        }
+
         if (isExisting) {
             client.cashcow
                 .keysToIgnoreInExistingProduct

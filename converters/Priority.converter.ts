@@ -1,5 +1,6 @@
 import { ClientDocument, IRaw, ProductDocument } from '../models';
 import { EClientType, EProductSellProperty, IPriority_LOGCOUNTERS_SUBFORM, IPriority_PARTBALANCE_SUBFORM, IPriority_PARTINCUSTPLISTS_SUBFORM, IPriority_PARTPACK_SUBFORM, IRawPriorityProduct, PriorityClientPriceKey } from '../types';
+import { get } from '../utils';
 
 export interface IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument>;
@@ -48,23 +49,30 @@ export class PriorityConverter {
     }
 
     private static getName(rawProduct: IRawPriorityProduct, client: ClientDocument) {
-        let name = rawProduct.PARTDES || '';
-        switch (client.nickname) {
-            case 'win-priority':
-                name = rawProduct.ITAI_WS_NAME || '';
-                break;
-            case 'telbar-priority':
-                if (!name.includes('(') || !name.includes(')')) return name;
-                name =
-                    name.substring(0, name.indexOf('(')) +
-                    name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
-                break;
-
-            default:
-                name = rawProduct.PARTDES;
-                break;
+        let name = get(rawProduct, client.priority.productMap.name, '');
+        if (client.nickname === 'telbar-priority' && name.includes('(') && name.includes(')')) {
+            name =
+                name.substring(0, name.indexOf('(')) +
+                name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
         }
         return name;
+        // let name = rawProduct.PARTDES || '';
+        // switch (client.nickname) {
+        //     case 'win-priority':
+        //         name = rawProduct.ITAI_WS_NAME || '';
+        //         break;
+        //     case 'telbar-priority':
+        //         if (!name.includes('(') || !name.includes(')')) return name;
+        //         name =
+        //             name.substring(0, name.indexOf('(')) +
+        //             name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
+        //         break;
+
+        //     default:
+        //         name = rawProduct.PARTDES;
+        //         break;
+        // }
+        // return name;
     }
 
     private static getDescription(rawProduct: IRawPriorityProduct, client: ClientDocument) {
@@ -95,11 +103,11 @@ export class PriorityConverter {
             if (
                 client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
             ) {
-                if(client.nickname === 'rGallery' && obj.LOCNAME === 'R'){continue;}
+                if (client.nickname === 'rGallery' && obj.LOCNAME === 'R') { continue; }
                 quantity += obj.TBALANCE;
             }
         }
-        if(client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM[0]?.ORDERS){
+        if (client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM[0]?.ORDERS) {
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
         return quantity;
