@@ -3,7 +3,6 @@ import { AxiosResponse, AxiosError } from "axios";
 
 // Utills
 export function get(object, path: string | string[], defval = null, paths = []) {
-	console.log({object, path, defval, paths});
 	if(path === undefined) return defval;
 	if (typeof path === 'object') {
 		const temp = path.shift()
