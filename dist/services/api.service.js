@@ -21,11 +21,12 @@ let ApiService = ApiService_1 = class ApiService {
         this.logRepo = logRepo;
         this.logger = new common_1.Logger(ApiService_1.name);
     }
+    // Todo: Maybe in the future return Observable<T> instead of Observable<AxiosResponse<T>>
     wrap(url, data, config, requestFn) {
         const startTime = Date.now();
         const requestPayload = data;
         const requestHeaders = config;
-        return requestFn().pipe((0, rxjs_1.tap)((response) => {
+        return (requestFn.name === 'get' ? requestFn(url, config) : requestFn(url, data, config)).pipe((0, rxjs_1.tap)((response) => {
             const endTime = Date.now();
             const responsePayload = response.data;
             const responseStatusCode = response.status;
@@ -63,7 +64,7 @@ let ApiService = ApiService_1 = class ApiService {
             this.logger.error(`Error: ${JSON.stringify((_c = error.response) === null || _c === void 0 ? void 0 : _c.data)}`);
             this.logRepo.add(logData); // Save the log data to the database
             return (0, rxjs_1.throwError)(() => error);
-        }), (0, rxjs_1.map)((response) => response.data));
+        }));
     }
     get(url, config) {
         return this.wrap(url, undefined, config, (this.httpService.get));
