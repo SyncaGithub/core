@@ -13,6 +13,7 @@ class PriorityConverter {
         const description = PriorityConverter.getDescription(rawProduct, client);
         const sellBarcode = PriorityConverter.getSellBarcode(rawProduct, client);
         const qty = PriorityConverter.getQuantity(client, rawProduct.LOGCOUNTERS_SUBFORM, rawProduct.PARTBALANCE_SUBFORM);
+        const mainImage = PriorityConverter.getImageEndpoint(rawProduct[client.priority.productMap.mainImage[0]], client.priority.baseUrl);
         return {
             user: client.user,
             clientType: types_1.EClientType.PRIORITY,
@@ -30,7 +31,7 @@ class PriorityConverter {
             futureOrdersFromClient,
             displayQty,
             containerQty: containerQty,
-            mainImage: this.getImageEndpoint(rawProduct[client.priority.productMap['mainImage']], client.priority.baseUrl),
+            mainImage,
             subCategory: subcategory,
             description,
             lastUpdate: lastUpdateISO

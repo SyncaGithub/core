@@ -20,4 +20,5 @@ __exportStar(require("./Client.repo"), exports);
 __exportStar(require("./Product.repo"), exports);
 __exportStar(require("./Job.repo"), exports);
 __exportStar(require("./JobHistory.repo"), exports);
+__exportStar(require("./Log.repo"), exports);
 //# sourceMappingURL=index.js.map

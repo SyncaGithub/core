@@ -14,7 +14,16 @@
 		"strictNullChecks": false,
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
-		"emitDecoratorMetadata": true
+		"emitDecoratorMetadata": true,
+		"paths": {
+			"@converters/*": ["./converters/*"],
+			"@models/*": ["./models/*"],
+			"@repositories/*": ["./repositories/*"],
+			"@services/*": ["./services/*"],
+			"@types/*": ["./types/*"],
+			"@utils/*": ["./utils/*"],
+			"@interceptors/*": ["./interceptors/*"]
+		}
 	},
 	"exclude": ["node_modules", "dist", "old models"],
 	"include": [
@@ -23,6 +32,7 @@
 		"./repositories/**/*",
 		"./types/**/*",
 		"./utils/**/*",
+		"./interceptors/**/*",
 		"./services/**/*",
 		"./index.ts"
 	]

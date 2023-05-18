@@ -19,5 +19,6 @@ __exportStar(require("./Product.model"), exports);
 __exportStar(require("./User.model"), exports);
 __exportStar(require("./Job.model"), exports);
 __exportStar(require("./JobHistory.model"), exports);
+__exportStar(require("./Log.model"), exports);
 __exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map

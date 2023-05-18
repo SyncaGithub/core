@@ -5,6 +5,7 @@ import { AxiosResponse, AxiosError } from "axios";
 export function get(object, path: string | string[], defval = null, paths = []) {
 	if(path === undefined) return defval;
 	if (typeof path === 'object') {
+		if(path.length === 0) return defval;
 		const temp = path.shift()
 		paths = path;
 		path = temp;

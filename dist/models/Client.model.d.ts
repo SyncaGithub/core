@@ -2,6 +2,7 @@ import mongoose, { Document } from "mongoose";
 import { EClientType, EntityStatus, EProductSellProperty } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
+import { Product } from "./Product.model";
 export type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
 export interface ClientMethods {
     startWorking<T = ClientDocument>(): Promise<T>;
@@ -34,7 +35,7 @@ export declare class PriorityClientConfiguration {
     getProductsFilters: PriorityProductFilter[];
     getProductsExpand: string;
     getProductsSelect: string;
-    productMap: any;
+    productMap: Record<keyof Product, string[]>;
     isUsingSummaryPage: boolean;
     isRemovingOrdersFromQty: boolean;
     usingWARHSNAME: string[];

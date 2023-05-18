@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document, Schema as MongooseSchema } from "mongoose";
-import { EClientType, EntityStatus, EProductSellProperty, IRawPriorityProduct } from "../types";
+import { EClientType, EntityStatus, EProductSellProperty } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
+import { Product } from "./Product.model";
 
 export type ClientDocument<
 	T = ClientConfigurationTypes,
@@ -87,7 +88,7 @@ export class PriorityClientConfiguration {
 	getProductsSelect: string;
 
 	@Prop({ type: MongooseSchema.Types.Mixed })
-	productMap: any;
+	productMap: Record<keyof Product, string[]>;
 
 	@Prop()
 	isUsingSummaryPage: boolean;
