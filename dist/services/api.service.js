@@ -42,7 +42,7 @@ let ApiService = ApiService_1 = class ApiService {
                 success: true,
             };
             this.logRepo.add(logData) // Save the log data to the database
-                .then(data => console.log({ data }), err => console.log({ err }));
+                .then(data => { }, err => console.log({ err }));
         }), (0, rxjs_1.catchError)((error) => {
             var _a, _b;
             const endTime = Date.now();

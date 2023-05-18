@@ -37,7 +37,7 @@ export class ApiService {
                 };
 
                 this.logRepo.add(logData)// Save the log data to the database
-                    .then(data => console.log({data}), err => console.log({err}));
+                    .then(data => {/* If success do nothing */}, err => console.log({err}));
             }),
             catchError((error: AxiosError<T>) => {
                 const endTime = Date.now();
