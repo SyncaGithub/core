@@ -25,7 +25,6 @@ let ApiService = ApiService_1 = class ApiService {
     wrap(url, data, config, requestFn) {
         const startTime = Date.now();
         this.logger.log(`Try to send new request with t he next parameters: \n ${JSON.stringify({ url, data, config }, null, 4)}`);
-        this.logger.log(`Function name: ${requestFn.name}`);
         const requestPayload = data;
         const requestHeaders = config;
         return requestFn().pipe((0, rxjs_1.tap)((response) => {

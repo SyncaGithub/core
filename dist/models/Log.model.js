@@ -18,14 +18,6 @@ const mongoose_2 = __importDefault(require("mongoose"));
 let Log = class Log {
 };
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User", required: true }),
-    __metadata("design:type", Object)
-], Log.prototype, "user", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "JobHistory", required: true }),
-    __metadata("design:type", Object)
-], Log.prototype, "jobHistoryId", void 0);
-__decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Log.prototype, "status", void 0);

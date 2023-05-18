@@ -17,7 +17,6 @@ export class ApiService {
     wrap<T>(url: string, data: any, config: AxiosRequestConfig, requestFn: () => Observable<AxiosResponse<T, any>>): Observable<AxiosResponse<T>> {
         const startTime = Date.now();
         this.logger.log(`Try to send new request with t he next parameters: \n ${JSON.stringify({url,data,config}, null,4)}`);
-        this.logger.log(`Function name: ${requestFn.name}`);
         const requestPayload = data;
         const requestHeaders = config;
         return requestFn().pipe(

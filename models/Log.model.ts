@@ -8,11 +8,11 @@ export type LogDocument<P extends IPopulated | IRaw = IRaw> = Log<P> & Document;
 
 @Schema({ timestamps: true })
 export class Log<P extends IPopulated | IRaw = IRaw> {
-	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true })
-	user: P extends IRaw ? mongoose.Types.ObjectId : User;
-
-	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "JobHistory", required: true })
-	jobHistoryId: P extends IRaw ? mongoose.Types.ObjectId : JobHistory;
+	// @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true })
+	// user: P extends IRaw ? mongoose.Types.ObjectId : User;
+	//
+	// @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "JobHistory", required: true })
+	// jobHistoryId: P extends IRaw ? mongoose.Types.ObjectId : JobHistory;
 
 	@Prop()
 	status?: string;
