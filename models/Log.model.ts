@@ -1,12 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
 import { IPopulated, IRaw } from "./types";
-import { User } from "./User.model";
-import { JobHistory } from "./JobHistory.model";
 
 export type LogDocument<P extends IPopulated | IRaw = IRaw> = Log<P> & Document;
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: false })
 export class Log<P extends IPopulated | IRaw = IRaw> {
 	// @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User", required: true })
 	// user: P extends IRaw ? mongoose.Types.ObjectId : User;

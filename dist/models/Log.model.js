@@ -58,7 +58,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Log.prototype, "success", void 0);
 Log = __decorate([
-    (0, mongoose_1.Schema)({ timestamps: true })
+    (0, mongoose_1.Schema)({ timestamps: false })
 ], Log);
 exports.Log = Log;
 exports.LogSchema = mongoose_1.SchemaFactory.createForClass(Log);

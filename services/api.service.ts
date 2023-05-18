@@ -14,25 +14,24 @@ export class ApiService {
     ) {}
 
     // Todo: Maybe in the future return Observable<T> instead of Observable<AxiosResponse<T>>
-    wrap<T>(url: string, data: any, config: AxiosRequestConfig, requestFn: () => Observable<AxiosResponse<T, any>>): Observable<AxiosResponse<T>> {
+    wrap<T>(url: string, data: any, config: AxiosRequestConfig, method: string, requestFn: () => Observable<AxiosResponse<T, any>>): Observable<AxiosResponse<T>> {
         const startTime = Date.now();
-        this.logger.log(`Try to send new request with t he next parameters: \n ${JSON.stringify({url,data,config}, null,4)}`);
         const requestPayload = data;
         const requestHeaders = config;
         return requestFn().pipe(
-            tap((response: AxiosResponse) => {
+            tap((response: AxiosResponse<T>) => {
                 const endTime = Date.now();
                 const responsePayload = response.data;
                 const responseStatusCode = response.status;
 
                 const logData = {
                     url: url,
-                    method: requestFn.name,
+                    method: method,
                     startTime,
                     endTime,
                     requestPayload,
                     requestHeaders,
-                    responsePayload,
+                    // responsePayload,
                     responseStatusCode,
                     success: true,
                 };
@@ -43,14 +42,14 @@ export class ApiService {
                 this.logRepo.add(logData)// Save the log data to the database
                     .then(data => console.log({data}), err => console.log({err}));
             }),
-            catchError((error: AxiosError) => {
+            catchError((error: AxiosError<T>) => {
                 const endTime = Date.now();
                 const responsePayload = error.response?.data;
                 const responseStatusCode = error.response?.status;
 
                 const logData = {
                     url: url,
-                    method: requestFn.name,
+                    method: method,
                     startTime,
                     endTime,
                     requestPayload,
@@ -72,22 +71,22 @@ export class ApiService {
     }
 
     get<T = any>(url: string, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>> {
-        return this.wrap<T>(url, undefined, config, () => this.httpService.get(url, config));
+        return this.wrap<T>(url, undefined, config, 'get', () => this.httpService.get(url, config));
     }
 
     post<T = any>(url: string, data?: any, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>> {
-        return this.wrap<T>(url, data, config, () => this.httpService.post(url, data, config));
+        return this.wrap<T>(url, data, config, 'post', () => this.httpService.post(url, data, config));
     }
 
     put<T = any>(url: string, data?: any, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>> {
-        return this.wrap<T>(url, data, config, () => this.httpService.put(url, data, config));
+        return this.wrap<T>(url, data, config, 'put', () => this.httpService.put(url, data, config));
     }
 
     patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>> {
-        return this.wrap<T>(url, data, config, () => this.httpService.patch(url, data, config));
+        return this.wrap<T>(url, data, config, 'patch', () => this.httpService.patch(url, data, config));
     }
 
     delete<T = any>(url: string, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>> {
-        return this.wrap<T>(url, undefined, config, () => this.httpService.delete(url, config));
+        return this.wrap<T>(url, undefined, config, 'delete', () => this.httpService.delete(url, config));
     }
 }

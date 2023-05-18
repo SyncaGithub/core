@@ -22,9 +22,8 @@ let ApiService = ApiService_1 = class ApiService {
         this.logger = new common_1.Logger(ApiService_1.name);
     }
     // Todo: Maybe in the future return Observable<T> instead of Observable<AxiosResponse<T>>
-    wrap(url, data, config, requestFn) {
+    wrap(url, data, config, method, requestFn) {
         const startTime = Date.now();
-        this.logger.log(`Try to send new request with t he next parameters: \n ${JSON.stringify({ url, data, config }, null, 4)}`);
         const requestPayload = data;
         const requestHeaders = config;
         return requestFn().pipe((0, rxjs_1.tap)((response) => {
@@ -33,12 +32,12 @@ let ApiService = ApiService_1 = class ApiService {
             const responseStatusCode = response.status;
             const logData = {
                 url: url,
-                method: requestFn.name,
+                method: method,
                 startTime,
                 endTime,
                 requestPayload,
                 requestHeaders,
-                responsePayload,
+                // responsePayload,
                 responseStatusCode,
                 success: true,
             };
@@ -53,7 +52,7 @@ let ApiService = ApiService_1 = class ApiService {
             const responseStatusCode = (_b = error.response) === null || _b === void 0 ? void 0 : _b.status;
             const logData = {
                 url: url,
-                method: requestFn.name,
+                method: method,
                 startTime,
                 endTime,
                 requestPayload,
@@ -70,19 +69,19 @@ let ApiService = ApiService_1 = class ApiService {
         }));
     }
     get(url, config) {
-        return this.wrap(url, undefined, config, () => this.httpService.get(url, config));
+        return this.wrap(url, undefined, config, 'get', () => this.httpService.get(url, config));
     }
     post(url, data, config) {
-        return this.wrap(url, data, config, () => this.httpService.post(url, data, config));
+        return this.wrap(url, data, config, 'post', () => this.httpService.post(url, data, config));
     }
     put(url, data, config) {
-        return this.wrap(url, data, config, () => this.httpService.put(url, data, config));
+        return this.wrap(url, data, config, 'put', () => this.httpService.put(url, data, config));
     }
     patch(url, data, config) {
-        return this.wrap(url, data, config, () => this.httpService.patch(url, data, config));
+        return this.wrap(url, data, config, 'patch', () => this.httpService.patch(url, data, config));
     }
     delete(url, config) {
-        return this.wrap(url, undefined, config, () => this.httpService.delete(url, config));
+        return this.wrap(url, undefined, config, 'delete', () => this.httpService.delete(url, config));
     }
 };
 ApiService = ApiService_1 = __decorate([
