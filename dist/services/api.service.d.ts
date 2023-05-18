@@ -1,7 +1,7 @@
 import { Observable } from "rxjs";
 import { HttpService } from "@nestjs/axios";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { LogRepo } from "@repositories/Log.repo";
+import { LogRepo } from "../repositories/Log.repo";
 export declare class ApiService {
     private readonly httpService;
     private readonly logRepo;

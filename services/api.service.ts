@@ -2,7 +2,7 @@ import {Injectable, Logger} from "@nestjs/common";
 import {catchError, map, Observable, tap, throwError} from "rxjs";
 import {HttpService} from "@nestjs/axios";
 import {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
-import {LogRepo} from "@repositories/Log.repo";
+import {LogRepo} from "../repositories/Log.repo";
 
 @Injectable()
 export class ApiService {

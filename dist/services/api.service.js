@@ -14,7 +14,7 @@ exports.ApiService = void 0;
 const common_1 = require("@nestjs/common");
 const rxjs_1 = require("rxjs");
 const axios_1 = require("@nestjs/axios");
-const Log_repo_1 = require("@repositories/Log.repo");
+const Log_repo_1 = require("../repositories/Log.repo");
 let ApiService = ApiService_1 = class ApiService {
     constructor(httpService, logRepo) {
         this.httpService = httpService;
