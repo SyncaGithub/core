@@ -39,7 +39,8 @@ export class ApiService {
                 this.logger.log(`Request successful: ${url}`);
                 this.logger.log(`Response: ${JSON.stringify(response.data)}`);
 
-                this.logRepo.add(logData); // Save the log data to the database
+                this.logRepo.add(logData)// Save the log data to the database
+                    .then(data => console.log({data}), err => console.log({err}));
             }),
             catchError((error: AxiosError) => {
                 const endTime = Date.now();
@@ -61,9 +62,9 @@ export class ApiService {
                 this.logger.error(`Request failed: ${url}`);
                 this.logger.error(`Error: ${JSON.stringify(error.response?.data)}`);
 
-                this.logRepo.add(logData); // Save the log data to the database
-
-                return throwError(() =>error);
+                this.logRepo.add(logData) // Save the log data to the database
+                    .then(data => console.log({data}), err => console.log({err}));
+                return throwError(() => error);
             }),
             // map((response: AxiosResponse<T>) => response.data),
         );

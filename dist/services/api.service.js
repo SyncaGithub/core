@@ -43,7 +43,8 @@ let ApiService = ApiService_1 = class ApiService {
             };
             this.logger.log(`Request successful: ${url}`);
             this.logger.log(`Response: ${JSON.stringify(response.data)}`);
-            this.logRepo.add(logData); // Save the log data to the database
+            this.logRepo.add(logData) // Save the log data to the database
+                .then(data => console.log({ data }), err => console.log({ err }));
         }), (0, rxjs_1.catchError)((error) => {
             var _a, _b, _c;
             const endTime = Date.now();
@@ -62,7 +63,8 @@ let ApiService = ApiService_1 = class ApiService {
             };
             this.logger.error(`Request failed: ${url}`);
             this.logger.error(`Error: ${JSON.stringify((_c = error.response) === null || _c === void 0 ? void 0 : _c.data)}`);
-            this.logRepo.add(logData); // Save the log data to the database
+            this.logRepo.add(logData) // Save the log data to the database
+                .then(data => console.log({ data }), err => console.log({ err }));
             return (0, rxjs_1.throwError)(() => error);
         }));
     }
