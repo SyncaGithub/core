@@ -5,4 +5,5 @@ export * from "./types";
 export * from "./utils";
 export * from "./services";
 export * from "./converters";
+export * from "./interceptors";
 //# sourceMappingURL=index.d.ts.map
