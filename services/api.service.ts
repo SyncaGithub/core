@@ -36,9 +36,6 @@ export class ApiService {
                     success: true,
                 };
 
-                this.logger.log(`Request successful: ${url}`);
-                this.logger.log(`Response: ${JSON.stringify(response.data)}`);
-
                 this.logRepo.add(logData)// Save the log data to the database
                     .then(data => console.log({data}), err => console.log({err}));
             }),
@@ -58,9 +55,6 @@ export class ApiService {
                     responseStatusCode,
                     success: false,
                 };
-
-                this.logger.error(`Request failed: ${url}`);
-                this.logger.error(`Error: ${JSON.stringify(error.response?.data)}`);
 
                 this.logRepo.add(logData) // Save the log data to the database
                     .then(data => console.log({data}), err => console.log({err}));
