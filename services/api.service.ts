@@ -69,19 +69,19 @@ export class ApiService {
         );
     }
 
-    get<T>(url: string, config: AxiosRequestConfig): Observable<AxiosResponse<T>> {
+    get<T>(url: string, config?: AxiosRequestConfig): Observable<AxiosResponse<T>> {
         return this.wrap<T>(url, undefined, config, this.httpService.get<T>);
     }
 
-    post<T>(url: string, data: any, config: AxiosRequestConfig): Observable<AxiosResponse<T>> {
+    post<T>(url: string, data?: any, config?: AxiosRequestConfig): Observable<AxiosResponse<T>> {
         return this.wrap<T>(url, data, config, this.httpService.post<T>);
     }
 
-    put<T>(url: string, data: any, config: AxiosRequestConfig): Observable<AxiosResponse<T>> {
+    put<T>(url: string, data?: any, config?: AxiosRequestConfig): Observable<AxiosResponse<T>> {
         return this.wrap<T>(url, data, config, this.httpService.put<T>);
     }
 
-    patch<T>(url: string, data: any, config: AxiosRequestConfig): Observable<AxiosResponse<T>> {
+    patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Observable<AxiosResponse<T>> {
         return this.wrap<T>(url, data, config, this.httpService.patch<T>);
     }
 }
