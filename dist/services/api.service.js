@@ -28,7 +28,7 @@ let ApiService = ApiService_1 = class ApiService {
         this.logger.log(`Function name: ${requestFn.name}`);
         const requestPayload = data;
         const requestHeaders = config;
-        return (requestFn.name === 'get' ? requestFn(url, config) : requestFn(url, data, config)).pipe((0, rxjs_1.tap)((response) => {
+        return requestFn().pipe((0, rxjs_1.tap)((response) => {
             const endTime = Date.now();
             const responsePayload = response.data;
             const responseStatusCode = response.status;
@@ -71,16 +71,19 @@ let ApiService = ApiService_1 = class ApiService {
         }));
     }
     get(url, config) {
-        return this.wrap(url, undefined, config, (this.httpService.get));
+        return this.wrap(url, undefined, config, () => this.httpService.get(url, config));
     }
     post(url, data, config) {
-        return this.wrap(url, data, config, (this.httpService.post));
+        return this.wrap(url, data, config, () => this.httpService.post(url, data, config));
     }
     put(url, data, config) {
-        return this.wrap(url, data, config, (this.httpService.put));
+        return this.wrap(url, data, config, () => this.httpService.put(url, data, config));
     }
     patch(url, data, config) {
-        return this.wrap(url, data, config, (this.httpService.patch));
+        return this.wrap(url, data, config, () => this.httpService.patch(url, data, config));
+    }
+    delete(url, config) {
+        return this.wrap(url, undefined, config, () => this.httpService.delete(url, config));
     }
 };
 ApiService = ApiService_1 = __decorate([
