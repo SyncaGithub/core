@@ -6,4 +6,3 @@ export interface IRaw {
 }
 export interface Raw extends IRaw {
 }
-//# sourceMappingURL=types.d.ts.map

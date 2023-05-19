@@ -21,7 +21,6 @@ let ApiService = ApiService_1 = class ApiService {
         this.logRepo = logRepo;
         this.logger = new common_1.Logger(ApiService_1.name);
     }
-    // Todo: Maybe in the future return Observable<T> instead of Observable<AxiosResponse<T>>
     wrap(url, data, config, method, requestFn) {
         const startTime = Date.now();
         const requestPayload = data;
@@ -37,11 +36,10 @@ let ApiService = ApiService_1 = class ApiService {
                 endTime,
                 requestPayload,
                 requestHeaders,
-                // responsePayload,
                 responseStatusCode,
                 success: true,
             };
-            this.logRepo.add(logData) // Save the log data to the database
+            this.logRepo.add(logData)
                 .then(data => { }, err => console.log({ err }));
         }), (0, rxjs_1.catchError)((error) => {
             var _a, _b;
@@ -59,7 +57,7 @@ let ApiService = ApiService_1 = class ApiService {
                 responseStatusCode,
                 success: false,
             };
-            this.logRepo.add(logData) // Save the log data to the database
+            this.logRepo.add(logData)
                 .then(data => console.log({ data }), err => console.log({ err }));
             return (0, rxjs_1.throwError)(() => error);
         }));

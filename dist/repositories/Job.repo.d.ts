@@ -6,4 +6,3 @@ export interface IJobRepo extends IBaseRepo<JobDocument> {
 export declare class JobRepo extends BaseRepo<JobDocument> {
     constructor(connection: Connection, jobModel: Model<JobDocument>);
 }
-//# sourceMappingURL=Job.repo.d.ts.map

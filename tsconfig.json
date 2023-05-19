@@ -1,39 +1,27 @@
 {
 	"compilerOptions": {
-		"experimentalDecorators": true,
-		"target": "es2017",
 		"module": "commonjs",
-		"lib": ["es2017", "es7", "es6"],
 		"declaration": true,
-		"declarationMap": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "es2017",
 		"sourceMap": true,
 		"outDir": "./dist",
-		"rootDir": "./",
-		"strict": true,
-		"noImplicitAny": false,
+		"baseUrl": "./",
+		"incremental": true,
+		"skipLibCheck": true,
 		"strictNullChecks": false,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"emitDecoratorMetadata": true,
-		"paths": {
-			"@converters/*": ["./converters/*"],
-			"@models/*": ["./models/*"],
-			"@repositories/*": ["./repositories/*"],
-			"@services/*": ["./services/*"],
-			"@types/*": ["./types/*"],
-			"@utils/*": ["./utils/*"],
-			"@interceptors/*": ["./interceptors/*"]
-		}
+		"noImplicitAny": false,
+		"strictBindCallApply": false,
+		"resolveJsonModule": true,
+		"forceConsistentCasingInFileNames": false,
+		"noFallthroughCasesInSwitch": false
+
 	},
-	"exclude": ["node_modules", "dist", "old models"],
+	"exclude": ["node_modules", "dist"],
 	"include": [
-		"./models/**/*",
-		"./modules/**/*",
-		"./repositories/**/*",
-		"./types/**/*",
-		"./utils/**/*",
-		"./interceptors/**/*",
-		"./services/**/*",
-		"./index.ts"
+		"src/**/*"
 	]
 }

@@ -31,4 +31,3 @@ export interface IAction {
     modifiedCount: number;
     maxModifiedCount?: number;
 }
-//# sourceMappingURL=auth.interfaces.d.ts.map

@@ -6,4 +6,3 @@ export interface ILogRepo extends IBaseRepo<LogDocument> {
 export declare class LogRepo extends BaseRepo<LogDocument> {
     constructor(connection: Connection, jobModel: Model<LogDocument>);
 }
-//# sourceMappingURL=Log.repo.d.ts.map

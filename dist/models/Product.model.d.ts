@@ -45,5 +45,4 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     hasBeenCompressed: boolean;
     compressedImageUrl: string;
 }
-export declare const ProductSchema: mongoose.Schema<Product<IPopulated | IRaw>, mongoose.Model<Product<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product<IPopulated | IRaw>>;
-//# sourceMappingURL=Product.model.d.ts.map
+export declare const ProductSchema: mongoose.Schema<Product<IRaw | IPopulated>, mongoose.Model<Product<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product<IRaw | IPopulated>>;

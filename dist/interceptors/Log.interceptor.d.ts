@@ -7,4 +7,3 @@ export declare class LoggingInterceptor implements NestInterceptor {
     constructor(logRepo: LogRepo);
     intercept(context: ExecutionContext, next: CallHandler): Observable<any>;
 }
-//# sourceMappingURL=Log.interceptor.d.ts.map

@@ -10,4 +10,3 @@ export declare enum EProductSellProperty {
     SKU = "SKU",
     BARCODE = "BARCODE"
 }
-//# sourceMappingURL=tempEnums.d.ts.map

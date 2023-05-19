@@ -8,13 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImagesService = void 0;
 const common_1 = require("@nestjs/common");
-const tinify_1 = __importDefault(require("tinify"));
+const tinify_1 = require("tinify");
 let ImagesService = class ImagesService {
     constructor() {
         this.logger = new common_1.Logger("ImagesService");
@@ -26,7 +23,6 @@ let ImagesService = class ImagesService {
             if (err)
                 throw err;
             this.logger.debug(`[Compression Service] Successfully connected to the server and retrieve access. Amount of compression used this month: ${this.tinyPngService.compressionCount}`);
-            // Validation of API key failed.
         });
     }
     async connect(key) {
@@ -37,7 +33,6 @@ let ImagesService = class ImagesService {
                     return rej(err);
                 this.logger.debug(`[Compression Service] Successfully connected to the server and retrieve access. Amount of compression used this month: ${this.tinyPngService.compressionCount}`);
                 return res();
-                // Validation of API key failed.
             });
         });
     }
@@ -51,9 +46,7 @@ let ImagesService = class ImagesService {
                 aws_access_key_id: process.env.AWS_S3_KEY_ID,
                 aws_secret_access_key: process.env.AWS_S3_KEY,
                 region: "eu-central-1",
-                headers: {
-                // "Cache-Control": "public, max-age=31536000", //Make images delete automatic after the specified period
-                },
+                headers: {},
                 path: `synca-bucket/clients/${clientId}/products/${encodeURIComponent(imageName)}.jpeg`,
             });
             const location = await result.location();

@@ -5,4 +5,3 @@ export * from "./Job.model";
 export * from "./JobHistory.model";
 export * from "./Log.model";
 export * from "./types";
-//# sourceMappingURL=index.d.ts.map

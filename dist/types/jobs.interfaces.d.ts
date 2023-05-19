@@ -23,4 +23,3 @@ export interface IImageCompress {
     imageName: string;
     imageUrl: string;
 }
-//# sourceMappingURL=jobs.interfaces.d.ts.map

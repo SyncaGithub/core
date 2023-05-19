@@ -42,7 +42,7 @@ let LoggingInterceptor = LoggingInterceptor_1 = class LoggingInterceptor {
             };
             this.logger.log(`Request successful: ${request.url}`);
             this.logger.log(`Response: ${JSON.stringify(response.data)}`);
-            this.logRepo.add(logData); // Save the log data to the database
+            this.logRepo.add(logData);
         }), (0, operators_1.catchError)((error) => {
             var _a, _b, _c;
             const endTime = Date.now();
@@ -61,7 +61,7 @@ let LoggingInterceptor = LoggingInterceptor_1 = class LoggingInterceptor {
             };
             this.logger.error(`Request failed: ${request.url}`);
             this.logger.error(`Error: ${JSON.stringify((_c = error.response) === null || _c === void 0 ? void 0 : _c.data)}`);
-            this.logRepo.add(logData); // Save the log data to the database
+            this.logRepo.add(logData);
             return (0, rxjs_1.throwError)(() => error);
         }));
     }

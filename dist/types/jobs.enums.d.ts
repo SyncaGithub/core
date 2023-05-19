@@ -27,4 +27,3 @@ export declare enum EActionType {
     CASHCOW_UPDATE_ORDER = "CASHCOW_UPDATE_ORDER",
     IMAGE_COMPRESSION = "IMAGE_COMPRESSION"
 }
-//# sourceMappingURL=jobs.enums.d.ts.map

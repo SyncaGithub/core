@@ -310,4 +310,3 @@ export interface IPriority_New_Invoice_Response {
     FOLLOWUPIV: number;
     IVTYPE: string;
 }
-//# sourceMappingURL=priority.interfaces.d.ts.map

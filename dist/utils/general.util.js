@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getISOInIsraelTimezone = exports.obsToPromise = exports.get = void 0;
 const rxjs_1 = require("rxjs");
-// Utills
 function get(object, path, defval = null, paths = []) {
     if (path === undefined)
         return defval;

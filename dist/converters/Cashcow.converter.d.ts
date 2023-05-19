@@ -6,4 +6,3 @@ export interface ICashcowConverter {
 export declare class CashcowConverter {
     static convertProductToCashcowFormat(product: ProductDocument, client: ClientDocument, isExisting?: boolean): ICashcowAddOrUpdateObject;
 }
-//# sourceMappingURL=Cashcow.converter.d.ts.map

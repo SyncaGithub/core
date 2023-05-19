@@ -43,25 +43,9 @@ class PriorityConverter {
         if (client.nickname === 'telbar-priority' && name.includes('(') && name.includes(')')) {
             name =
                 name.substring(0, name.indexOf('(')) +
-                    name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
+                    name.substring(name.indexOf(')') + 1).trim();
         }
         return name;
-        // let name = rawProduct.PARTDES || '';
-        // switch (client.nickname) {
-        //     case 'win-priority':
-        //         name = rawProduct.ITAI_WS_NAME || '';
-        //         break;
-        //     case 'telbar-priority':
-        //         if (!name.includes('(') || !name.includes(')')) return name;
-        //         name =
-        //             name.substring(0, name.indexOf('(')) +
-        //             name.substring(name.indexOf(')') + 1).trim(); // telbar request for removing parenthesis
-        //         break;
-        //     default:
-        //         name = rawProduct.PARTDES;
-        //         break;
-        // }
-        // return name;
     }
     static getDescription(rawProduct, client) {
         let description = undefined;
@@ -100,7 +84,6 @@ class PriorityConverter {
             case 'telbar-priority':
                 category =
                     rawProduct.SPEC2 || rawProduct.FTNAME || rawProduct.FAMILYDES;
-                // subcategory = rawProduct.FTNAME;
                 break;
             default:
                 category = rawProduct.FAMILYDES;
@@ -121,7 +104,6 @@ class PriorityConverter {
                     ? client.barcodeTag + rawProduct.PARTNAME
                     : rawProduct.PARTNAME;
                 break;
-            // case EProductSellProperty.BARCODE
             default:
                 sellBarcode = client.barcodeTag
                     ? client.barcodeTag + rawProduct.BARCODE
@@ -154,7 +136,6 @@ class PriorityConverter {
         }
         if (costPrice !== undefined) {
             sellPrice = costPrice * client.sellPriceMultiple;
-            // sellPrice = isDisplay && displayQty? sellPrice * displayQty : sellPrice;
             let temp = sellPrice.toFixed(2);
             sellPrice = Number(temp.substring(0, temp.length - 1) + '0');
         }
@@ -209,7 +190,6 @@ class PriorityConverter {
                     fileName;
         }
         if (filePath.startsWith('../../system/images')) {
-            // Telbar images path
             const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
             baseUrl = baseUrl === null || baseUrl === void 0 ? void 0 : baseUrl.substring(0, baseUrl.indexOf('/odata'));
             return baseUrl + '/priimages/' + fileName;

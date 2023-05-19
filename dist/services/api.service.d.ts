@@ -14,4 +14,3 @@ export declare class ApiService {
     patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>>;
     delete<T = any>(url: string, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>>;
 }
-//# sourceMappingURL=api.service.d.ts.map

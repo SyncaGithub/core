@@ -147,4 +147,3 @@ export interface IConvertToApiObjectParams {
     token: string;
     store_id: number;
 }
-//# sourceMappingURL=cashcow.interfaces.d.ts.map

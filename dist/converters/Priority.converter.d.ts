@@ -15,4 +15,3 @@ export declare class PriorityConverter {
     private static getPackageData;
     private static getImageEndpoint;
 }
-//# sourceMappingURL=Priority.converter.d.ts.map

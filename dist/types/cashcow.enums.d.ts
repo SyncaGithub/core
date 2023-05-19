@@ -16,4 +16,3 @@ export declare enum ECashcowOrderStatus {
     Canceled = 8,
     Claimed = 9
 }
-//# sourceMappingURL=cashcow.enums.d.ts.map

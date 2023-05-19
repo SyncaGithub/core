@@ -13,5 +13,4 @@ export declare class Log<P extends IPopulated | IRaw = IRaw> {
     endTime: number;
     success: boolean;
 }
-export declare const LogSchema: mongoose.Schema<Log<IPopulated | IRaw>, mongoose.Model<Log<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Log<IPopulated | IRaw>>;
-//# sourceMappingURL=Log.model.d.ts.map
+export declare const LogSchema: mongoose.Schema<Log<IRaw | IPopulated>, mongoose.Model<Log<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Log<IRaw | IPopulated>>;

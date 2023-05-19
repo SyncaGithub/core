@@ -6,4 +6,3 @@ export interface IClientRepo extends IBaseRepo<ClientDocument> {
 export declare class ClientRepo extends BaseRepo<ClientDocument> {
     constructor(connection: Connection, userModel: Model<ClientDocument>);
 }
-//# sourceMappingURL=Client.repo.d.ts.map

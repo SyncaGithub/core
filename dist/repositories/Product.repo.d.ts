@@ -14,4 +14,3 @@ export declare class ProductRepo extends BaseRepo<ProductDocument> {
         [key: string]: ProductDocument;
     };
 }
-//# sourceMappingURL=Product.repo.d.ts.map
