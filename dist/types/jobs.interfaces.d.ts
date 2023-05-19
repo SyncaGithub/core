@@ -11,7 +11,7 @@ export interface IDeleteJob {
 export interface IUdateJob {
     jobId: string;
     userId: string;
-    dataToUpdate: Job;
+    dataToUpdate: Partial<Job>;
 }
 export interface IJobFinish {
     job: JobDocument;
