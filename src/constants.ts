@@ -1,6 +1,6 @@
 import {Transport} from "@nestjs/microservices";
 
-const RedisServiceOptions = {
+export const RedisServiceOptions = {
     transport: Transport.REDIS,
     options: {
         host: 'localhost',
@@ -8,23 +8,23 @@ const RedisServiceOptions = {
     },
 }
 
-const AuthMicroServiceOptions = {
+export const AuthMicroServiceOptions = {
     transport: Transport.TCP,
     options: {host: '127.0.0.1', port: 50053},
 }
-const ImagesMicroServiceOptions = {
+export const ImagesMicroServiceOptions = {
     transport: Transport.TCP,
     options: { host: '127.0.0.1', port: 50059 },
 }
-const JobsMicroServiceOptions = {
+export const JobsMicroServiceOptions = {
     transport: Transport.TCP,
     options: { host: '127.0.0.1', port: 50054 }
 }
-const SellerMicroServiceOptions = {
+export const SellerMicroServiceOptions = {
     transport: Transport.TCP,
     options: { host: '127.0.0.1', port: 50052 }
 }
-const WarehouseMicroServiceOptions = {
+export const WarehouseMicroServiceOptions = {
     transport: Transport.TCP,
     options: { host: '127.0.0.1', port: 50051 }
 }
