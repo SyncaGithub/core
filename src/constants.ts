@@ -1,6 +1,6 @@
-import {MicroserviceOptions, Transport} from "@nestjs/microservices";
+import {MicroserviceOptions, RedisOptions, Transport} from "@nestjs/microservices";
 
-export const RedisServiceOptions: MicroserviceOptions = {
+export const RedisServiceOptions: RedisOptions = {
     transport: Transport.REDIS,
     options: {
         host: 'localhost',

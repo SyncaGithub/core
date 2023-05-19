@@ -1,5 +1,5 @@
-import { MicroserviceOptions } from "@nestjs/microservices";
-export declare const RedisServiceOptions: MicroserviceOptions;
+import { MicroserviceOptions, RedisOptions } from "@nestjs/microservices";
+export declare const RedisServiceOptions: RedisOptions;
 export declare const AuthMicroServiceOptions: MicroserviceOptions;
 export declare const ImagesMicroServiceOptions: MicroserviceOptions;
 export declare const JobsMicroServiceOptions: MicroserviceOptions;
