@@ -17,7 +17,16 @@
 		"strictBindCallApply": false,
 		"resolveJsonModule": true,
 		"forceConsistentCasingInFileNames": false,
-		"noFallthroughCasesInSwitch": false
+		"noFallthroughCasesInSwitch": false,
+		"paths": {
+			"@converters/*": ["./src/converters/*"],
+			"@models/*": ["./src/models/*"],
+			"@repositories/*": ["./src/repositories/*"],
+			"@services/*": ["./src/services/*"],
+			"@types/*": ["./src/types/*"],
+			"@utils/*": ["./src/utils/*"],
+			"@interceptors/*": ["./interceptors/*"]
+		}
 
 	},
 	"exclude": ["node_modules", "dist"],
