@@ -20,7 +20,7 @@ export interface IUdateJob {
 export interface IJobFinish {
     job: JobDocument;
     finishedJob: EActionType;
-    actionStatus: EActionStatus;
+    actionStatus?: EActionStatus;
     jobHistoryData: Partial<JobHistory>;
 }
 
