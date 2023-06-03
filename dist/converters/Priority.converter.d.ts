@@ -2,12 +2,12 @@ import { ClientDocument, IRaw, ProductDocument } from '../models';
 import { IRawPriorityProduct } from '../types';
 export interface IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument>;
-    productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): Partial<IRawPriorityProduct>[];
+    productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[];
 }
 export declare class PriorityConverter {
     static BarcodeSeparator: string;
     static PARTNAMESeparator: string;
-    static productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): Partial<IRawPriorityProduct>[];
+    static productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[];
     static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>>;
     private static getName;
     private static getDescription;

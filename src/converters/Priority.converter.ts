@@ -4,7 +4,7 @@ import { get } from '../utils';
 
 export interface IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument>;
-    productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): Partial<IRawPriorityProduct>[];
+    productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[];
     // convertOrderToSyncaFormat(): void;
     // convertProductToPriorityFormat(): void;
     // convertOrderToPriorityFormat(): void;
@@ -15,7 +15,7 @@ export class PriorityConverter {
     static BarcodeSeparator = '-';
     static PARTNAMESeparator = '@';
 
-    static productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): Partial<IRawPriorityProduct>[] {
+    static productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[] {
         return rawProduct
             .ITAI_WS_TAGS
             .split(';')
