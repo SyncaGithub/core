@@ -10,10 +10,17 @@ export interface UserMethods {
 
 @Schema({ timestamps: true })
 export class User {
-	@Prop()
+
+	@Prop(String)
+	firstName: string;
+
+	@Prop(String)
+	lastName: string;
+
+	@Prop({required: true, unique: true, type: String})
 	email: string;
 
-	@Prop()
+	@Prop({required: true, type: String})
 	password: string;
 
 	@Prop({ default: false })
@@ -30,8 +37,7 @@ UserSchema.pre<UserDocument>("save", async function (next) {
 	try {
 		// generate a salt
 		const salt = await bcrypt.genSalt(parseInt(process.env.HASH_SALT));
-		const hash = await bcrypt.hash(user.password, salt);
-		user.password = hash;
+		user.password = await bcrypt.hash(user.password, salt);
 		next();
 	} catch (error: any) {
 		next(error);

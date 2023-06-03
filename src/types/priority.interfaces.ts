@@ -17,6 +17,7 @@ export interface IRawPriorityProduct {
 	ITAI_WS_PART?: string; // ITAI WINSTORE KEY
 	ITAI_WS_DES?: string; // ITAI WINSTORE KEY
 	ITAI_WINSTORE?: string; // ITAI WINSTORE KEY
+	ITAI_WS_TAGS?: string; // ITAI WINSTORE KEY
 	STATDES: string;
 	FAMILYDES: string;
 	FAMILYNAME: string;

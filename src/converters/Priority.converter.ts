@@ -4,12 +4,28 @@ import { get } from '../utils';
 
 export interface IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument>;
+    productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): Partial<IRawPriorityProduct>[];
     // convertOrderToSyncaFormat(): void;
     // convertProductToPriorityFormat(): void;
     // convertOrderToPriorityFormat(): void;
 }
 
 export class PriorityConverter {
+
+    static BarcodeSeparator = '-';
+    static PARTNAMESeparator = '@';
+
+    static productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): Partial<IRawPriorityProduct>[] {
+        return rawProduct
+            .ITAI_WS_TAGS
+            .split(';')
+            .map(subBarcodePostfix => ({
+                ...rawProduct,
+                PARTNAME: `${rawProduct.PARTNAME}${PriorityConverter.PARTNAMESeparator}${subBarcodePostfix}`,
+                BARCODE: `${rawProduct.BARCODE}${PriorityConverter.BarcodeSeparator}${subBarcodePostfix}`
+            }))
+    }
+
     static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
 
         const futureOrdersFromClient = PriorityConverter.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
