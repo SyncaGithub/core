@@ -31,6 +31,8 @@ export declare class PriorityClientConfiguration {
     invoiceEndPoint: string;
     ordersEndPoint: string;
     priceKey: string;
+    minQty: number;
+    productsBadStatuses: string[];
     sellBarcodeKey: EProductSellProperty;
     getProductsFilters: PriorityProductFilter[];
     getProductsExpand: string;

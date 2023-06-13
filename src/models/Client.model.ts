@@ -75,6 +75,12 @@ export class PriorityClientConfiguration {
 	@Prop()
 	priceKey: string;
 
+	@Prop({type: Number, default: 0})
+	minQty: number;
+
+	@Prop({type: [String], default: []})
+	productsBadStatuses: string[];
+
 	@Prop({ enum: EProductSellProperty, type: String, default: EProductSellProperty.BARCODE })
 	sellBarcodeKey: EProductSellProperty;
 

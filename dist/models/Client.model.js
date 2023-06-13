@@ -90,6 +90,14 @@ __decorate([
     __metadata("design:type", String)
 ], PriorityClientConfiguration.prototype, "priceKey", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ type: Number, default: 0 }),
+    __metadata("design:type", Number)
+], PriorityClientConfiguration.prototype, "minQty", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String], default: [] }),
+    __metadata("design:type", Array)
+], PriorityClientConfiguration.prototype, "productsBadStatuses", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ enum: types_1.EProductSellProperty, type: String, default: types_1.EProductSellProperty.BARCODE }),
     __metadata("design:type", String)
 ], PriorityClientConfiguration.prototype, "sellBarcodeKey", void 0);
