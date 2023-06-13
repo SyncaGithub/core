@@ -42,6 +42,9 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 	clientType: EClientType;
 
 	@Prop()
+	isApprovedForWeb: boolean;
+
+	@Prop()
 	futureOrdersFromClient: number;
 
 	@Prop()
