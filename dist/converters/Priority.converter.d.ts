@@ -12,6 +12,7 @@ export declare class PriorityConverter {
     private static getName;
     private static getDescription;
     private static getQuantity;
+    private static getQuantityAfterExclusions;
     private static getCategories;
     private static getFutureOrders;
     private static getSellBarcode;

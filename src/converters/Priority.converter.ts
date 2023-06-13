@@ -110,7 +110,7 @@ export class PriorityConverter {
             client.priority.isUsingSummaryPage &&
             LOGCOUNTERS_SUBFORM.length > 0
         ) {
-            return LOGCOUNTERS_SUBFORM[0].SELLBALANCE;
+            return PriorityConverter.getQuantityAfterExclusions(client, LOGCOUNTERS_SUBFORM[0].SELLBALANCE);
         }
         let quantity = 0;
         for (const obj of PARTBALANCE_SUBFORM) {
@@ -124,7 +124,13 @@ export class PriorityConverter {
         if (client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM[0]?.ORDERS) {
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
-        return quantity;
+
+        return PriorityConverter.getQuantityAfterExclusions(client, quantity);
+    }
+
+    private static getQuantityAfterExclusions(client:ClientDocument, qty: number): number{
+        if(!client.priority.minQty) return qty;
+        return qty <= client.priority.minQty ? 0 : qty;
     }
 
     private static getCategories(rawProduct: IRawPriorityProduct, client: ClientDocument): {

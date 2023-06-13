@@ -68,7 +68,7 @@ class PriorityConverter {
         var _a;
         if (client.priority.isUsingSummaryPage &&
             LOGCOUNTERS_SUBFORM.length > 0) {
-            return LOGCOUNTERS_SUBFORM[0].SELLBALANCE;
+            return PriorityConverter.getQuantityAfterExclusions(client, LOGCOUNTERS_SUBFORM[0].SELLBALANCE);
         }
         let quantity = 0;
         for (const obj of PARTBALANCE_SUBFORM) {
@@ -82,7 +82,12 @@ class PriorityConverter {
         if (client.priority.isRemovingOrdersFromQty && ((_a = LOGCOUNTERS_SUBFORM[0]) === null || _a === void 0 ? void 0 : _a.ORDERS)) {
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
-        return quantity;
+        return PriorityConverter.getQuantityAfterExclusions(client, quantity);
+    }
+    static getQuantityAfterExclusions(client, qty) {
+        if (!client.priority.minQty)
+            return qty;
+        return qty <= client.priority.minQty ? 0 : qty;
     }
     static getCategories(rawProduct, client) {
         let category = '', subcategory = '';
