@@ -6,5 +6,4 @@ export * from "./priority.interfaces";
 export * from "./tempInterfaces";
 export * from "./cashcow.interfaces";
 export * from "./cashcow.enums";
-// export * from "./general.enums";
 export * from "./tempEnums";
