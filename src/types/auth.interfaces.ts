@@ -29,6 +29,13 @@ export interface IChangePassword {
 	newPassword: string;
 }
 
+
+export interface IResetPassword {
+	userId: string;
+	resetToken: string;
+	newPassword: string;
+}
+
 export interface IChangePasswordResponse {
 	message: string;
 }
