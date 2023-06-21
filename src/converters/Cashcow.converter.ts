@@ -43,7 +43,7 @@ export class CashcowConverter {
         if (isExisting) {
             client.cashcow
                 .keysToIgnoreInExistingProduct
-                .forEach(key => delete temp[key]);
+                ?.forEach(key => delete temp[key]);
         }
         return temp;
     }
