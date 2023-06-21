@@ -26,7 +26,8 @@
 			"@services/*": ["./src/services/*"],
 			"@types/*": ["./src/types/*"],
 			"@utils/*": ["./src/utils/*"],
-			"@interceptors/*": ["./interceptors/*"]
+			"@interceptors/*": ["./interceptors/*"],
+			"@enums/*": ["./enums/*"]
 		}
 
 	},

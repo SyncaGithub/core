@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import {Document} from "mongoose";
 import * as bcrypt from "bcrypt";
+import {Roles} from "../enums";
 
 export type UserDocument = User & Document & UserMethods;
 
@@ -25,6 +26,12 @@ export class User {
 
 	@Prop({ default: false })
 	isActivated: boolean;
+
+	@Prop({type: [String], default: [], enum: Roles})
+	roles: Roles[];
+
+	@Prop({type: String })
+	passwordResetToken: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

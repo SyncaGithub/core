@@ -23,6 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Document } from "mongoose";
+import { Roles } from "../enums";
 export type UserDocument = User & Document & UserMethods;
 export interface UserMethods {
     comparePasswords(password: string): Promise<boolean>;
@@ -33,5 +34,7 @@ export declare class User {
     email: string;
     password: string;
     isActivated: boolean;
+    roles: Roles[];
+    passwordResetToken: string;
 }
 export declare const UserSchema: import("mongoose").Schema<User, import("mongoose").Model<User, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, User>;

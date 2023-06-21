@@ -20,6 +20,7 @@ class PriorityConverter {
         const sellBarcode = PriorityConverter.getSellBarcode(rawProduct, client);
         const qty = PriorityConverter.getQuantity(client, rawProduct.LOGCOUNTERS_SUBFORM, rawProduct.PARTBALANCE_SUBFORM);
         const mainImage = PriorityConverter.getImageEndpoint(rawProduct[client.priority.productMap.mainImage[0]], client.priority.baseUrl);
+        const isApprovedForWeb = PriorityConverter.getIsApprovedForWeb(rawProduct, client);
         return {
             user: client.user,
             clientType: types_1.EClientType.PRIORITY,
@@ -40,8 +41,13 @@ class PriorityConverter {
             mainImage,
             subCategory: subcategory,
             description,
-            lastUpdate: lastUpdateISO
+            lastUpdate: lastUpdateISO,
+            isApprovedForWeb
         };
+    }
+    static getIsApprovedForWeb(rawProduct, client) {
+        var _a;
+        return !((_a = client.priority.productsBadStatuses) !== null && _a !== void 0 ? _a : []).includes(rawProduct.STATDES);
     }
     static getName(rawProduct, client) {
         var _a;

@@ -14,6 +14,7 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
     client: P extends IRaw ? mongoose.Types.ObjectId : Client;
     clientType: EClientType;
+    isApprovedForWeb: boolean;
     futureOrdersFromClient: number;
     sellBarcode: string;
     barcode: string;
