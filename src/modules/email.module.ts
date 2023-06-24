@@ -60,10 +60,14 @@ export class EmailModule {
                         transport: {
                             host: process.env.MAIL_HOST,
                             port: process.env.MAIL_HOST_PORT,
-                            secure: true,
+                            secure: false,
                             auth: {
                                 user: process.env.SMTP_USERNAME,
                                 pass: process.env.SMTP_PASSWORD,
+                            },
+                            tls: {
+                                ciphers:'SSLv3',
+                                rejectUnauthorized: false
                             },
                         },
                         defaults: {
