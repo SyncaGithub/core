@@ -10,26 +10,29 @@ import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars
 @Module({
     imports: [
         MailerModule.forRootAsync({
-            useFactory: async () => ({
-                transport: {
-                    host: process.env.MAIL_HOST,
-                    secure: false,
-                    auth: {
-                        user: process.env.SMTP_USERNAME,
-                        pass: process.env.SMTP_PASSWORD,
+            useFactory: async () => {
+                console.log(join(__dirname, 'src', 'templates'))
+                return ({
+                    transport: {
+                        host: process.env.MAIL_HOST,
+                        secure: false,
+                        auth: {
+                            user: process.env.SMTP_USERNAME,
+                            pass: process.env.SMTP_PASSWORD,
+                        },
                     },
-                },
-                defaults: {
-                    from: `"No Replay" <${process.env.SMTP_USERNAME}>`,
-                },
-                template: {
-                    dir: join(__dirname, 'src', 'templates'),
-                    adapter: new HandlebarsAdapter(),
-                    options: {
-                        strict: false,
+                    defaults: {
+                        from: `"No Replay" <${process.env.SMTP_USERNAME}>`,
                     },
-                },
-            }),
+                    template: {
+                        dir: join(__dirname, 'src', 'templates'),
+                        adapter: new HandlebarsAdapter(),
+                        options: {
+                            strict: false,
+                        },
+                    },
+                })
+            },
         }),
     ],
     providers: [EmailService],
