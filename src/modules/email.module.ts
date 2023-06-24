@@ -59,7 +59,7 @@ export class EmailModule {
                     useFactory: async () => ({
                         transport: {
                             host: process.env.MAIL_HOST,
-                            port: process.env.t,
+                            port: process.env.MAIL_HOST_PORT,
                             secure: true,
                             auth: {
                                 user: process.env.SMTP_USERNAME,
