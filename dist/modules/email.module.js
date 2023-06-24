@@ -43,15 +43,16 @@ let EmailModule = EmailModule_1 = class EmailModule {
                         });
                     },
                 }),
-            ],
-            providers: [email_service_1.EmailService],
-            exports: [email_service_1.EmailService]
+            ]
         };
     }
 };
 EmailModule = EmailModule_1 = __decorate([
     (0, common_1.Global)(),
-    (0, common_1.Module)({})
+    (0, common_1.Module)({
+        providers: [email_service_1.EmailService],
+        exports: [email_service_1.EmailService]
+    })
 ], EmailModule);
 exports.EmailModule = EmailModule;
 //# sourceMappingURL=email.module.js.map

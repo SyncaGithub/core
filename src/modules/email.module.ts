@@ -44,7 +44,10 @@ import {EInject} from "../types";
 // export class EmailModule {}
 
 @Global()
-@Module({})
+@Module({
+    providers: [EmailService],
+    exports: [EmailService]
+})
 export class EmailModule {
     static register(path: string): DynamicModule {
         return {
@@ -75,9 +78,7 @@ export class EmailModule {
                         })
                     },
                 }),
-            ],
-            providers: [EmailService],
-            exports: [EmailService]
+            ]
         };
     }
 }
