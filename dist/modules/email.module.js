@@ -18,28 +18,27 @@ let EmailModule = EmailModule_1 = class EmailModule {
             module: EmailModule_1,
             imports: [
                 mailer_1.MailerModule.forRootAsync({
-                    useFactory: async () => {
-                        return ({
-                            transport: {
-                                host: process.env.MAIL_HOST,
-                                secure: true,
-                                auth: {
-                                    user: process.env.SMTP_USERNAME,
-                                    pass: process.env.SMTP_PASSWORD,
-                                },
+                    useFactory: async () => ({
+                        transport: {
+                            host: process.env.MAIL_HOST,
+                            port: process.env.t,
+                            secure: true,
+                            auth: {
+                                user: process.env.SMTP_USERNAME,
+                                pass: process.env.SMTP_PASSWORD,
                             },
-                            defaults: {
-                                from: `"No Replay" <${process.env.SMTP_USERNAME}>`,
+                        },
+                        defaults: {
+                            from: `"No Replay" <${process.env.SMTP_USERNAME}>`,
+                        },
+                        template: {
+                            dir: path,
+                            adapter: new ejs_adapter_1.EjsAdapter(),
+                            options: {
+                                strict: false,
                             },
-                            template: {
-                                dir: path,
-                                adapter: new ejs_adapter_1.EjsAdapter(),
-                                options: {
-                                    strict: false,
-                                },
-                            },
-                        });
-                    },
+                        },
+                    })
                 }),
             ]
         };
