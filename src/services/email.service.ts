@@ -14,7 +14,7 @@ export class EmailService {
             to: user.email,
             // from: "No Replay <support@example.com>", // override default from
             subject: 'Welcome to Nice App! Confirm your Email',
-            template: '/welcome', // `.ejs` extension is appended automatically
+            template: 'welcome', // `.ejs` extension is appended automatically
             context: { // filling <%= %> brackets with content
                 name: `${user.firstName} ${user.lastName}`,
                 confirmation_url,

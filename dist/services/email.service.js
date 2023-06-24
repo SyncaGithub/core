@@ -21,7 +21,7 @@ let EmailService = class EmailService {
         await this.mailerService.sendMail({
             to: user.email,
             subject: 'Welcome to Nice App! Confirm your Email',
-            template: '/welcome',
+            template: 'welcome',
             context: {
                 name: `${user.firstName} ${user.lastName}`,
                 confirmation_url,

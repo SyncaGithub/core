@@ -7,6 +7,7 @@ import { join } from 'path';
 import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
 import {ClientsModule, Transport} from "@nestjs/microservices";
 import {EInject} from "../types";
+import {EjsAdapter} from "@nestjs-modules/mailer/dist/adapters/ejs.adapter";
 
 // @Global()
 // @Module({
@@ -55,7 +56,6 @@ export class EmailModule {
             imports: [
                 MailerModule.forRootAsync({
                     useFactory: async () => {
-                        console.log(path)
                         return ({
                             transport: {
                                 host: process.env.MAIL_HOST,
@@ -70,7 +70,7 @@ export class EmailModule {
                             },
                             template: {
                                 dir: path,
-                                adapter: new HandlebarsAdapter(),
+                                adapter: new EjsAdapter(),
                                 options: {
                                     strict: false,
                                 },
