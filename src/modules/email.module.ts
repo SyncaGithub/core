@@ -59,7 +59,7 @@ export class EmailModule {
                         return ({
                             transport: {
                                 host: process.env.MAIL_HOST,
-                                secure: false,
+                                secure: true,
                                 auth: {
                                     user: process.env.SMTP_USERNAME,
                                     pass: process.env.SMTP_PASSWORD,
