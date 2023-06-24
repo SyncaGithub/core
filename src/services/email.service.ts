@@ -17,7 +17,7 @@ export class EmailService {
             template: 'welcome', // `.ejs` extension is appended automatically
             context: { // filling <%= %> brackets with content
                 name: `${user.firstName} ${user.lastName}`,
-                confirmation_url,
+                url: confirmation_url,
             },
         });
     }

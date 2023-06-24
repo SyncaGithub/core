@@ -24,7 +24,7 @@ let EmailService = class EmailService {
             template: 'welcome',
             context: {
                 name: `${user.firstName} ${user.lastName}`,
-                confirmation_url,
+                url: confirmation_url,
             },
         });
     }
