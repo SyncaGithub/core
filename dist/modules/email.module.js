@@ -11,7 +11,6 @@ const mailer_1 = require("@nestjs-modules/mailer");
 const common_1 = require("@nestjs/common");
 const email_service_1 = require("../services/email.service");
 const path_1 = require("path");
-const config_1 = require("@nestjs/config");
 const handlebars_adapter_1 = require("@nestjs-modules/mailer/dist/adapters/handlebars.adapter");
 let EmailModule = class EmailModule {
 };
@@ -20,17 +19,17 @@ EmailModule = __decorate([
     (0, common_1.Module)({
         imports: [
             mailer_1.MailerModule.forRootAsync({
-                useFactory: async (config) => ({
+                useFactory: async () => ({
                     transport: {
-                        host: config.get('MAIL_HOST'),
+                        host: process.env.MAIL_HOST,
                         secure: false,
                         auth: {
-                            user: config.get('SMTP_USERNAME'),
-                            pass: config.get('SMTP_PASSWORD'),
+                            user: process.env.SMTP_USERNAME,
+                            pass: process.env.SMTP_PASSWORD,
                         },
                     },
                     defaults: {
-                        from: `"No Replay" <${config.get('SMTP_USERNAME')}>`,
+                        from: `"No Replay" <${process.env.SMTP_USERNAME}>`,
                     },
                     template: {
                         dir: (0, path_1.join)(__dirname, 'src', 'templates'),
@@ -40,7 +39,6 @@ EmailModule = __decorate([
                         },
                     },
                 }),
-                inject: [config_1.ConfigService],
             }),
         ],
         providers: [email_service_1.EmailService],
