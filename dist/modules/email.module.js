@@ -11,7 +11,6 @@ exports.EmailModule = void 0;
 const mailer_1 = require("@nestjs-modules/mailer");
 const common_1 = require("@nestjs/common");
 const email_service_1 = require("../services/email.service");
-const path_1 = require("path");
 const handlebars_adapter_1 = require("@nestjs-modules/mailer/dist/adapters/handlebars.adapter");
 let EmailModule = EmailModule_1 = class EmailModule {
     static register(path) {
@@ -20,7 +19,7 @@ let EmailModule = EmailModule_1 = class EmailModule {
             imports: [
                 mailer_1.MailerModule.forRootAsync({
                     useFactory: async () => {
-                        console.log((0, path_1.join)(__dirname, 'src', 'templates'));
+                        console.log(path);
                         return ({
                             transport: {
                                 host: process.env.MAIL_HOST,

@@ -55,7 +55,7 @@ export class EmailModule {
             imports: [
                 MailerModule.forRootAsync({
                     useFactory: async () => {
-                        console.log(join(__dirname, 'src', 'templates'))
+                        console.log(path)
                         return ({
                             transport: {
                                 host: process.env.MAIL_HOST,
