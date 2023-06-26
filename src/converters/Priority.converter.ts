@@ -122,7 +122,7 @@ export class PriorityConverter {
             if (
                 client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
             ) {
-                if (client.nickname === 'rGallery' && obj.LOCNAME === 'R') { continue; }
+                if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') { continue; }
                 quantity += obj.TBALANCE;
             }
         }
@@ -208,6 +208,9 @@ export class PriorityConverter {
                         discountPrice = pList.VATPRICE;
                     }
                 }
+                break;
+            case 'rGallery Priority':
+                sellPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];
                 break;
             default:
                 costPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];

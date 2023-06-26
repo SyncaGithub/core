@@ -79,7 +79,7 @@ class PriorityConverter {
         let quantity = 0;
         for (const obj of PARTBALANCE_SUBFORM) {
             if (client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())) {
-                if (client.nickname === 'rGallery' && obj.LOCNAME === 'R') {
+                if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') {
                     continue;
                 }
                 quantity += obj.TBALANCE;
@@ -146,6 +146,9 @@ class PriorityConverter {
                         discountPrice = pList.VATPRICE;
                     }
                 }
+                break;
+            case 'rGallery Priority':
+                sellPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];
                 break;
             default:
                 costPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];
