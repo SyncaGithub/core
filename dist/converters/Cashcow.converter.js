@@ -21,7 +21,7 @@ class CashcowConverter {
                 main_image_url: product.compressedImageUrl || product.mainImage
             },
             qty: product.qty,
-            is_visible: false
+            is_visible: product.isApprovedForWeb && product.qty > 0 && product.sellPrice > 0
         };
         if (!((_c = temp.images) === null || _c === void 0 ? void 0 : _c.main_image_url)) {
             delete temp.images;
@@ -33,7 +33,6 @@ class CashcowConverter {
             (_d = client.cashcow
                 .keysToIgnoreInExistingProduct) === null || _d === void 0 ? void 0 : _d.forEach(key => delete temp[key]);
         }
-        temp.is_visible = product.isApprovedForWeb && product.qty > 0 && product.sellPrice > 0;
         return temp;
     }
 }
