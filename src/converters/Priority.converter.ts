@@ -26,7 +26,7 @@ export class PriorityConverter {
             }))
     }
 
-    static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
+    static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO?: string): Partial<ProductDocument<IRaw>> {
 
         const futureOrdersFromClient = PriorityConverter.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
         const { category, subcategory } = PriorityConverter.getCategories(rawProduct, client);
