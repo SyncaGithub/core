@@ -109,9 +109,10 @@ class PriorityConverter {
         return { category, subcategory };
     }
     static getFutureOrders(LOGCOUNTERS_SUBFORM) {
-        if (LOGCOUNTERS_SUBFORM.length === 0)
+        var _a;
+        if ((LOGCOUNTERS_SUBFORM === null || LOGCOUNTERS_SUBFORM === void 0 ? void 0 : LOGCOUNTERS_SUBFORM.length) === 0)
             return;
-        return LOGCOUNTERS_SUBFORM[0].PORDERS;
+        return (_a = LOGCOUNTERS_SUBFORM === null || LOGCOUNTERS_SUBFORM === void 0 ? void 0 : LOGCOUNTERS_SUBFORM[0]) === null || _a === void 0 ? void 0 : _a.PORDERS;
     }
     static getSellBarcode(rawProduct, client) {
         let sellBarcode = '';

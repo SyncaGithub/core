@@ -161,8 +161,8 @@ export class PriorityConverter {
     private static getFutureOrders(
         LOGCOUNTERS_SUBFORM: IPriority_LOGCOUNTERS_SUBFORM[]
     ) {
-        if (LOGCOUNTERS_SUBFORM.length === 0) return;
-        return LOGCOUNTERS_SUBFORM[0].PORDERS;
+        if (LOGCOUNTERS_SUBFORM?.length === 0) return;
+        return LOGCOUNTERS_SUBFORM?.[0]?.PORDERS;
     }
 
     private static getSellBarcode(rawProduct: IRawPriorityProduct, client: ClientDocument) {
