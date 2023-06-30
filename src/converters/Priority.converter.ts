@@ -113,7 +113,7 @@ export class PriorityConverter {
     ): number {
         if (
             client.priority.isUsingSummaryPage &&
-            LOGCOUNTERS_SUBFORM.length > 0
+            LOGCOUNTERS_SUBFORM?.length > 0
         ) {
             return PriorityConverter.getQuantityAfterExclusions(client, LOGCOUNTERS_SUBFORM[0].SELLBALANCE);
         }
@@ -126,7 +126,7 @@ export class PriorityConverter {
                 quantity += obj.TBALANCE;
             }
         }
-        if (client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM[0]?.ORDERS) {
+        if (client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM?.[0]?.ORDERS) {
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
 
