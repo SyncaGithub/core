@@ -77,12 +77,14 @@ class PriorityConverter {
             return PriorityConverter.getQuantityAfterExclusions(client, LOGCOUNTERS_SUBFORM[0].SELLBALANCE);
         }
         let quantity = 0;
-        for (const obj of PARTBALANCE_SUBFORM) {
-            if (client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())) {
-                if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') {
-                    continue;
+        if ((PARTBALANCE_SUBFORM === null || PARTBALANCE_SUBFORM === void 0 ? void 0 : PARTBALANCE_SUBFORM.length) > 0) {
+            for (const obj of PARTBALANCE_SUBFORM) {
+                if (client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())) {
+                    if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') {
+                        continue;
+                    }
+                    quantity += obj.TBALANCE;
                 }
-                quantity += obj.TBALANCE;
             }
         }
         if (client.priority.isRemovingOrdersFromQty && ((_a = LOGCOUNTERS_SUBFORM === null || LOGCOUNTERS_SUBFORM === void 0 ? void 0 : LOGCOUNTERS_SUBFORM[0]) === null || _a === void 0 ? void 0 : _a.ORDERS)) {

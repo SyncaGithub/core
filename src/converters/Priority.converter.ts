@@ -118,12 +118,14 @@ export class PriorityConverter {
             return PriorityConverter.getQuantityAfterExclusions(client, LOGCOUNTERS_SUBFORM[0].SELLBALANCE);
         }
         let quantity = 0;
-        for (const obj of PARTBALANCE_SUBFORM) {
-            if (
-                client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
-            ) {
-                if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') { continue; }
-                quantity += obj.TBALANCE;
+        if(PARTBALANCE_SUBFORM?.length > 0){
+            for (const obj of PARTBALANCE_SUBFORM) {
+                if (
+                    client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
+                ) {
+                    if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') { continue; }
+                    quantity += obj.TBALANCE;
+                }
             }
         }
         if (client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM?.[0]?.ORDERS) {
