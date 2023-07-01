@@ -20,6 +20,11 @@ export interface IChangePassword {
     oldPassword: string;
     newPassword: string;
 }
+export interface IResetPassword {
+    userId: string;
+    resetToken: string;
+    newPassword: string;
+}
 export interface IChangePasswordResponse {
     message: string;
 }
@@ -31,4 +36,3 @@ export interface IAction {
     modifiedCount: number;
     maxModifiedCount?: number;
 }
-//# sourceMappingURL=auth.interfaces.d.ts.map

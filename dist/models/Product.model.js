@@ -56,6 +56,10 @@ __decorate([
 ], Product.prototype, "clientType", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], Product.prototype, "isApprovedForWeb", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
 ], Product.prototype, "futureOrdersFromClient", void 0);
 __decorate([

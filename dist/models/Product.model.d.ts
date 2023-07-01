@@ -14,6 +14,7 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
     client: P extends IRaw ? mongoose.Types.ObjectId : Client;
     clientType: EClientType;
+    isApprovedForWeb: boolean;
     futureOrdersFromClient: number;
     sellBarcode: string;
     barcode: string;
@@ -46,4 +47,3 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     compressedImageUrl: string;
 }
 export declare const ProductSchema: mongoose.Schema<Product<IPopulated | IRaw>, mongoose.Model<Product<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product<IPopulated | IRaw>>;
-//# sourceMappingURL=Product.model.d.ts.map

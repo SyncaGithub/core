@@ -37,4 +37,3 @@ export interface ILoadExcel<Product = any> {
     products: Product[];
     userId: string;
 }
-//# sourceMappingURL=tempInterfaces.d.ts.map

@@ -14,4 +14,3 @@ export declare class JobHistory<P extends IPopulated | IRaw = IRaw> {
     error: String;
 }
 export declare const JobHistorySchema: mongoose.Schema<JobHistory<IPopulated | IRaw>, mongoose.Model<JobHistory<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, JobHistory<IPopulated | IRaw>>;
-//# sourceMappingURL=JobHistory.model.d.ts.map

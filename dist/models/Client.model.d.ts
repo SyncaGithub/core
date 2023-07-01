@@ -2,6 +2,7 @@ import mongoose, { Document } from "mongoose";
 import { EClientType, EntityStatus, EProductSellProperty } from "../types";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
+import { Product } from "./Product.model";
 export type ClientDocument<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> = Client<T, P> & Document & ClientMethods;
 export interface ClientMethods {
     startWorking<T = ClientDocument>(): Promise<T>;
@@ -11,6 +12,7 @@ export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClie
 export declare class CashcowClientConfiguration {
     store_id: number;
     token: string;
+    keysToIgnoreInExistingProduct: string[];
 }
 export declare class PriorityProductFilter {
     key: string;
@@ -29,13 +31,16 @@ export declare class PriorityClientConfiguration {
     invoiceEndPoint: string;
     ordersEndPoint: string;
     priceKey: string;
+    minQty: number;
+    productsBadStatuses: string[];
     sellBarcodeKey: EProductSellProperty;
     getProductsFilters: PriorityProductFilter[];
     getProductsExpand: string;
     getProductsSelect: string;
-    productMap: any;
+    productMap: Record<keyof Product, string[]>;
     isUsingSummaryPage: boolean;
-    usingWARHSNAME: string;
+    isRemovingOrdersFromQty: boolean;
+    usingWARHSNAME: string[];
 }
 export declare class Client<T = ClientConfigurationTypes, P extends IPopulated | IRaw = IRaw> {
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
@@ -60,4 +65,3 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     blackListProducts: mongoose.Types.ObjectId[];
 }
 export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IPopulated | IRaw>>;
-//# sourceMappingURL=Client.model.d.ts.map

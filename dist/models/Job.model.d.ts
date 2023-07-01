@@ -30,4 +30,3 @@ export declare class Job<P extends IPopulated | IRaw = IRaw> {
     currentActinIndex: number;
 }
 export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IPopulated | IRaw>>;
-//# sourceMappingURL=Job.model.d.ts.map

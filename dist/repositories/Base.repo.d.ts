@@ -23,4 +23,3 @@ export declare abstract class BaseRepo<Entity = any> implements IBaseRepo<Entity
     addMany(entities: Partial<Entity>[]): Promise<Entity[]>;
     updateMany(filter?: FilterQuery<Entity>, update?: UpdateWithAggregationPipeline | UpdateQuery<Entity>): Promise<import("mongodb").UpdateResult>;
 }
-//# sourceMappingURL=Base.repo.d.ts.map

@@ -15,6 +15,7 @@ export interface IRawPriorityProduct {
     ITAI_WS_PART?: string;
     ITAI_WS_DES?: string;
     ITAI_WINSTORE?: string;
+    ITAI_WS_TAGS?: string;
     STATDES: string;
     FAMILYDES: string;
     FAMILYNAME: string;
@@ -32,8 +33,12 @@ export interface IRawPriorityProduct {
     OPENPARTORDERS_SUBFORM: IPriority_OPENPARTORDERS_SUBFORM[];
 }
 export interface IPriority_PARTPACK_SUBFORM {
+    PACKCODE?: string;
     PACKNAME: string;
     PACKQUANT: number;
+    BARCODE?: string;
+    FWIN_SELECTED?: 'Y' | null;
+    PACK?: number;
 }
 export interface IPriority_PARTBALANCE_SUBFORM {
     TBALANCE: number;
@@ -82,6 +87,10 @@ export interface IPriority_PARTINCUSTPLISTS_SUBFORM {
     UDATE?: string;
     PLDATE?: string;
     PLIST?: number;
+    ITAI_PRICE?: number;
+    ITAI_PRICETAX?: number;
+    ITAI_PERCENT?: number;
+    ITAI_PERCENTSALE?: number;
 }
 export interface IPriority_LOGCOUNTERS_SUBFORM {
     BALANCE: number;
@@ -91,6 +100,9 @@ export interface IPriority_LOGCOUNTERS_SUBFORM {
     SELLBALANCE: number;
     UNITNAME4: string;
     DUMMY: number;
+    PDEALS?: number;
+    DEALS?: number;
+    DOCQ?: number;
 }
 export interface IPriority_New_Order_Response {
     "@odata.context": string;
@@ -299,4 +311,3 @@ export interface IPriority_New_Invoice_Response {
     FOLLOWUPIV: number;
     IVTYPE: string;
 }
-//# sourceMappingURL=priority.interfaces.d.ts.map
