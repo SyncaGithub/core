@@ -73,19 +73,21 @@ class PriorityConverter {
     static getQuantity(client, LOGCOUNTERS_SUBFORM, PARTBALANCE_SUBFORM) {
         var _a;
         if (client.priority.isUsingSummaryPage &&
-            LOGCOUNTERS_SUBFORM.length > 0) {
+            (LOGCOUNTERS_SUBFORM === null || LOGCOUNTERS_SUBFORM === void 0 ? void 0 : LOGCOUNTERS_SUBFORM.length) > 0) {
             return PriorityConverter.getQuantityAfterExclusions(client, LOGCOUNTERS_SUBFORM[0].SELLBALANCE);
         }
         let quantity = 0;
-        for (const obj of PARTBALANCE_SUBFORM) {
-            if (client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())) {
-                if (client.nickname === 'rGallery' && obj.LOCNAME === 'R') {
-                    continue;
+        if ((PARTBALANCE_SUBFORM === null || PARTBALANCE_SUBFORM === void 0 ? void 0 : PARTBALANCE_SUBFORM.length) > 0) {
+            for (const obj of PARTBALANCE_SUBFORM) {
+                if (client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())) {
+                    if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') {
+                        continue;
+                    }
+                    quantity += obj.TBALANCE;
                 }
-                quantity += obj.TBALANCE;
             }
         }
-        if (client.priority.isRemovingOrdersFromQty && ((_a = LOGCOUNTERS_SUBFORM[0]) === null || _a === void 0 ? void 0 : _a.ORDERS)) {
+        if (client.priority.isRemovingOrdersFromQty && ((_a = LOGCOUNTERS_SUBFORM === null || LOGCOUNTERS_SUBFORM === void 0 ? void 0 : LOGCOUNTERS_SUBFORM[0]) === null || _a === void 0 ? void 0 : _a.ORDERS)) {
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
         return PriorityConverter.getQuantityAfterExclusions(client, quantity);
@@ -109,9 +111,10 @@ class PriorityConverter {
         return { category, subcategory };
     }
     static getFutureOrders(LOGCOUNTERS_SUBFORM) {
-        if (LOGCOUNTERS_SUBFORM.length === 0)
+        var _a;
+        if ((LOGCOUNTERS_SUBFORM === null || LOGCOUNTERS_SUBFORM === void 0 ? void 0 : LOGCOUNTERS_SUBFORM.length) === 0)
             return;
-        return LOGCOUNTERS_SUBFORM[0].PORDERS;
+        return (_a = LOGCOUNTERS_SUBFORM === null || LOGCOUNTERS_SUBFORM === void 0 ? void 0 : LOGCOUNTERS_SUBFORM[0]) === null || _a === void 0 ? void 0 : _a.PORDERS;
     }
     static getSellBarcode(rawProduct, client) {
         let sellBarcode = '';
@@ -146,6 +149,9 @@ class PriorityConverter {
                         discountPrice = pList.VATPRICE;
                     }
                 }
+                break;
+            case 'rGallery Priority':
+                sellPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];
                 break;
             default:
                 costPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];

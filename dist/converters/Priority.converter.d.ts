@@ -8,7 +8,7 @@ export declare class PriorityConverter {
     static BarcodeSeparator: string;
     static PARTNAMESeparator: string;
     static productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[];
-    static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>>;
+    static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO?: string): Partial<ProductDocument<IRaw>>;
     private static getIsApprovedForWeb;
     private static getName;
     private static getDescription;

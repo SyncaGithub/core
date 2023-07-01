@@ -13,7 +13,7 @@ export interface ICashcowAddOrUpdateObject {
     is_override_existing_product: boolean;
     is_restore_deleted_items: boolean;
     is_force_delete_existing_attributes?: boolean;
-    is_visible?: boolean;
+    is_visible: boolean;
     title?: string;
     main_category_name?: string;
     short_description?: string;

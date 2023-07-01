@@ -26,7 +26,7 @@ export class PriorityConverter {
             }))
     }
 
-    static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument<IRaw>> {
+    static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO?: string): Partial<ProductDocument<IRaw>> {
 
         const futureOrdersFromClient = PriorityConverter.getFutureOrders(rawProduct.LOGCOUNTERS_SUBFORM);
         const { category, subcategory } = PriorityConverter.getCategories(rawProduct, client);
@@ -113,20 +113,22 @@ export class PriorityConverter {
     ): number {
         if (
             client.priority.isUsingSummaryPage &&
-            LOGCOUNTERS_SUBFORM.length > 0
+            LOGCOUNTERS_SUBFORM?.length > 0
         ) {
             return PriorityConverter.getQuantityAfterExclusions(client, LOGCOUNTERS_SUBFORM[0].SELLBALANCE);
         }
         let quantity = 0;
-        for (const obj of PARTBALANCE_SUBFORM) {
-            if (
-                client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
-            ) {
-                if (client.nickname === 'rGallery' && obj.LOCNAME === 'R') { continue; }
-                quantity += obj.TBALANCE;
+        if(PARTBALANCE_SUBFORM?.length > 0){
+            for (const obj of PARTBALANCE_SUBFORM) {
+                if (
+                    client.priority.usingWARHSNAME.includes(obj.WARHSNAME.toString().toUpperCase())
+                ) {
+                    if (client.nickname === 'rGallery Priority' && obj.LOCNAME === 'R') { continue; }
+                    quantity += obj.TBALANCE;
+                }
             }
         }
-        if (client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM[0]?.ORDERS) {
+        if (client.priority.isRemovingOrdersFromQty && LOGCOUNTERS_SUBFORM?.[0]?.ORDERS) {
             quantity -= LOGCOUNTERS_SUBFORM[0].ORDERS;
         }
 
@@ -161,8 +163,8 @@ export class PriorityConverter {
     private static getFutureOrders(
         LOGCOUNTERS_SUBFORM: IPriority_LOGCOUNTERS_SUBFORM[]
     ) {
-        if (LOGCOUNTERS_SUBFORM.length === 0) return;
-        return LOGCOUNTERS_SUBFORM[0].PORDERS;
+        if (LOGCOUNTERS_SUBFORM?.length === 0) return;
+        return LOGCOUNTERS_SUBFORM?.[0]?.PORDERS;
     }
 
     private static getSellBarcode(rawProduct: IRawPriorityProduct, client: ClientDocument) {
@@ -208,6 +210,9 @@ export class PriorityConverter {
                         discountPrice = pList.VATPRICE;
                     }
                 }
+                break;
+            case 'rGallery Priority':
+                sellPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];
                 break;
             default:
                 costPrice = PARTINCUSTPLISTS_SUBFORM[0][priceKey];
