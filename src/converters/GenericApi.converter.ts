@@ -23,7 +23,7 @@ export class GenericConverter {
 
         const temp: Partial<ProductDocument<IRaw>> = {};
         for(let key in client.genericApi.productMap){
-            temp[key] = get(rawProduct, Array.from(client.priority.productMap.name ?? []), undefined);
+            temp[key] = get(rawProduct, Array.from(client.genericApi.productMap.name ?? []), undefined);
         }
         // temp.sell
         temp.lastUpdate = lastUpdateISO;
