@@ -1,13 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WooCommerceConverter = void 0;
+const types_1 = require("../types");
 class WooCommerceConverter {
-    static convertProductToSyncaFormat(product) {
+    static convertProductToSyncaFormat(product, user, client) {
+        var _a;
         return {
             sellPrice: Number(product.regular_price),
             images: product.images.map(i => i.src),
             thirdPartyId: product.id.toString(),
-            sellBarcode: product.sku
+            sellBarcode: product.sku,
+            isApprovedForWeb: true,
+            name: product.name,
+            category: (_a = product.categories) === null || _a === void 0 ? void 0 : _a[0].name,
+            description: product.description,
+            qty: product.stock_quantity,
+            clientType: types_1.EClientType.WOOCOMMERCE,
+            user: user.id,
+            client: client._id
         };
     }
     static convertProductToWooCommerceFormat(product, client, isExisting = false) {

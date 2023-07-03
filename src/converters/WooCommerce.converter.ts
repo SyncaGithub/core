@@ -1,5 +1,5 @@
-import { ClientDocument, ProductDocument } from '../models';
-import {IWooCommerce_Product} from '../types';
+import {ClientDocument, ProductDocument, UserDocument} from '../models';
+import {EClientType, IWooCommerce_Product} from '../types';
 
 export interface IWooCommerceConverter {
     convertProductToWooCommerceFormat: (product: ProductDocument, token: string, store_id: number) => Partial<IWooCommerce_Product>;
@@ -9,12 +9,20 @@ export interface IWooCommerceConverter {
 }
 export class WooCommerceConverter {
 
-    static convertProductToSyncaFormat(product: IWooCommerce_Product): Partial<ProductDocument>{
+    static convertProductToSyncaFormat(product: IWooCommerce_Product, user: UserDocument, client: ClientDocument): Partial<ProductDocument>{
         return {
             sellPrice: Number(product.regular_price),
             images: product.images.map(i => i.src),
             thirdPartyId: product.id.toString(),
-            sellBarcode: product.sku
+            sellBarcode: product.sku,
+            isApprovedForWeb: true,
+            name: product.name,
+            category: product.categories?.[0].name,
+            description: product.description,
+            qty: product.stock_quantity,
+            clientType: EClientType.WOOCOMMERCE,
+            user: user.id,
+            client: client._id
         }
     }
 

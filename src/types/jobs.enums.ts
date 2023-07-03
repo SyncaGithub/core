@@ -7,6 +7,7 @@ export enum EntityStatus {
 export enum EClientType {
 	PRIORITY = "PRIORITY",
 	CASHCOW = "CASHCOW",
+	WOOCOMMERCE = "WOOCOMMERCE"
 }
 
 export enum EActionStatus {

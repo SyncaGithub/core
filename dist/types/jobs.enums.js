@@ -11,6 +11,7 @@ var EClientType;
 (function (EClientType) {
     EClientType["PRIORITY"] = "PRIORITY";
     EClientType["CASHCOW"] = "CASHCOW";
+    EClientType["WOOCOMMERCE"] = "WOOCOMMERCE";
 })(EClientType = exports.EClientType || (exports.EClientType = {}));
 var EActionStatus;
 (function (EActionStatus) {
