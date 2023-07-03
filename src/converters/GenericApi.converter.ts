@@ -1,6 +1,6 @@
-import { ClientDocument, IRaw, ProductDocument } from '../models';
-import { EClientType, EProductSellProperty, IPriority_LOGCOUNTERS_SUBFORM, IPriority_PARTBALANCE_SUBFORM, IPriority_PARTINCUSTPLISTS_SUBFORM, IPriority_PARTPACK_SUBFORM, IRawPriorityProduct, PriorityClientPriceKey } from '../types';
-import { get } from '../utils';
+import {ClientDocument, IRaw, ProductDocument} from '../models';
+import {EClientType} from '../types';
+import {get} from '../utils';
 
 export interface IGenericConverter {
     convertProductToSyncaFormat(rawProduct: any, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument>;
@@ -23,13 +23,14 @@ export class GenericConverter {
 
         const temp: Partial<ProductDocument<IRaw>> = {};
         for(let key in client.genericApi.productMap){
-            temp[key] = get(rawProduct, Array.from(client.genericApi.productMap.name ?? []), undefined);
+            temp[key] = get(rawProduct, Array.from(client.genericApi.productMap[key] ?? []), undefined);
         }
         // temp.sell
         temp.lastUpdate = lastUpdateISO;
         temp.isApprovedForWeb = true;
         temp.client = client._id;
         temp.user = client.user;
+        temp.clientType = EClientType.GENERIC;
         temp.sellPrice = Number(temp.sellPrice);
         return temp;
         // return {
