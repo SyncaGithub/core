@@ -16,8 +16,8 @@ export declare class CashcowClientConfiguration {
 }
 export declare class WooCommerceClientConfiguration {
     apiUrl: string;
-    consumer_key: string;
-    consumer_secret: string;
+    consumerKey: string;
+    consumerSecret: string;
     keysToIgnoreInExistingProduct: string[];
 }
 export declare class GenericApiClientConfiguration {

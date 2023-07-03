@@ -37,11 +37,11 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], WooCommerceClientConfiguration.prototype, "consumer_key", void 0);
+], WooCommerceClientConfiguration.prototype, "consumerKey", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], WooCommerceClientConfiguration.prototype, "consumer_secret", void 0);
+], WooCommerceClientConfiguration.prototype, "consumerSecret", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)

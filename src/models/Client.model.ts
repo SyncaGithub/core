@@ -37,10 +37,10 @@ export class WooCommerceClientConfiguration {
 	apiUrl: string;
 
 	@Prop()
-	consumer_key: string;
+	consumerKey: string;
 
 	@Prop()
-	consumer_secret: string;
+	consumerSecret: string;
 
 	@Prop({ type: [String], default: [] })
 	keysToIgnoreInExistingProduct: string[]
