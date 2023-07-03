@@ -133,6 +133,9 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 
 	@Prop()
 	compressedImageUrl: string;
+
+	@Prop()
+	thirdPartyId: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
