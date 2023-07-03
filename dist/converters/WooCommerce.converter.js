@@ -2,6 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WooCommerceConverter = void 0;
 class WooCommerceConverter {
+    static convertProductToSyncaFormat(product) {
+        return {
+            sellPrice: Number(product.regular_price),
+            images: product.images.map(i => i.src),
+            thirdPartyId: product.id.toString(),
+            sellBarcode: product.sku
+        };
+    }
     static convertProductToWooCommerceFormat(product, client, isExisting = false) {
         var _a;
         const temp = {
@@ -18,7 +26,7 @@ class WooCommerceConverter {
             temp.categories = [{ name: client.tempCategory }];
         }
         if (isExisting) {
-            (_a = client.cashcow
+            (_a = client.wooCommerce
                 .keysToIgnoreInExistingProduct) === null || _a === void 0 ? void 0 : _a.forEach(key => delete temp[key]);
         }
         return temp;

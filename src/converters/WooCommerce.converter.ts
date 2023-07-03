@@ -3,11 +3,20 @@ import {IWooCommerce_Product} from '../types';
 
 export interface IWooCommerceConverter {
     convertProductToWooCommerceFormat: (product: ProductDocument, token: string, store_id: number) => Partial<IWooCommerce_Product>;
-    // convertProductToSyncaFormat: () => {};
+    convertProductToSyncaFormat: (product: IWooCommerce_Product) => Partial<ProductDocument>;
     // convertOrderToSyncaFormat: () => {};
     // convertOrderToCashcowFormat: () => {};
 }
 export class WooCommerceConverter {
+
+    static convertProductToSyncaFormat(product: IWooCommerce_Product): Partial<ProductDocument>{
+        return {
+            sellPrice: Number(product.regular_price),
+            images: product.images.map(i => i.src),
+            thirdPartyId: product.id.toString(),
+            sellBarcode: product.sku
+        }
+    }
 
     static convertProductToWooCommerceFormat(
         product: ProductDocument,
@@ -30,7 +39,7 @@ export class WooCommerceConverter {
         }
 
         if (isExisting) {
-            client.cashcow
+            client.wooCommerce
                 .keysToIgnoreInExistingProduct
                 ?.forEach(key => delete temp[key]);
         }
