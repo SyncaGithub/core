@@ -1,4 +1,4 @@
-interface IWooCommerce_Product {
+export interface IWooCommerce_Product {
     id: number;
     name: string;
     slug: string;
@@ -65,27 +65,27 @@ interface IWooCommerce_Product {
     menu_order: number;
     meta_data: IWooCommerce_ProductMetaData[];
 }
-interface IWooCommerce_Download {
+export interface IWooCommerce_Download {
     id: string;
     name: string;
     file: string;
 }
-interface IWooCommerce_ProductDimensions {
+export interface IWooCommerce_ProductDimensions {
     length: string;
     width: string;
     height: string;
 }
-interface IWooCommerce_ProductCategory {
+export interface IWooCommerce_ProductCategory {
     id?: number;
     name: string;
     slug?: string;
 }
-interface IWooCommerce_ProductTag {
+export interface IWooCommerce_ProductTag {
     id: number;
     name: string;
     slug: string;
 }
-interface IWooCommerce_ProductImage {
+export interface IWooCommerce_ProductImage {
     id?: number;
     date_created?: string;
     date_created_gmt?: string;
@@ -95,7 +95,7 @@ interface IWooCommerce_ProductImage {
     name: string;
     alt: string;
 }
-interface IWooCommerce_ProductAttribute {
+export interface IWooCommerce_ProductAttribute {
     id: number;
     name: string;
     position: number;
@@ -103,12 +103,12 @@ interface IWooCommerce_ProductAttribute {
     variation: boolean;
     options: string[];
 }
-interface IWooCommerce_ProductDefaultAttribute {
+export interface IWooCommerce_ProductDefaultAttribute {
     id: number;
     name: string;
     option: string;
 }
-interface IWooCommerce_ProductMetaData {
+export interface IWooCommerce_ProductMetaData {
     id: number;
     key: string;
     value: string;

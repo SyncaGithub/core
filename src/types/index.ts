@@ -7,3 +7,4 @@ export * from "./tempInterfaces";
 export * from "./cashcow.interfaces";
 export * from "./cashcow.enums";
 export * from "./tempEnums";
+export * from "./woo-commerce";
