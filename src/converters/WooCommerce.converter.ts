@@ -9,7 +9,7 @@ export interface IWooCommerceConverter {
 }
 export class WooCommerceConverter {
 
-    static convertProductToSyncaFormat(product: IWooCommerce_Product, user: UserDocument, client: ClientDocument): Partial<ProductDocument>{
+    static convertProductToSyncaFormat(product: IWooCommerce_Product, client: ClientDocument): Partial<ProductDocument>{
         return {
             sellPrice: Number(product.regular_price),
             images: product.images.map(i => i.src),
@@ -21,7 +21,7 @@ export class WooCommerceConverter {
             description: product.description,
             qty: product.stock_quantity,
             clientType: EClientType.WOOCOMMERCE,
-            user: user.id,
+            user: client.user,
             client: client._id
         }
     }

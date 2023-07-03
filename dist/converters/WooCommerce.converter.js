@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WooCommerceConverter = void 0;
 const types_1 = require("../types");
 class WooCommerceConverter {
-    static convertProductToSyncaFormat(product, user, client) {
+    static convertProductToSyncaFormat(product, client) {
         var _a;
         return {
             sellPrice: Number(product.regular_price),
@@ -16,7 +16,7 @@ class WooCommerceConverter {
             description: product.description,
             qty: product.stock_quantity,
             clientType: types_1.EClientType.WOOCOMMERCE,
-            user: user.id,
+            user: client.user,
             client: client._id
         };
     }
