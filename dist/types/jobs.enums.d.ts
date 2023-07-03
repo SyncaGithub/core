@@ -6,7 +6,8 @@ export declare enum EntityStatus {
 export declare enum EClientType {
     PRIORITY = "PRIORITY",
     CASHCOW = "CASHCOW",
-    WOOCOMMERCE = "WOOCOMMERCE"
+    WOOCOMMERCE = "WOOCOMMERCE",
+    GENERIC = "GENERIC"
 }
 export declare enum EActionStatus {
     FAILED = "FAILED",
