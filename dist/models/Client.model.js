@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClientSchema = exports.Client = exports.PriorityClientConfiguration = exports.PriorityProductFilter = exports.CashcowClientConfiguration = void 0;
+exports.ClientSchema = exports.Client = exports.PriorityClientConfiguration = exports.PriorityProductFilter = exports.GenericApiClientConfiguration = exports.WooCommerceClientConfiguration = exports.CashcowClientConfiguration = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const types_1 = require("../types");
@@ -28,6 +28,36 @@ __decorate([
     __metadata("design:type", Array)
 ], CashcowClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
 exports.CashcowClientConfiguration = CashcowClientConfiguration;
+class WooCommerceClientConfiguration {
+}
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], WooCommerceClientConfiguration.prototype, "apiUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], WooCommerceClientConfiguration.prototype, "consumer_key", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], WooCommerceClientConfiguration.prototype, "consumer_secret", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String], default: [] }),
+    __metadata("design:type", Array)
+], WooCommerceClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
+exports.WooCommerceClientConfiguration = WooCommerceClientConfiguration;
+class GenericApiClientConfiguration {
+}
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], GenericApiClientConfiguration.prototype, "apiUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.Mixed }),
+    __metadata("design:type", Object)
+], GenericApiClientConfiguration.prototype, "productMap", void 0);
+exports.GenericApiClientConfiguration = GenericApiClientConfiguration;
 class PriorityProductFilter {
 }
 __decorate([
@@ -152,6 +182,14 @@ __decorate([
     (0, mongoose_1.Prop)(PriorityClientConfiguration),
     __metadata("design:type", PriorityClientConfiguration)
 ], Client.prototype, "priority", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(GenericApiClientConfiguration),
+    __metadata("design:type", GenericApiClientConfiguration)
+], Client.prototype, "genericApi", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(WooCommerceClientConfiguration),
+    __metadata("design:type", WooCommerceClientConfiguration)
+], Client.prototype, "wooCommerce", void 0);
 __decorate([
     (0, mongoose_1.Prop)(CashcowClientConfiguration),
     __metadata("design:type", CashcowClientConfiguration)

@@ -16,4 +16,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./Priority.converter"), exports);
 __exportStar(require("./Cashcow.converter"), exports);
+__exportStar(require("./WooCommerce.converter"), exports);
 //# sourceMappingURL=index.js.map
