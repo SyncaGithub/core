@@ -11,6 +11,9 @@ class GenericConverter {
         }
         temp.lastUpdate = lastUpdateISO;
         temp.isApprovedForWeb = true;
+        temp.client = client._id;
+        temp.user = client.user;
+        temp.sellPrice = Number(temp.sellPrice);
         return temp;
     }
 }
