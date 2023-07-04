@@ -27,7 +27,6 @@ export class GenericConverter {
         }
         // temp.sell
         temp.lastUpdate = lastUpdateISO;
-        temp.isApprovedForWeb = true;
         temp.client = client._id;
         temp.user = client.user;
         temp.clientType = EClientType.GENERIC;
