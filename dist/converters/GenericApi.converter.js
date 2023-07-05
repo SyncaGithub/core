@@ -11,6 +11,7 @@ class GenericConverter {
             temp[key] = (0, utils_1.get)(rawProduct, Array.from((_a = client.genericApi.productMap[key]) !== null && _a !== void 0 ? _a : []), undefined);
         }
         temp.lastUpdate = lastUpdateISO;
+        temp.isApprovedForWeb = temp.hasQty || (temp.qty > 0 && temp.sellPrice > 0);
         temp.client = client._id;
         temp.user = client.user;
         temp.clientType = types_1.EClientType.GENERIC;

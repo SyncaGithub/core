@@ -27,7 +27,7 @@ class WooCommerceConverter {
             status: "publish",
             catalog_visibility: "visible",
             description: product.description,
-            stock_status: product.isApprovedForWeb ? 'instock' : 'outofstock',
+            stock_status: product.hasQty ? 'instock' : 'outofstock',
             regular_price: product.sellPrice.toString(),
             name: product.name,
             images: product.images.map(imgSrc => ({ src: imgSrc, name: product.name, alt: product.name })),
