@@ -42,6 +42,9 @@ export class WooCommerceClientConfiguration {
 	@Prop()
 	consumerSecret: string;
 
+	@Prop()
+	productsChunkLimit: number;
+
 	@Prop({ type: [String], default: [] })
 	keysToIgnoreInExistingProduct: string[]
 }

@@ -18,6 +18,7 @@ export declare class WooCommerceClientConfiguration {
     apiUrl: string;
     consumerKey: string;
     consumerSecret: string;
+    productsChunkLimit: number;
     keysToIgnoreInExistingProduct: string[];
 }
 export declare class GenericApiClientConfiguration {

@@ -43,6 +43,10 @@ __decorate([
     __metadata("design:type", String)
 ], WooCommerceClientConfiguration.prototype, "consumerSecret", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Number)
+], WooCommerceClientConfiguration.prototype, "productsChunkLimit", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)
 ], WooCommerceClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
