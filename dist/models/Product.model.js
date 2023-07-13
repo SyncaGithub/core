@@ -60,6 +60,10 @@ __decorate([
 ], Product.prototype, "isApprovedForWeb", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], Product.prototype, "isActive", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
 ], Product.prototype, "futureOrdersFromClient", void 0);
 __decorate([
@@ -90,6 +94,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
 ], Product.prototype, "discountPrice", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], Product.prototype, "hasQty", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
@@ -178,6 +186,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Product.prototype, "compressedImageUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Product.prototype, "thirdPartyId", void 0);
 Product = __decorate([
     (0, mongoose_1.Schema)({ timestamps: false })
 ], Product);

@@ -23,4 +23,5 @@ __exportStar(require("./tempInterfaces"), exports);
 __exportStar(require("./cashcow.interfaces"), exports);
 __exportStar(require("./cashcow.enums"), exports);
 __exportStar(require("./tempEnums"), exports);
+__exportStar(require("./woo-commerce"), exports);
 //# sourceMappingURL=index.js.map

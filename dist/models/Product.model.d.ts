@@ -15,6 +15,7 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     client: P extends IRaw ? mongoose.Types.ObjectId : Client;
     clientType: EClientType;
     isApprovedForWeb: boolean;
+    isActive: boolean;
     futureOrdersFromClient: number;
     sellBarcode: string;
     barcode: string;
@@ -23,6 +24,7 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     costPrice: number;
     sellPrice: number;
     discountPrice: number;
+    hasQty: boolean;
     qty: number;
     containerQty: number;
     isDisplay: boolean;
@@ -45,5 +47,6 @@ export declare class Product<P extends IPopulated | IRaw = IRaw> {
     needImageCompression: boolean;
     hasBeenCompressed: boolean;
     compressedImageUrl: string;
+    thirdPartyId: string;
 }
-export declare const ProductSchema: mongoose.Schema<Product<IRaw | IPopulated>, mongoose.Model<Product<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product<IRaw | IPopulated>>;
+export declare const ProductSchema: mongoose.Schema<Product<IPopulated | IRaw>, mongoose.Model<Product<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Product<IPopulated | IRaw>>;

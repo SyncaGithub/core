@@ -8,11 +8,22 @@ export interface ClientMethods {
     startWorking<T = ClientDocument>(): Promise<T>;
     finishWorking<T = ClientDocument>(updateDate?: string): Promise<T>;
 }
-export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration;
+export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClientConfiguration | WooCommerceClientConfiguration | GenericApiClientConfiguration;
 export declare class CashcowClientConfiguration {
     store_id: number;
     token: string;
     keysToIgnoreInExistingProduct: string[];
+}
+export declare class WooCommerceClientConfiguration {
+    apiUrl: string;
+    consumerKey: string;
+    consumerSecret: string;
+    productsChunkLimit: number;
+    keysToIgnoreInExistingProduct: string[];
+}
+export declare class GenericApiClientConfiguration {
+    apiUrl: string;
+    productMap: Record<keyof Product, string[]>;
 }
 export declare class PriorityProductFilter {
     key: string;
@@ -48,6 +59,8 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     clientType: EClientType;
     configuration: T;
     priority: PriorityClientConfiguration;
+    genericApi: GenericApiClientConfiguration;
+    wooCommerce: WooCommerceClientConfiguration;
     cashcow: CashcowClientConfiguration;
     workWithClients: Client[];
     nickname: string;
@@ -64,4 +77,4 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     isUsingBlackList: boolean;
     blackListProducts: mongoose.Types.ObjectId[];
 }
-export declare const ClientSchema: mongoose.Schema<Client<unknown, IRaw | IPopulated>, mongoose.Model<Client<unknown, IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IRaw | IPopulated>>;
+export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IPopulated | IRaw>>;

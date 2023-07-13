@@ -45,6 +45,9 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 	isApprovedForWeb: boolean;
 
 	@Prop()
+	isActive: boolean;
+
+	@Prop()
 	futureOrdersFromClient: number;
 
 	@Prop()
@@ -67,6 +70,9 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 
 	@Prop()
 	discountPrice: number;
+
+	@Prop()
+	hasQty: boolean;
 
 	@Prop()
 	qty: number;
@@ -133,6 +139,9 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 
 	@Prop()
 	compressedImageUrl: string;
+
+	@Prop()
+	thirdPartyId: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

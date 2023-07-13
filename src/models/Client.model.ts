@@ -17,7 +17,9 @@ export interface ClientMethods {
 
 export type ClientConfigurationTypes =
 	| PriorityClientConfiguration
-	| CashcowClientConfiguration;
+	| CashcowClientConfiguration
+	| WooCommerceClientConfiguration
+	| GenericApiClientConfiguration;
 
 export class CashcowClientConfiguration {
 	@Prop()
@@ -28,6 +30,31 @@ export class CashcowClientConfiguration {
 
 	@Prop({ type: [String], default: [] })
 	keysToIgnoreInExistingProduct: string[]
+}
+
+export class WooCommerceClientConfiguration {
+	@Prop()
+	apiUrl: string;
+
+	@Prop()
+	consumerKey: string;
+
+	@Prop()
+	consumerSecret: string;
+
+	@Prop()
+	productsChunkLimit: number;
+
+	@Prop({ type: [String], default: [] })
+	keysToIgnoreInExistingProduct: string[]
+}
+
+export class GenericApiClientConfiguration {
+	@Prop()
+	apiUrl: string;
+
+	@Prop({ type: MongooseSchema.Types.Mixed })
+	productMap: Record<keyof Product, string[]>;
 }
 
 export class PriorityProductFilter {
@@ -125,6 +152,12 @@ export class Client<
 
 	@Prop(PriorityClientConfiguration)
 	priority: PriorityClientConfiguration;
+
+	@Prop(GenericApiClientConfiguration)
+	genericApi: GenericApiClientConfiguration;
+
+	@Prop(WooCommerceClientConfiguration)
+	wooCommerce: WooCommerceClientConfiguration;
 
 	@Prop(CashcowClientConfiguration)
 	cashcow: CashcowClientConfiguration;

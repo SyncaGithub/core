@@ -11,6 +11,8 @@ var EClientType;
 (function (EClientType) {
     EClientType["PRIORITY"] = "PRIORITY";
     EClientType["CASHCOW"] = "CASHCOW";
+    EClientType["WOOCOMMERCE"] = "WOOCOMMERCE";
+    EClientType["GENERIC"] = "GENERIC";
 })(EClientType = exports.EClientType || (exports.EClientType = {}));
 var EActionStatus;
 (function (EActionStatus) {
@@ -34,6 +36,9 @@ var EActionType;
     EActionType["CASHCOW_SEND_PRODUCTS"] = "CASHCOW_SEND_PRODUCTS";
     EActionType["CASHCOW_LOAD_EXCEL"] = "CASHCOW_LOAD_EXCEL";
     EActionType["CASHCOW_UPDATE_ORDER"] = "CASHCOW_UPDATE_ORDER";
+    EActionType["WOOCOMMERCE_SEND_PRODUCT"] = "WOOCOMMERCE_SEND_PRODUCT";
+    EActionType["WOOCOMMERCE_ACKNOWLEDGE_PRODUCT"] = "WOOCOMMERCE_ACKNOWLEDGE_PRODUCT";
+    EActionType["GENERIC_FETCH_PRODUCTS"] = "GENERIC_FETCH_PRODUCTS";
     EActionType["IMAGE_COMPRESSION"] = "IMAGE_COMPRESSION";
 })(EActionType = exports.EActionType || (exports.EActionType = {}));
 //# sourceMappingURL=jobs.enums.js.map
