@@ -27,7 +27,8 @@
 			"@types/*": ["./src/types/*"],
 			"@utils/*": ["./src/utils/*"],
 			"@interceptors/*": ["./interceptors/*"],
-			"@enums/*": ["./enums/*"]
+			"@enums/*": ["./enums/*"],
+			"@classes/*": ["./classes/*"]
 		}
 
 	},
