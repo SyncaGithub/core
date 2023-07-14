@@ -39,6 +39,7 @@ class BaseService {
                     await client.finishWorking();
                 }
             }
+            this._logger.error(`Action Success: ${config.type}`);
             this.finishJob(job, config.type, Object.assign(Object.assign({}, response.jobHistoryUpdate), { status: types_1.EActionStatus.SUCCESS }));
             return Promise.resolve(response.result);
         }
@@ -48,7 +49,7 @@ class BaseService {
                 client.status = types_1.EntityStatus.CRASHED;
                 await client.save();
             }
-            this._logger.error(`Failed Action: ${config.type}`);
+            this._logger.error(`Action Failed: ${config.type}`);
             this.finishJob(job, config.type, {
                 status: types_1.EActionStatus.FAILED,
                 error: typeof error === 'string'

@@ -55,6 +55,7 @@ export abstract class BaseService {
                     await client.finishWorking();
                 }
             }
+            this._logger.error(`Action Success: ${config.type}`);
             this.finishJob(job, config.type, {
                 ...response.jobHistoryUpdate,
                 status: EActionStatus.SUCCESS,
@@ -66,7 +67,7 @@ export abstract class BaseService {
                 client.status = EntityStatus.CRASHED;
                 await client.save();
             }
-            this._logger.error(`Failed Action: ${config.type}`);
+            this._logger.error(`Action Failed: ${config.type}`);
             this.finishJob(job, config.type, {
                 status: EActionStatus.FAILED,
 
