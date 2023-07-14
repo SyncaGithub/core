@@ -13,4 +13,4 @@ export declare class JobHistory<P extends IPopulated | IRaw = IRaw> {
     maxModifiedCount: number;
     error: String;
 }
-export declare const JobHistorySchema: mongoose.Schema<JobHistory<IPopulated | IRaw>, mongoose.Model<JobHistory<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, JobHistory<IPopulated | IRaw>>;
+export declare const JobHistorySchema: mongoose.Schema<JobHistory<IRaw | IPopulated>, mongoose.Model<JobHistory<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, JobHistory<IRaw | IPopulated>>;
