@@ -1,7 +1,7 @@
 import { ClientProxy } from "@nestjs/microservices";
 import { ClientRepo, ProductRepo } from "../repositories";
 import { EActionType, IUpdateJobHistory } from "../types";
-import { JobDocument, JobHistoryDocument } from "../models";
+import { ClientDocument, JobDocument, JobHistoryDocument } from "../models";
 import { Logger } from "@nestjs/common";
 import { DateTime } from "luxon";
 export declare abstract class BaseService {
@@ -10,7 +10,7 @@ export declare abstract class BaseService {
     private readonly _clientRepo;
     private readonly _queueClient;
     protected constructor(productRepo: ProductRepo, clientRepo: ClientRepo, queueClient: ClientProxy);
-    handleAction<T>(job: JobDocument, cb: (lastUpdateISO: DateTime) => Promise<IHandleActionReturn<T>>, config: {
+    handleAction<T>(job: JobDocument, cb: (lastUpdateISO: DateTime, client: ClientDocument) => Promise<IHandleActionReturn<T>>, config: {
         type: EActionType;
         isClientChange: boolean;
         isClientTimeUpdate: boolean;

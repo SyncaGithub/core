@@ -24,7 +24,7 @@ export abstract class BaseService {
 
     async handleAction<T>(
         job: JobDocument,
-        cb: (lastUpdateISO: DateTime) => Promise<IHandleActionReturn<T>>,
+        cb: (lastUpdateISO: DateTime, client: ClientDocument) => Promise<IHandleActionReturn<T>>,
         config: {
             type: EActionType;
             isClientChange: boolean;
@@ -50,7 +50,7 @@ export abstract class BaseService {
 
             const lastUpdateISO = DateTime.local({zone: process.env.TZ});
 
-            const response = await cb(lastUpdateISO);
+            const response = await cb(lastUpdateISO, client);
 
             if (config.isClientChange) {
                 if (config.isClientTimeUpdate) {
