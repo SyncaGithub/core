@@ -39,7 +39,7 @@ class BaseService {
                     await client.finishWorking();
                 }
             }
-            this._logger.error(`Action Success: ${config.type}`);
+            this._logger.debug(`Action Success: ${config.type}`);
             this.finishJob(job, config.type, Object.assign(Object.assign({}, response.jobHistoryUpdate), { status: types_1.EActionStatus.SUCCESS }));
             return Promise.resolve(response.result);
         }

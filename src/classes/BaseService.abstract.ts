@@ -55,7 +55,7 @@ export abstract class BaseService {
                     await client.finishWorking();
                 }
             }
-            this._logger.error(`Action Success: ${config.type}`);
+            this._logger.debug(`Action Success: ${config.type}`);
             this.finishJob(job, config.type, {
                 ...response.jobHistoryUpdate,
                 status: EActionStatus.SUCCESS,
