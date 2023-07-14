@@ -10,7 +10,7 @@ export declare abstract class BaseService {
     private readonly _clientRepo;
     private readonly _queueClient;
     protected constructor(productRepo: ProductRepo, clientRepo: ClientRepo, queueClient: ClientProxy);
-    handleAction<T>(job: JobDocument, cb: (lastUpdateISO: DateTime, client: ClientDocument) => Promise<IHandleActionReturn<T>>, config: {
+    handleAction<T>(job: JobDocument, cb: (lastUpdate: DateTime, client: ClientDocument) => Promise<IHandleActionReturn<T>>, config: {
         type: EActionType;
         isClientChange: boolean;
         isClientTimeUpdate: boolean;

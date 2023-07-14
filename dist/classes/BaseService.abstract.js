@@ -29,11 +29,11 @@ class BaseService {
             this._logger.debug(`Start Action: ${config.type}`);
             this._logger.debug('current Index: ' + job.currentActinIndex);
             this._logger.debug(`current client: ${client.nickname} (${client._id})`);
-            const lastUpdateISO = luxon_1.DateTime.local({ zone: process.env.TZ });
-            const response = await cb(lastUpdateISO, client);
+            const lastUpdate = luxon_1.DateTime.local({ zone: process.env.TZ });
+            const response = await cb(lastUpdate, client);
             if (config.isClientChange) {
                 if (config.isClientTimeUpdate) {
-                    await client.finishWorking(lastUpdateISO.toISO());
+                    await client.finishWorking(lastUpdate.toISO());
                 }
                 else {
                     await client.finishWorking();
