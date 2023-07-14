@@ -23,7 +23,7 @@ class BaseService {
             return Promise.reject(`Cannot find client with id: ${job.actionList[job.currentActinIndex].client}`);
         }
         try {
-            if (config.isClientChange) {
+            if (config.isClientStatusAffected) {
                 await client.startWorking();
             }
             this._logger.debug(`Start Action: ${config.type}`);
@@ -31,8 +31,8 @@ class BaseService {
             this._logger.debug(`current client: ${client.nickname} (${client._id})`);
             const lastUpdate = luxon_1.DateTime.local({ zone: process.env.TZ });
             const response = await cb(lastUpdate, client);
-            if (config.isClientChange) {
-                if (config.isClientTimeUpdate) {
+            if (config.isClientStatusAffected) {
+                if (config.isClientUpdateTimeAffected) {
                     await client.finishWorking(lastUpdate.toISO());
                 }
                 else {

@@ -25,11 +25,7 @@ export abstract class BaseService {
     async handleAction<T>(
         job: JobDocument,
         cb: (lastUpdate: DateTime, client: ClientDocument) => Promise<IHandleActionReturn<T>>,
-        config: {
-            type: EActionType;
-            isClientChange: boolean;
-            isClientTimeUpdate: boolean;
-        }
+        config: IHandleActionConfig
     ) {
         let client: ClientDocument;
         try {
@@ -41,7 +37,7 @@ export abstract class BaseService {
             return Promise.reject(`Cannot find client with id: ${job.actionList[job.currentActinIndex].client}`);
         }
         try {
-            if (config.isClientChange) {
+            if (config.isClientStatusAffected) {
                 await client.startWorking();
             }
             this._logger.debug(`Start Action: ${config.type}`);
@@ -52,8 +48,8 @@ export abstract class BaseService {
 
             const response = await cb(lastUpdate, client);
 
-            if (config.isClientChange) {
-                if (config.isClientTimeUpdate) {
+            if (config.isClientStatusAffected) {
+                if (config.isClientUpdateTimeAffected) {
                     await client.finishWorking(lastUpdate.toISO());
                 } else {
                     await client.finishWorking();
@@ -117,6 +113,12 @@ export abstract class BaseService {
             .pipe(take(1))
             .subscribe();
     }
+}
+
+export interface IHandleActionConfig{
+    type: EActionType;
+    isClientStatusAffected: boolean;
+    isClientUpdateTimeAffected: boolean;
 }
 
 export interface IHandleActionReturn<T = any> {
