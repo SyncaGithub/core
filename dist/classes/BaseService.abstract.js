@@ -5,8 +5,8 @@ const rxjs_1 = require("rxjs");
 const types_1 = require("../types");
 const luxon_1 = require("luxon");
 class BaseService {
-    constructor(logger, productRepo, clientRepo, queueClient) {
-        this._logger = logger;
+    constructor(productRepo, clientRepo, queueClient) {
+        this._productRepo = productRepo;
         this._clientRepo = clientRepo;
         this._queueClient = queueClient;
     }

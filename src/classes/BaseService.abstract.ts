@@ -7,19 +7,17 @@ import {Logger} from "@nestjs/common";
 import {DateTime} from "luxon";
 
 export abstract class BaseService {
-    private readonly _logger: Logger;
-    // private readonly _productRepo: ProductRepo;
+    abstract readonly _logger: Logger;
+    private readonly _productRepo: ProductRepo;
     private readonly _clientRepo: ClientRepo;
     private readonly _queueClient: ClientProxy;
 
     protected constructor(
-        logger: Logger,
         productRepo: ProductRepo,
         clientRepo: ClientRepo,
         queueClient: ClientProxy
     ) {
-        this._logger = logger;
-        // this._productRepo = productRepo;
+        this._productRepo = productRepo;
         this._clientRepo = clientRepo;
         this._queueClient = queueClient;
     }
