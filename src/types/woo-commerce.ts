@@ -121,3 +121,15 @@ export interface IWooCommerce_ProductMetaData {
     key: string;
     value: string;
 }
+
+export interface IWooCommerce_ProductBatchAction{
+    create: Partial<IWooCommerce_Product>[];
+    update: Partial<IWooCommerce_Product>[];
+    delete: number[];
+}
+
+export interface IWooCommerce_ProductBatchActionResponse{
+    create: Partial<IWooCommerce_Product>[];
+    update: Partial<IWooCommerce_Product>[];
+    delete: Partial<IWooCommerce_Product>[];
+}
