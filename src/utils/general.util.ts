@@ -2,6 +2,14 @@ import { catchError, Observable, take, tap } from "rxjs";
 import { AxiosResponse, AxiosError } from "axios";
 
 // Utills
+export function delay(ms: number): Promise<void> {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			return resolve();
+		}, ms);
+	});
+}
+
 export function get(object, path: string | string[], defval = null, paths = []) {
 	if(path === undefined) return defval;
 	if (typeof path === 'object') {

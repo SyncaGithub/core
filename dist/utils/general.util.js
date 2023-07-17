@@ -1,7 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getISOInIsraelTimezone = exports.obsToPromise = exports.get = void 0;
+exports.getISOInIsraelTimezone = exports.obsToPromise = exports.get = exports.delay = void 0;
 const rxjs_1 = require("rxjs");
+function delay(ms) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            return resolve();
+        }, ms);
+    });
+}
+exports.delay = delay;
 function get(object, path, defval = null, paths = []) {
     if (path === undefined)
         return defval;
