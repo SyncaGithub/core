@@ -16,7 +16,6 @@ export declare abstract class BaseService {
     updateJobHistoryCounters(jobHistoryUpdate: IUpdateJobHistory): void;
 }
 export interface IHandleActionConfig {
-    type: EActionType;
     isClientStatusAffected: boolean;
     isClientUpdateTimeAffected: boolean;
 }

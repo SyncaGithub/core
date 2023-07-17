@@ -14,7 +14,7 @@ export class Action<P extends IPopulated | IRaw = IRaw> {
 	client: P extends IRaw ? ObjectId : Client;
 
 	@Prop({ enum: EActionType, required: true })
-	action: string;
+	action: EActionType;
 }
 
 export const JobActionSchema = SchemaFactory.createForClass(Action);

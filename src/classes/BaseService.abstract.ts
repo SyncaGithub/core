@@ -8,9 +8,11 @@ import {DateTime} from "luxon";
 
 export abstract class BaseService {
     abstract readonly _logger: Logger;
+
     private readonly _productRepo: ProductRepo;
     private readonly _clientRepo: ClientRepo;
     private readonly _queueClient: ClientProxy;
+
 
     protected constructor(
         productRepo: ProductRepo,
@@ -28,6 +30,7 @@ export abstract class BaseService {
         config: IHandleActionConfig
     ) {
         let client: ClientDocument;
+        const type: EActionType = job.actionList[job.currentActinIndex].action;
         try {
             client = await this._clientRepo.findOne({
                 user: job.user,
@@ -40,7 +43,7 @@ export abstract class BaseService {
             if (config.isClientStatusAffected) {
                 await client.startWorking();
             }
-            this._logger.debug(`Start Action: ${config.type}`);
+            this._logger.debug(`Start Action: ${type}`);
             this._logger.debug('current Index: ' + job.currentActinIndex);
             this._logger.debug(`current client: ${client.nickname} (${client._id})`);
 
@@ -55,8 +58,8 @@ export abstract class BaseService {
                     await client.finishWorking();
                 }
             }
-            this._logger.debug(`Action Success: ${config.type}`);
-            this.finishJob(job, config.type, {
+            this._logger.debug(`Action Success: ${type}`);
+            this.finishJob(job, type, {
                 ...response.jobHistoryUpdate,
                 status: EActionStatus.SUCCESS,
             });
@@ -67,8 +70,8 @@ export abstract class BaseService {
                 client.status = EntityStatus.CRASHED;
                 await client.save();
             }
-            this._logger.error(`Action Failed: ${config.type}`);
-            this.finishJob(job, config.type, {
+            this._logger.error(`Action Failed: ${type}`);
+            this.finishJob(job, type, {
                 status: EActionStatus.FAILED,
 
                 error:
@@ -117,7 +120,6 @@ export abstract class BaseService {
 }
 
 export interface IHandleActionConfig{
-    type: EActionType;
     isClientStatusAffected: boolean;
     isClientUpdateTimeAffected: boolean;
 }

@@ -13,6 +13,7 @@ class BaseService {
     async handleAction(job, cb, config) {
         var _a;
         let client;
+        const type = job.actionList[job.currentActinIndex].action;
         try {
             client = await this._clientRepo.findOne({
                 user: job.user,
@@ -26,7 +27,7 @@ class BaseService {
             if (config.isClientStatusAffected) {
                 await client.startWorking();
             }
-            this._logger.debug(`Start Action: ${config.type}`);
+            this._logger.debug(`Start Action: ${type}`);
             this._logger.debug('current Index: ' + job.currentActinIndex);
             this._logger.debug(`current client: ${client.nickname} (${client._id})`);
             const lastUpdate = luxon_1.DateTime.local({ zone: process.env.TZ });
@@ -39,8 +40,8 @@ class BaseService {
                     await client.finishWorking();
                 }
             }
-            this._logger.debug(`Action Success: ${config.type}`);
-            this.finishJob(job, config.type, Object.assign(Object.assign({}, response.jobHistoryUpdate), { status: types_1.EActionStatus.SUCCESS }));
+            this._logger.debug(`Action Success: ${type}`);
+            this.finishJob(job, type, Object.assign(Object.assign({}, response.jobHistoryUpdate), { status: types_1.EActionStatus.SUCCESS }));
             return Promise.resolve(response.result);
         }
         catch (error) {
@@ -49,8 +50,8 @@ class BaseService {
                 client.status = types_1.EntityStatus.CRASHED;
                 await client.save();
             }
-            this._logger.error(`Action Failed: ${config.type}`);
-            this.finishJob(job, config.type, {
+            this._logger.error(`Action Failed: ${type}`);
+            this.finishJob(job, type, {
                 status: types_1.EActionStatus.FAILED,
                 error: typeof error === 'string'
                     ? error

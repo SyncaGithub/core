@@ -1,14 +1,15 @@
 import mongoose, { Document, ObjectId } from "mongoose";
 import { ECashcowOrderStatus, IOrder } from "../types";
+import { EActionType } from "../types/jobs.enums";
 import { Client } from "./Client.model";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
 export type JobDocument<P extends IPopulated | IRaw = IRaw> = Job<P> & Document;
 export declare class Action<P extends IPopulated | IRaw = IRaw> {
     client: P extends IRaw ? ObjectId : Client;
-    action: string;
+    action: EActionType;
 }
-export declare const JobActionSchema: mongoose.Schema<Action<IRaw | IPopulated>, mongoose.Model<Action<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Action<IRaw | IPopulated>>;
+export declare const JobActionSchema: mongoose.Schema<Action<IPopulated | IRaw>, mongoose.Model<Action<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Action<IPopulated | IRaw>>;
 export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
     client?: P extends IRaw ? ObjectId : Client;
     isFullFetch?: boolean;
@@ -29,4 +30,4 @@ export declare class Job<P extends IPopulated | IRaw = IRaw> {
     currentActionHistoryId?: string;
     currentActinIndex: number;
 }
-export declare const JobSchema: mongoose.Schema<Job<IRaw | IPopulated>, mongoose.Model<Job<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IRaw | IPopulated>>;
+export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IPopulated | IRaw>>;
