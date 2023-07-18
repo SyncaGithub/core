@@ -2,11 +2,7 @@ import { ClientProviderOptions, MicroserviceOptions, RedisOptions } from "@nestj
 export declare const RedisServiceOptions: RedisOptions;
 export declare const AuthMicroServiceOptions: MicroserviceOptions;
 export declare const AuthMicroServiceClientOptions: ClientProviderOptions;
-export declare const ImagesMicroServiceOptions: MicroserviceOptions;
-export declare const ImagesMicroServiceClientOptions: ClientProviderOptions;
 export declare const JobsMicroServiceOptions: MicroserviceOptions;
 export declare const JobsMicroServiceClientOptions: ClientProviderOptions;
-export declare const SellerMicroServiceOptions: MicroserviceOptions;
-export declare const SellerMicroServiceClientOptions: ClientProviderOptions;
-export declare const WarehouseMicroServiceOptions: MicroserviceOptions;
-export declare const WarehouseMicroServiceClientOptions: ClientProviderOptions;
+export declare const CommerceMicroServiceOptions: MicroserviceOptions;
+export declare const CommerceMicroServiceClientOptions: ClientProviderOptions;

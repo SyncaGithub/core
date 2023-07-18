@@ -20,15 +20,15 @@
 		"forceConsistentCasingInFileNames": false,
 		"noFallthroughCasesInSwitch": false,
 		"paths": {
-			"@converters/*": ["./src/converters/*"],
-			"@models/*": ["./src/models/*"],
-			"@repositories/*": ["./src/repositories/*"],
-			"@services/*": ["./src/services/*"],
-			"@types/*": ["./src/types/*"],
-			"@utils/*": ["./src/utils/*"],
-			"@interceptors/*": ["./interceptors/*"],
-			"@enums/*": ["./enums/*"],
-			"@classes/*": ["./classes/*"]
+			"@synca/core/converters/*": ["./src/converters/*"],
+			"@synca/core/models/*": ["./src/models/*"],
+			"@synca/core/repositories/*": ["./src/repositories/*"],
+			"@synca/core/services/*": ["./src/services/*"],
+			"@synca/core/types/*": ["./src/types/*"],
+			"@synca/core/utils/*": ["./src/utils/*"],
+			"@synca/core/interceptors/*": ["./interceptors/*"],
+			"@synca/core/enums/*": ["./enums/*"],
+			"@synca/core/classes/*": ["./classes/*"]
 		}
 
 	},

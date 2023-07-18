@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WarehouseMicroServiceClientOptions = exports.WarehouseMicroServiceOptions = exports.SellerMicroServiceClientOptions = exports.SellerMicroServiceOptions = exports.JobsMicroServiceClientOptions = exports.JobsMicroServiceOptions = exports.ImagesMicroServiceClientOptions = exports.ImagesMicroServiceOptions = exports.AuthMicroServiceClientOptions = exports.AuthMicroServiceOptions = exports.RedisServiceOptions = void 0;
+exports.CommerceMicroServiceClientOptions = exports.CommerceMicroServiceOptions = exports.JobsMicroServiceClientOptions = exports.JobsMicroServiceOptions = exports.AuthMicroServiceClientOptions = exports.AuthMicroServiceOptions = exports.RedisServiceOptions = void 0;
 const microservices_1 = require("@nestjs/microservices");
 exports.RedisServiceOptions = {
     transport: microservices_1.Transport.REDIS,
@@ -18,15 +18,6 @@ exports.AuthMicroServiceClientOptions = {
     transport: exports.AuthMicroServiceOptions.transport,
     options: exports.AuthMicroServiceOptions.options
 };
-exports.ImagesMicroServiceOptions = {
-    transport: microservices_1.Transport.TCP,
-    options: { host: '127.0.0.1', port: 50059 },
-};
-exports.ImagesMicroServiceClientOptions = {
-    name: 'IMAGES_CLIENT',
-    transport: exports.ImagesMicroServiceOptions.transport,
-    options: exports.ImagesMicroServiceOptions.options
-};
 exports.JobsMicroServiceOptions = {
     transport: microservices_1.Transport.TCP,
     options: { host: '127.0.0.1', port: 50054 }
@@ -36,22 +27,13 @@ exports.JobsMicroServiceClientOptions = {
     transport: exports.JobsMicroServiceOptions.transport,
     options: exports.JobsMicroServiceOptions.options,
 };
-exports.SellerMicroServiceOptions = {
-    transport: microservices_1.Transport.TCP,
-    options: { host: '127.0.0.1', port: 50052 }
-};
-exports.SellerMicroServiceClientOptions = {
-    name: 'CASHCOW_CLIENT',
-    transport: exports.SellerMicroServiceOptions.transport,
-    options: exports.SellerMicroServiceOptions.options,
-};
-exports.WarehouseMicroServiceOptions = {
+exports.CommerceMicroServiceOptions = {
     transport: microservices_1.Transport.TCP,
     options: { host: '127.0.0.1', port: 50051 }
 };
-exports.WarehouseMicroServiceClientOptions = {
-    name: 'WAREHOUSE_CLIENT',
-    transport: exports.WarehouseMicroServiceOptions.transport,
-    options: exports.WarehouseMicroServiceOptions.options,
+exports.CommerceMicroServiceClientOptions = {
+    name: 'COMMERCE_CLIENT',
+    transport: exports.CommerceMicroServiceOptions.transport,
+    options: exports.CommerceMicroServiceOptions.options,
 };
 //# sourceMappingURL=constants.js.map

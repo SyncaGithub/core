@@ -22,15 +22,7 @@ export const AuthMicroServiceClientOptions: ClientProviderOptions = {
     transport: AuthMicroServiceOptions.transport,
     options: AuthMicroServiceOptions.options
 }
-export const ImagesMicroServiceOptions: MicroserviceOptions = {
-    transport: Transport.TCP,
-    options: { host: '127.0.0.1', port: 50059 },
-}
-export const ImagesMicroServiceClientOptions: ClientProviderOptions = {
-    name: 'IMAGES_CLIENT',
-    transport: ImagesMicroServiceOptions.transport,
-    options: ImagesMicroServiceOptions.options
-}
+
 export const JobsMicroServiceOptions: MicroserviceOptions = {
     transport: Transport.TCP,
     options: { host: '127.0.0.1', port: 50054 }
@@ -40,21 +32,13 @@ export const JobsMicroServiceClientOptions: ClientProviderOptions = {
     transport: JobsMicroServiceOptions.transport,
     options: JobsMicroServiceOptions.options,
 }
-export const SellerMicroServiceOptions: MicroserviceOptions = {
-    transport: Transport.TCP,
-    options: { host: '127.0.0.1', port: 50052 }
-}
-export const SellerMicroServiceClientOptions: ClientProviderOptions = {
-    name: 'CASHCOW_CLIENT',
-    transport: SellerMicroServiceOptions.transport,
-    options: SellerMicroServiceOptions.options,
-}
-export const WarehouseMicroServiceOptions: MicroserviceOptions = {
+
+export const CommerceMicroServiceOptions: MicroserviceOptions = {
     transport: Transport.TCP,
     options: { host: '127.0.0.1', port: 50051 }
 }
-export const WarehouseMicroServiceClientOptions: ClientProviderOptions = {
-    name: 'WAREHOUSE_CLIENT',
-    transport: WarehouseMicroServiceOptions.transport,
-    options: WarehouseMicroServiceOptions.options,
+export const CommerceMicroServiceClientOptions: ClientProviderOptions = {
+    name: 'COMMERCE_CLIENT',
+    transport: CommerceMicroServiceOptions.transport,
+    options: CommerceMicroServiceOptions.options,
 }
