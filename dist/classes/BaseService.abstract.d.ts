@@ -36,7 +36,7 @@ export interface AcknowledgeExistsProducts {
     acknowledgeProductAPI<T = any>(job: JobDocument): Promise<T>;
 }
 export interface GetTotalOrders {
-    getTotalOrdersAPI<T = any>(job: JobDocument): Promise<T>;
+    getTotalOrdersAPI<T = number>(job: JobDocument): Promise<T>;
 }
 export interface UpdateOrder {
     updateOrderAPI<T = any>(job: JobDocument): Promise<T>;

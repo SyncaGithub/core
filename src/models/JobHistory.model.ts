@@ -22,7 +22,7 @@ export class JobHistory<P extends IPopulated | IRaw = IRaw> {
 	dateEnd: string;
 
 	@Prop({ type: String, enum: EActionStatus })
-	status: string;
+	status: EActionStatus;
 
 	@Prop({ default: 0 })
 	modifiedCount: number;

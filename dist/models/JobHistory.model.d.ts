@@ -1,4 +1,5 @@
 import mongoose, { Document } from "mongoose";
+import { EActionStatus } from "../types/jobs.enums";
 import { IPopulated, IRaw } from "./types";
 import { User } from "./User.model";
 export type JobHistoryDocument<P extends IPopulated | IRaw = IRaw> = JobHistory<P> & Document;
@@ -7,10 +8,10 @@ export declare class JobHistory<P extends IPopulated | IRaw = IRaw> {
     dateStart: string;
     actionType: string;
     dateEnd: string;
-    status: string;
+    status: EActionStatus;
     modifiedCount: number;
     failedCount: number;
     maxModifiedCount: number;
     error: String;
 }
-export declare const JobHistorySchema: mongoose.Schema<JobHistory<IRaw | IPopulated>, mongoose.Model<JobHistory<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, JobHistory<IRaw | IPopulated>>;
+export declare const JobHistorySchema: mongoose.Schema<JobHistory<IPopulated | IRaw>, mongoose.Model<JobHistory<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, JobHistory<IPopulated | IRaw>>;

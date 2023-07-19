@@ -93,7 +93,7 @@ Action Index: ${job.currentActionIndex}
     ) {
         this._queueClient
             .send<void, IJobFinish>('jobFinish', {
-                actionStatus: jobHistory.status as EActionStatus,
+                actionStatus: jobHistory.status,
                 job,
                 finishedJob: jobActionType,
                 jobHistoryData: jobHistory
