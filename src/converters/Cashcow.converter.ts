@@ -1,5 +1,5 @@
-import { ClientDocument, ProductDocument } from '../models';
-import { ICashcowAddOrUpdateObject } from '../types';
+import {ClientDocument, JobDocument, ProductDocument} from '../models';
+import {ECashcowOrderStatus, ICashcowAddOrUpdateObject, ICashcowUpdateOrderRequest} from '../types';
 
 export interface ICashcowConverter {
     convertProductToCashcowFormat: (product: ProductDocument, token: string, store_id: number) => {};
@@ -46,5 +46,15 @@ export class CashcowConverter {
                 ?.forEach(key => delete temp[key]);
         }
         return temp;
+    }
+
+    static generateUpdateOrderObject(job: JobDocument, client: ClientDocument): ICashcowUpdateOrderRequest{
+        return {
+            token: client.cashcow.token,
+            store_id: client.cashcow.store_id,
+            order_id: job.configuration.orders[0].Id,
+            email_address: job.configuration.orders[0].Email,
+            order_status_type: ECashcowOrderStatus.Claimed
+        };
     }
 }

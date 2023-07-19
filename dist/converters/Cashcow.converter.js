@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CashcowConverter = void 0;
+const types_1 = require("../types");
 class CashcowConverter {
     static convertProductToCashcowFormat(product, client, isExisting = false) {
         var _a, _b, _c, _d;
@@ -34,6 +35,15 @@ class CashcowConverter {
                 .keysToIgnoreInExistingProduct) === null || _d === void 0 ? void 0 : _d.forEach(key => delete temp[key]);
         }
         return temp;
+    }
+    static generateUpdateOrderObject(job, client) {
+        return {
+            token: client.cashcow.token,
+            store_id: client.cashcow.store_id,
+            order_id: job.configuration.orders[0].Id,
+            email_address: job.configuration.orders[0].Email,
+            order_status_type: types_1.ECashcowOrderStatus.Claimed
+        };
     }
 }
 exports.CashcowConverter = CashcowConverter;
