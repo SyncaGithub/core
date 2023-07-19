@@ -30,22 +30,23 @@ export abstract class BaseService {
         config: IHandleActionConfig
     ) {
         let client: ClientDocument;
-        const type: EActionType = job.actionList[job.currentActinIndex].action;
+        const type: EActionType = job.actionList[job.currentActionIndex].action;
         try {
             client = await this._clientRepo.findOne({
                 user: job.user,
-                _id: job.actionList[job.currentActinIndex].client
+                _id: job.actionList[job.currentActionIndex].client
             });
         }catch (error){
-            return Promise.reject(`Cannot find client with id: ${job.actionList[job.currentActinIndex].client}`);
+            return Promise.reject(`Cannot find client with id: ${job.actionList[job.currentActionIndex].client}`);
         }
         try {
             if (config.isClientStatusAffected) {
                 await client.startWorking();
             }
-            this._logger.debug(`Start Action: ${type}`);
-            this._logger.debug('current Index: ' + job.currentActinIndex);
-            this._logger.debug(`current client: ${client.nickname} (${client._id})`);
+            this._logger.debug(`
+Start Action: ${type} | Client: ${client.nickname} (${client._id})
+Action Index: ${job.currentActionIndex}
+            `);
 
             const lastUpdate = DateTime.local({zone: process.env.TZ});
 
@@ -79,7 +80,7 @@ export abstract class BaseService {
                         ? error
                         : error?.message
                             ? error?.message
-                            : Object.keys(error)?.join(',')
+                            : JSON.stringify(error, null, 4)
             });
             return Promise.reject(error);
         }
@@ -129,22 +130,34 @@ export interface IHandleActionReturn<T = any> {
     result: T;
 }
 
-export interface ISellerService {
+export interface AddOrUpdateProducts{
     addOrUpdateProductAPI<T = any>(job: JobDocument): Promise<T>;
+}
 
+export interface GetOrders{
     getOrdersAPI<Order = any>(job: JobDocument): Promise<Order[]>;
+}
 
+export interface GetProducts{
+    getProductsAPI<T = any>(job: JobDocument): Promise<T>;
+}
+
+export interface AcknowledgeExistsProducts{
     acknowledgeProductAPI<T = any>(job: JobDocument): Promise<T>;
+}
 
-    getTotalOrdersAPI<T = any>(job: JobDocument): Promise<T>;
+export interface GetTotalOrders{
+    getTotalOrdersAPI<T = number>(job: JobDocument): Promise<T>;
+}
 
+export interface UpdateOrder {
     updateOrderAPI<T = any>(job: JobDocument): Promise<T>;
 }
 
-export interface IWarehouseService {
-    getProductsAPI<T = any>(job: JobDocument): Promise<T>;
-
-    lookupProductsAPI<T = any>(job: JobDocument): Promise<T>;
-
+export interface SendOrder {
     sendOrderAPI<T = any>(job: JobDocument): Promise<T>;
+}
+
+export interface LookupProducts{
+    lookupProductsAPI<T = any>(job: JobDocument): Promise<T>;
 }

@@ -11,25 +11,25 @@ class BaseService {
         this._queueClient = queueClient;
     }
     async handleAction(job, cb, config) {
-        var _a;
         let client;
-        const type = job.actionList[job.currentActinIndex].action;
+        const type = job.actionList[job.currentActionIndex].action;
         try {
             client = await this._clientRepo.findOne({
                 user: job.user,
-                _id: job.actionList[job.currentActinIndex].client
+                _id: job.actionList[job.currentActionIndex].client
             });
         }
         catch (error) {
-            return Promise.reject(`Cannot find client with id: ${job.actionList[job.currentActinIndex].client}`);
+            return Promise.reject(`Cannot find client with id: ${job.actionList[job.currentActionIndex].client}`);
         }
         try {
             if (config.isClientStatusAffected) {
                 await client.startWorking();
             }
-            this._logger.debug(`Start Action: ${type}`);
-            this._logger.debug('current Index: ' + job.currentActinIndex);
-            this._logger.debug(`current client: ${client.nickname} (${client._id})`);
+            this._logger.debug(`
+Start Action: ${type} | Client: ${client.nickname} (${client._id})
+Action Index: ${job.currentActionIndex}
+            `);
             const lastUpdate = luxon_1.DateTime.local({ zone: process.env.TZ });
             const response = await cb(lastUpdate, client);
             if (config.isClientStatusAffected) {
@@ -57,7 +57,7 @@ class BaseService {
                     ? error
                     : (error === null || error === void 0 ? void 0 : error.message)
                         ? error === null || error === void 0 ? void 0 : error.message
-                        : (_a = Object.keys(error)) === null || _a === void 0 ? void 0 : _a.join(',')
+                        : JSON.stringify(error, null, 4)
             });
             return Promise.reject(error);
         }

@@ -59,7 +59,7 @@ export class Job<P extends IPopulated | IRaw = IRaw> {
 	configuration?: JobConfiguration;
 
 	currentActionHistoryId?: string;
-	currentActinIndex: number;
+	currentActionIndex: number;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

@@ -23,15 +23,27 @@ export interface IHandleActionReturn<T = any> {
     jobHistoryUpdate: Partial<JobHistoryDocument>;
     result: T;
 }
-export interface ISellerService {
+export interface AddOrUpdateProducts {
     addOrUpdateProductAPI<T = any>(job: JobDocument): Promise<T>;
+}
+export interface GetOrders {
     getOrdersAPI<Order = any>(job: JobDocument): Promise<Order[]>;
+}
+export interface GetProducts {
+    getProductsAPI<T = any>(job: JobDocument): Promise<T>;
+}
+export interface AcknowledgeExistsProducts {
     acknowledgeProductAPI<T = any>(job: JobDocument): Promise<T>;
+}
+export interface GetTotalOrders {
     getTotalOrdersAPI<T = any>(job: JobDocument): Promise<T>;
+}
+export interface UpdateOrder {
     updateOrderAPI<T = any>(job: JobDocument): Promise<T>;
 }
-export interface IWarehouseService {
-    getProductsAPI<T = any>(job: JobDocument): Promise<T>;
-    lookupProductsAPI<T = any>(job: JobDocument): Promise<T>;
+export interface SendOrder {
     sendOrderAPI<T = any>(job: JobDocument): Promise<T>;
+}
+export interface LookupProducts {
+    lookupProductsAPI<T = any>(job: JobDocument): Promise<T>;
 }
