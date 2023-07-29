@@ -54,6 +54,10 @@ __decorate([
     (0, mongoose_1.Prop)(Boolean),
     __metadata("design:type", Boolean)
 ], Log.prototype, "success", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
+    __metadata("design:type", Object)
+], Log.prototype, "user", void 0);
 Log = __decorate([
     (0, mongoose_1.Schema)({ timestamps: false })
 ], Log);

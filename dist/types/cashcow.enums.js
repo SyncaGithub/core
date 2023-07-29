@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ECashcowOrderStatus = exports.ECashcowAddOrUpdateQtyType = void 0;
+exports.ECashcowOrderPaymentType = exports.ECashcowOrderStatus = exports.ECashcowAddOrUpdateQtyType = void 0;
 var ECashcowAddOrUpdateQtyType;
 (function (ECashcowAddOrUpdateQtyType) {
     ECashcowAddOrUpdateQtyType[ECashcowAddOrUpdateQtyType["Units"] = 0] = "Units";
@@ -21,4 +21,40 @@ var ECashcowOrderStatus;
     ECashcowOrderStatus[ECashcowOrderStatus["Canceled"] = 8] = "Canceled";
     ECashcowOrderStatus[ECashcowOrderStatus["Claimed"] = 9] = "Claimed";
 })(ECashcowOrderStatus = exports.ECashcowOrderStatus || (exports.ECashcowOrderStatus = {}));
+var ECashcowOrderPaymentType;
+(function (ECashcowOrderPaymentType) {
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Paypal"] = 1] = "Paypal";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Redirect"] = 2] = "Redirect";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Phone"] = 3] = "Phone";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["BankTransfer"] = 4] = "BankTransfer";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Pelepay"] = 5] = "Pelepay";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["PaypalExpress"] = 6] = "PaypalExpress";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Netpay"] = 7] = "Netpay";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Tranzilla"] = 8] = "Tranzilla";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["GPrimium"] = 9] = "GPrimium";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["CreditGuard"] = 10] = "CreditGuard";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["EasyCard"] = 11] = "EasyCard";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["ZCredit"] = 12] = "ZCredit";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["PayCard"] = 13] = "PayCard";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Cardcom"] = 14] = "Cardcom";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["AuthorizeNet"] = 15] = "AuthorizeNet";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["PeleCard"] = 16] = "PeleCard";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Cellarix"] = 17] = "Cellarix";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Verifone"] = 18] = "Verifone";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Stripe"] = 19] = "Stripe";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["TwoCheckout"] = 20] = "TwoCheckout";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["PayMe"] = 21] = "PayMe";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["CashCowCalExpress"] = 30] = "CashCowCalExpress";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Credit2000"] = 40] = "Credit2000";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["ICredit"] = 45] = "ICredit";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["PayPlus"] = 50] = "PayPlus";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Meshulam"] = 52] = "Meshulam";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["YaadSarig"] = 55] = "YaadSarig";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["ZeroPayment"] = 799] = "ZeroPayment";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["VerifoneBrand2"] = 57] = "VerifoneBrand2";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["MeshulamBit"] = 58] = "MeshulamBit";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["PayPlusEMV"] = 59] = "PayPlusEMV";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["ZCreditEMV"] = 60] = "ZCreditEMV";
+    ECashcowOrderPaymentType[ECashcowOrderPaymentType["Api"] = 61] = "Api";
+})(ECashcowOrderPaymentType = exports.ECashcowOrderPaymentType || (exports.ECashcowOrderPaymentType = {}));
 //# sourceMappingURL=cashcow.enums.js.map

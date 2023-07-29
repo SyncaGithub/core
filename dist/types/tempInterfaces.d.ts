@@ -1,5 +1,5 @@
 import { EntityStatus } from "./jobs.enums";
-import {ECashcowOrderPaymentType} from "../../src";
+import { ECashcowOrderPaymentType } from "./cashcow.enums";
 export interface BaseEntity {
     userId: String;
     status: EntityStatus;

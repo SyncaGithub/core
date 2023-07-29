@@ -21,15 +21,18 @@ let LoggingInterceptor = LoggingInterceptor_1 = class LoggingInterceptor {
         this.logger = new common_1.Logger(LoggingInterceptor_1.name);
     }
     intercept(context, next) {
+        var _a;
         const request = context.switchToHttp().getRequest();
         const startTime = Date.now();
         const requestPayload = request.data;
         const requestHeaders = request.headers;
+        const currentUserId = (_a = request === null || request === void 0 ? void 0 : request.user) === null || _a === void 0 ? void 0 : _a._id;
         return next.handle().pipe((0, operators_1.tap)((response) => {
             const endTime = Date.now();
             const responsePayload = response.data;
             const responseStatusCode = response.status;
             const logData = {
+                user: currentUserId,
                 url: request.url,
                 method: request.method,
                 startTime,
@@ -49,6 +52,7 @@ let LoggingInterceptor = LoggingInterceptor_1 = class LoggingInterceptor {
             const responsePayload = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data;
             const responseStatusCode = (_b = error.response) === null || _b === void 0 ? void 0 : _b.status;
             const logData = {
+                user: currentUserId,
                 url: request.url,
                 method: request.method,
                 startTime,
