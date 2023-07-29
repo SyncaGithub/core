@@ -16,7 +16,7 @@ export class LoggingInterceptor implements NestInterceptor {
         const startTime = Date.now();
         const requestPayload = request.data;
         const requestHeaders = request.headers;
-
+        const currentUserId = (request as any)?.user?._id;
         return next.handle().pipe(
             tap((response: AxiosResponse) => {
                 const endTime = Date.now();
@@ -24,6 +24,7 @@ export class LoggingInterceptor implements NestInterceptor {
                 const responseStatusCode = response.status;
 
                 const logData = {
+                    user: currentUserId,
                     url: request.url,
                     method: request.method,
                     startTime,
@@ -46,6 +47,7 @@ export class LoggingInterceptor implements NestInterceptor {
                 const responseStatusCode = error.response?.status;
 
                 const logData = {
+                    user: currentUserId,
                     url: request.url,
                     method: request.method,
                     startTime,

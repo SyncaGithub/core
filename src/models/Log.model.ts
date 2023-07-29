@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
 import { IPopulated, IRaw } from "./types";
+import {User} from "./User.model";
 
 export type LogDocument<P extends IPopulated | IRaw = IRaw> = Log<P> & Document;
 
@@ -41,6 +42,9 @@ export class Log<P extends IPopulated | IRaw = IRaw> {
 
 	@Prop(Boolean)
 	success: boolean;
+
+	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
+	user: P extends IRaw ? mongoose.Types.ObjectId : User;
 }
 
 export const LogSchema = SchemaFactory.createForClass(Log);

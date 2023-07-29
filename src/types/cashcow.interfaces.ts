@@ -1,6 +1,6 @@
 import {
 	ECashcowOrderStatus,
-	ECashcowAddOrUpdateQtyType,
+	ECashcowAddOrUpdateQtyType, ECashcowOrderPaymentType,
 } from "./cashcow.enums";
 
 export interface ICashcowUpdateOrderRequest {
@@ -93,7 +93,7 @@ export interface ICashcowOrder {
 	TotalPrice: number;
 	IsSelfDelivery: boolean;
 	IsAccountReadThisOrder: boolean;
-	PaymentOptionType: number;
+	PaymentOptionType: ECashcowOrderPaymentType;
 	TotalProducts: number;
 	CuponId: number;
 	FullResponse: string;

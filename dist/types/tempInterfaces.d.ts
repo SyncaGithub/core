@@ -1,4 +1,5 @@
 import { EntityStatus } from "./jobs.enums";
+import {ECashcowOrderPaymentType} from "../../src";
 export interface BaseEntity {
     userId: String;
     status: EntityStatus;
@@ -23,6 +24,7 @@ export interface IOrder {
     LastName: string;
     LastDigits: string;
     OrderDate: string;
+    PaymentOptionType: ECashcowOrderPaymentType;
 }
 export interface ISellerOrder {
     LastDigits: string;
