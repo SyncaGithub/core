@@ -85,6 +85,9 @@ export class PriorityClientConfiguration {
 	paymentCode: string;
 
 	@Prop()
+	paymentCodePaypal: string;
+
+	@Prop()
 	cashNumber: string;
 
 	@Prop()

@@ -36,6 +36,7 @@ export declare class PriorityClientConfiguration {
     baseUrl: string;
     agentName: string;
     paymentCode: string;
+    paymentCodePaypal: string;
     cashNumber: string;
     customerNumber: string;
     productsEndPoint: string;
