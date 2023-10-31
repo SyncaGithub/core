@@ -31,7 +31,7 @@ export class CashcowConverter {
                 main_image_url: product.compressedImageUrl || product.mainImage
             },
             qty: product.qty,
-            is_visible: product.isApprovedForWeb && product.qty > 0 && product.sellPrice > 0
+            is_visible: product.isActive && product.isApprovedForWeb && product.qty > 0 && product.sellPrice > 0
         };
         if (!temp.images?.main_image_url) {
             delete temp.images;

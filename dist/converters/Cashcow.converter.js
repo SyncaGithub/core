@@ -22,7 +22,7 @@ class CashcowConverter {
                 main_image_url: product.compressedImageUrl || product.mainImage
             },
             qty: product.qty,
-            is_visible: product.isApprovedForWeb && product.qty > 0 && product.sellPrice > 0
+            is_visible: product.isActive && product.isApprovedForWeb && product.qty > 0 && product.sellPrice > 0
         };
         if (!((_c = temp.images) === null || _c === void 0 ? void 0 : _c.main_image_url)) {
             delete temp.images;

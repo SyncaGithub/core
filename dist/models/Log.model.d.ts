@@ -15,4 +15,4 @@ export declare class Log<P extends IPopulated | IRaw = IRaw> {
     success: boolean;
     user: P extends IRaw ? mongoose.Types.ObjectId : User;
 }
-export declare const LogSchema: mongoose.Schema<Log<IPopulated | IRaw>, mongoose.Model<Log<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Log<IPopulated | IRaw>>;
+export declare const LogSchema: mongoose.Schema<Log<IRaw | IPopulated>, mongoose.Model<Log<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Log<IRaw | IPopulated>>;
