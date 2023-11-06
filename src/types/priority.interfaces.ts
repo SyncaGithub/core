@@ -232,6 +232,7 @@ export interface IPrioritySendOrder {
 	ORDERITEMS_SUBFORM: IPriority_ORDERITEMS_SUBFORM[];
 	SHIPTO2_SUBFORM: IPriority_SHIPTO2_SUBFORM;
 	DETAILS: string;
+	PERCENT?: number; // PLace Discount price for rGallery
 }
 
 export interface IPriority_SHIPTO2_SUBFORM {

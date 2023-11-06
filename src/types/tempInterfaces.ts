@@ -1,11 +1,4 @@
-import { EntityStatus } from "./jobs.enums";
 import {ECashcowOrderPaymentType} from "./cashcow.enums";
-
-export interface BaseEntity {
-	userId: String;
-	status: EntityStatus;
-	nickname: string;
-}
 
 export interface IOrder {
 	Id: number;
@@ -24,6 +17,9 @@ export interface IOrder {
 	LastDigits: string;
 	OrderDate: string;
 	PaymentOptionType: ECashcowOrderPaymentType;
+	DiscountPrice: number;
+	PriceAfterDiscount: number;
+	CuponDiscountPrice?: number;
 	//#TODO: create generic order interface
 	//       that can implement priority order for now
 }
