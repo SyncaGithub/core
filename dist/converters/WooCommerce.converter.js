@@ -21,7 +21,7 @@ class WooCommerceConverter {
         };
     }
     static convertProductToWooCommerceFormat(product, client, isExisting = false) {
-        var _a;
+        var _a, _b;
         const temp = {
             sku: product.sellBarcode,
             status: "publish",
@@ -30,14 +30,14 @@ class WooCommerceConverter {
             stock_status: product.hasQty ? 'instock' : 'outofstock',
             regular_price: product.sellPrice.toString(),
             name: product.name,
-            images: product.images.map(imgSrc => ({ src: imgSrc, name: product.name, alt: product.name })),
+            images: (_a = product.images) === null || _a === void 0 ? void 0 : _a.map(imgSrc => ({ src: imgSrc, name: product.name, alt: product.name })),
         };
         if (!isExisting && client.isTempCategory) {
             temp.categories = [{ name: client.tempCategory }];
         }
         if (isExisting) {
-            (_a = client.wooCommerce
-                .keysToIgnoreInExistingProduct) === null || _a === void 0 ? void 0 : _a.forEach(key => delete temp[key]);
+            (_b = client.wooCommerce
+                .keysToIgnoreInExistingProduct) === null || _b === void 0 ? void 0 : _b.forEach(key => delete temp[key]);
         }
         return temp;
     }
