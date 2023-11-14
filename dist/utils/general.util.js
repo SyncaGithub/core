@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getISOInIsraelTimezone = exports.obsToPromise = exports.get = exports.delay = void 0;
+exports.getISOInIsraelTimezone = exports.obsToPromise = exports.arrayToChunkArray = exports.get = exports.delay = void 0;
 const rxjs_1 = require("rxjs");
 function delay(ms) {
     return new Promise((resolve, reject) => {
@@ -28,6 +28,15 @@ function get(object, path, defval = null, paths = []) {
     return res;
 }
 exports.get = get;
+function arrayToChunkArray(array, chunkSize) {
+    const chunks = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        const end = Math.min(i + chunkSize, array.length);
+        chunks.push(array.slice(i, end));
+    }
+    return chunks;
+}
+exports.arrayToChunkArray = arrayToChunkArray;
 const obsToPromise = (obs) => {
     return new Promise((resolve, reject) => {
         obs.pipe((0, rxjs_1.take)(1), (0, rxjs_1.catchError)((e) => {

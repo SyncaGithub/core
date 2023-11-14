@@ -26,6 +26,15 @@ export function get(object, path: string | string[], defval = null, paths = []) 
 	return res;
 }
 
+export function arrayToChunkArray<T>(array: T[], chunkSize: number): T[][] {
+	const chunks: T[][] = [];
+	for (let i = 0; i < array.length; i += chunkSize) {
+		const end = Math.min(i + chunkSize, array.length);
+		chunks.push(array.slice(i, end));
+	}
+	return chunks;
+}
+
 export const obsToPromise = <T = any>(
 	obs: Observable<AxiosResponse<T>>
 ): Promise<AxiosResponse<T> | AxiosError<T>> => {
