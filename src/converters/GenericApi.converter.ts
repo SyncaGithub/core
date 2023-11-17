@@ -18,7 +18,6 @@ export class GenericConverter {
         temp.client = client._id;
         temp.user = client.user;
         temp.clientType = EClientType.GENERIC;
-        temp.hasQty = !!temp.hasQty;
         temp.sellPrice = Number(temp.sellPrice);
         temp.isApprovedForWeb = temp.hasQty || (temp.qty > 0 && temp.sellPrice > 0);
         return temp;
