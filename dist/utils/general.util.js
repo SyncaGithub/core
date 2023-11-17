@@ -22,7 +22,7 @@ function get(object, path, defval = null, paths = []) {
     }
     if (typeof path === "string")
         path = path.split(".");
-    const res = path.reduce((xs, x) => (typeof xs !== "string" && xs && xs[x] ? xs[x] : defval), object);
+    const res = path.reduce((xs, x) => (typeof xs !== "string" && xs !== undefined && xs[x] !== undefined ? xs[x] : defval), object);
     if (res === defval && path.length > 0)
         return get(object, paths.shift(), defval, paths);
     return res;
