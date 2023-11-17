@@ -42,6 +42,7 @@ export class ImagesService implements OnModuleInit {
 			const compressedSource = this.tinyPngService.fromUrl(imageUrl);
 			const result = compressedSource
 				.convert({ type: "image/jpeg" })
+				.transform({background: "white"})
 				.store({
 					service: "s3",
 					aws_access_key_id: process.env.AWS_S3_KEY_ID,
@@ -57,6 +58,7 @@ export class ImagesService implements OnModuleInit {
 			const location = await result.location();
 			return Promise.resolve(await location);
 		} catch (error) {
+			console.log(`failed image url: ${imageUrl}`);
 			return Promise.reject(error);
 		}
 	}

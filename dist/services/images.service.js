@@ -41,6 +41,7 @@ let ImagesService = class ImagesService {
             const compressedSource = this.tinyPngService.fromUrl(imageUrl);
             const result = compressedSource
                 .convert({ type: "image/jpeg" })
+                .transform({ background: "white" })
                 .store({
                 service: "s3",
                 aws_access_key_id: process.env.AWS_S3_KEY_ID,
@@ -53,6 +54,7 @@ let ImagesService = class ImagesService {
             return Promise.resolve(await location);
         }
         catch (error) {
+            console.log(`failed image url: ${imageUrl}`);
             return Promise.reject(error);
         }
     }
