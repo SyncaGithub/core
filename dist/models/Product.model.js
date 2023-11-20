@@ -187,9 +187,9 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "compressedImageUrl", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Product.prototype, "thirdPartyId", void 0);
+    (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.Map, of: String, default: new Map() }),
+    __metadata("design:type", Map)
+], Product.prototype, "thirdPartyIds", void 0);
 Product = __decorate([
     (0, mongoose_1.Schema)({ timestamps: false })
 ], Product);

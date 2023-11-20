@@ -5,10 +5,10 @@ const types_1 = require("../types");
 class WooCommerceConverter {
     static convertProductToSyncaFormat(product, client) {
         var _a;
-        return {
+        const temp = {
             sellPrice: Number(product.regular_price),
             images: product.images.map(i => i.src),
-            thirdPartyId: product.id.toString(),
+            thirdPartyIds: new Map(),
             sellBarcode: product.sku,
             isApprovedForWeb: true,
             name: product.name,
@@ -19,10 +19,14 @@ class WooCommerceConverter {
             user: client.user,
             client: client._id
         };
+        temp.thirdPartyIds.set(client._id, product.id.toString());
+        return temp;
     }
     static convertProductToWooCommerceFormat(product, client, isExisting = false) {
         var _a, _b;
+        const id = Number(product.thirdPartyIds.get(client._id));
         const temp = {
+            id: isNaN(id) ? undefined : id,
             sku: product.sellBarcode,
             status: "publish",
             catalog_visibility: "visible",
@@ -32,8 +36,11 @@ class WooCommerceConverter {
             name: product.name,
             images: (_a = product.images) === null || _a === void 0 ? void 0 : _a.map(imgSrc => ({ src: imgSrc, name: product.name, alt: product.name })),
         };
-        if (!isExisting && client.isTempCategory) {
-            temp.categories = [{ name: client.tempCategory }];
+        if (!isExisting) {
+            temp.name = `${temp.name} (חדש) `;
+            if (client.isTempCategory) {
+                temp.categories = [{ name: client.tempCategory }];
+            }
         }
         if (isExisting) {
             (_b = client.wooCommerce

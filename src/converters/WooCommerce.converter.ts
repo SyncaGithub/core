@@ -10,10 +10,10 @@ export interface IWooCommerceConverter {
 export class WooCommerceConverter {
 
     static convertProductToSyncaFormat(product: IWooCommerce_Product, client: ClientDocument): Partial<ProductDocument>{
-        return {
+        const temp = {
             sellPrice: Number(product.regular_price),
             images: product.images.map(i => i.src),
-            thirdPartyId: product.id.toString(),
+            thirdPartyIds: new Map(),
             sellBarcode: product.sku,
             isApprovedForWeb: true,
             name: product.name,
@@ -24,6 +24,8 @@ export class WooCommerceConverter {
             user: client.user,
             client: client._id
         }
+        temp.thirdPartyIds.set(client._id, product.id.toString())
+        return temp;
     }
 
     static convertProductToWooCommerceFormat(
@@ -31,7 +33,9 @@ export class WooCommerceConverter {
         client: ClientDocument,
         isExisting = false
     ): Partial<IWooCommerce_Product> {
+        const id = Number(product.thirdPartyIds.get(client._id));
         const temp: Partial<IWooCommerce_Product> = {
+            id: isNaN(id) ? undefined : id,
             sku: product.sellBarcode,
             status: "publish",
             catalog_visibility: "visible",
@@ -42,8 +46,10 @@ export class WooCommerceConverter {
             images: product.images?.map(imgSrc => ({src: imgSrc, name: product.name, alt: product.name})),
         };
 
-        if(!isExisting && client.isTempCategory){
-            temp.categories = [{name: client.tempCategory}];
+        if(!isExisting){
+            temp.name = `${temp.name} (חדש) `;
+            //TODO: should be handled with db when there more customers with wordpress
+            if(client.isTempCategory){temp.categories = [{name: client.tempCategory}];}
         }
 
         if (isExisting) {

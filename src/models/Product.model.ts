@@ -140,8 +140,8 @@ export class Product<P extends IPopulated | IRaw = IRaw> {
 	@Prop()
 	compressedImageUrl: string;
 
-	@Prop()
-	thirdPartyId: string;
+	@Prop({ type: MongooseSchema.Types.Map, of: String, default: new Map() })
+	thirdPartyIds: Map<string, string>;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
