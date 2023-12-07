@@ -6,24 +6,24 @@ var EntityStatus;
     EntityStatus["WORKING"] = "WORKING";
     EntityStatus["CRASHED"] = "CRASHED";
     EntityStatus["READY"] = "READY";
-})(EntityStatus = exports.EntityStatus || (exports.EntityStatus = {}));
+})(EntityStatus || (exports.EntityStatus = EntityStatus = {}));
 var EClientType;
 (function (EClientType) {
     EClientType["PRIORITY"] = "PRIORITY";
     EClientType["CASHCOW"] = "CASHCOW";
     EClientType["WOOCOMMERCE"] = "WOOCOMMERCE";
     EClientType["GENERIC"] = "GENERIC";
-})(EClientType = exports.EClientType || (exports.EClientType = {}));
+})(EClientType || (exports.EClientType = EClientType = {}));
 var EActionStatus;
 (function (EActionStatus) {
     EActionStatus["FAILED"] = "FAILED";
     EActionStatus["SUCCESS"] = "SUCCESS";
-})(EActionStatus = exports.EActionStatus || (exports.EActionStatus = {}));
+})(EActionStatus || (exports.EActionStatus = EActionStatus = {}));
 var EJobStatus;
 (function (EJobStatus) {
     EJobStatus["RUNNING"] = "RUNNING";
     EJobStatus["STOPPED"] = "STOPPED";
-})(EJobStatus = exports.EJobStatus || (exports.EJobStatus = {}));
+})(EJobStatus || (exports.EJobStatus = EJobStatus = {}));
 var EActionType;
 (function (EActionType) {
     EActionType["PRIORITY_SEND_ORDER"] = "PRIORITY_SEND_ORDER";
@@ -40,5 +40,5 @@ var EActionType;
     EActionType["WOOCOMMERCE_ACKNOWLEDGE_PRODUCT"] = "WOOCOMMERCE_ACKNOWLEDGE_PRODUCT";
     EActionType["GENERIC_FETCH_PRODUCTS"] = "GENERIC_FETCH_PRODUCTS";
     EActionType["IMAGE_COMPRESSION"] = "IMAGE_COMPRESSION";
-})(EActionType = exports.EActionType || (exports.EActionType = {}));
+})(EActionType || (exports.EActionType = EActionType = {}));
 //# sourceMappingURL=jobs.enums.js.map

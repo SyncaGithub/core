@@ -23,12 +23,12 @@ let JobRepo = class JobRepo extends Base_repo_1.BaseRepo {
         super(connection, jobModel);
     }
 };
-JobRepo = __decorate([
+exports.JobRepo = JobRepo;
+exports.JobRepo = JobRepo = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectConnection)()),
     __param(1, (0, mongoose_1.InjectModel)(models_1.Job.name)),
     __metadata("design:paramtypes", [mongoose_2.Connection,
         mongoose_2.Model])
 ], JobRepo);
-exports.JobRepo = JobRepo;
 //# sourceMappingURL=Job.repo.js.map

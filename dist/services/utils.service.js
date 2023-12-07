@@ -21,8 +21,8 @@ let UtilsService = class UtilsService {
         });
     }
 };
-UtilsService = __decorate([
+exports.UtilsService = UtilsService;
+exports.UtilsService = UtilsService = __decorate([
     (0, common_1.Injectable)()
 ], UtilsService);
-exports.UtilsService = UtilsService;
 //# sourceMappingURL=utils.service.js.map

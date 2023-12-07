@@ -59,9 +59,9 @@ let ImagesService = class ImagesService {
         }
     }
 };
-ImagesService = __decorate([
+exports.ImagesService = ImagesService;
+exports.ImagesService = ImagesService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [])
 ], ImagesService);
-exports.ImagesService = ImagesService;
 //# sourceMappingURL=images.service.js.map

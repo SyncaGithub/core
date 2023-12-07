@@ -15,6 +15,7 @@ const mongoose_2 = require("mongoose");
 const jobs_enums_1 = require("../types/jobs.enums");
 let Action = class Action {
 };
+exports.Action = Action;
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }),
     __metadata("design:type", Object)
@@ -23,13 +24,13 @@ __decorate([
     (0, mongoose_1.Prop)({ enum: jobs_enums_1.EActionType, required: true }),
     __metadata("design:type", String)
 ], Action.prototype, "action", void 0);
-Action = __decorate([
+exports.Action = Action = __decorate([
     (0, mongoose_1.Schema)({ timestamps: false, _id: false, versionKey: false })
 ], Action);
-exports.Action = Action;
 exports.JobActionSchema = mongoose_1.SchemaFactory.createForClass(Action);
 class JobConfiguration {
 }
+exports.JobConfiguration = JobConfiguration;
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "Client" }),
     __metadata("design:type", Object)
@@ -42,9 +43,9 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
 ], JobConfiguration.prototype, "isDisplayOnly", void 0);
-exports.JobConfiguration = JobConfiguration;
 let Job = class Job {
 };
+exports.Job = Job;
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User", required: true }),
     __metadata("design:type", Object)
@@ -73,9 +74,8 @@ __decorate([
     (0, mongoose_1.Prop)(JobConfiguration),
     __metadata("design:type", JobConfiguration)
 ], Job.prototype, "configuration", void 0);
-Job = __decorate([
+exports.Job = Job = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Job);
-exports.Job = Job;
 exports.JobSchema = mongoose_1.SchemaFactory.createForClass(Job);
 //# sourceMappingURL=Job.model.js.map

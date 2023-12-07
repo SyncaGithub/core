@@ -23,12 +23,12 @@ let LogRepo = class LogRepo extends Base_repo_1.BaseRepo {
         super(connection, jobModel);
     }
 };
-LogRepo = __decorate([
+exports.LogRepo = LogRepo;
+exports.LogRepo = LogRepo = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectConnection)()),
     __param(1, (0, mongoose_1.InjectModel)(models_1.Log.name)),
     __metadata("design:paramtypes", [mongoose_2.Connection,
         mongoose_2.Model])
 ], LogRepo);
-exports.LogRepo = LogRepo;
 //# sourceMappingURL=Log.repo.js.map

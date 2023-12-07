@@ -15,6 +15,7 @@ const mongoose_2 = require("mongoose");
 const types_1 = require("../types");
 class CashcowClientConfiguration {
 }
+exports.CashcowClientConfiguration = CashcowClientConfiguration;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
@@ -27,9 +28,9 @@ __decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)
 ], CashcowClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
-exports.CashcowClientConfiguration = CashcowClientConfiguration;
 class WooCommerceClientConfiguration {
 }
+exports.WooCommerceClientConfiguration = WooCommerceClientConfiguration;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -50,9 +51,9 @@ __decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)
 ], WooCommerceClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
-exports.WooCommerceClientConfiguration = WooCommerceClientConfiguration;
 class GenericApiClientConfiguration {
 }
+exports.GenericApiClientConfiguration = GenericApiClientConfiguration;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -61,9 +62,9 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.Mixed }),
     __metadata("design:type", Object)
 ], GenericApiClientConfiguration.prototype, "productMap", void 0);
-exports.GenericApiClientConfiguration = GenericApiClientConfiguration;
 class PriorityProductFilter {
 }
+exports.PriorityProductFilter = PriorityProductFilter;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -76,9 +77,9 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], PriorityProductFilter.prototype, "operator", void 0);
-exports.PriorityProductFilter = PriorityProductFilter;
 class PriorityClientConfiguration {
 }
+exports.PriorityClientConfiguration = PriorityClientConfiguration;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -167,9 +168,9 @@ __decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)
 ], PriorityClientConfiguration.prototype, "usingWARHSNAME", void 0);
-exports.PriorityClientConfiguration = PriorityClientConfiguration;
 let Client = class Client {
 };
+exports.Client = Client;
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
     __metadata("design:type", Object)
@@ -258,10 +259,9 @@ __decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)
 ], Client.prototype, "blackListProducts", void 0);
-Client = __decorate([
+exports.Client = Client = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Client);
-exports.Client = Client;
 exports.ClientSchema = mongoose_1.SchemaFactory.createForClass(Client);
 exports.ClientSchema.methods.startWorking = async function () {
     if (this.status === types_1.EntityStatus.WORKING) {

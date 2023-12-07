@@ -15,6 +15,7 @@ const mongoose_2 = require("mongoose");
 const types_1 = require("../types");
 class ProductFail {
 }
+exports.ProductFail = ProductFail;
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Schema.Types.ObjectId,
@@ -35,9 +36,9 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], ProductFail.prototype, "url", void 0);
-exports.ProductFail = ProductFail;
 let Product = class Product {
 };
+exports.Product = Product;
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.ObjectId, ref: "User", required: true }),
     __metadata("design:type", Object)
@@ -190,9 +191,8 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.Map, of: String, default: new Map() }),
     __metadata("design:type", Map)
 ], Product.prototype, "thirdPartyIds", void 0);
-Product = __decorate([
+exports.Product = Product = __decorate([
     (0, mongoose_1.Schema)({ timestamps: false })
 ], Product);
-exports.Product = Product;
 exports.ProductSchema = mongoose_1.SchemaFactory.createForClass(Product);
 //# sourceMappingURL=Product.model.js.map

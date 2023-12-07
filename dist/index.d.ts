@@ -7,5 +7,4 @@ export * from "./services";
 export * from "./converters";
 export * from "./interceptors";
 export * from "./constants";
-export * from "./enums";
 export * from "./classes";

@@ -14,6 +14,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let Log = class Log {
 };
+exports.Log = Log;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -58,9 +59,8 @@ __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
     __metadata("design:type", Object)
 ], Log.prototype, "user", void 0);
-Log = __decorate([
+exports.Log = Log = __decorate([
     (0, mongoose_1.Schema)({ timestamps: false })
 ], Log);
-exports.Log = Log;
 exports.LogSchema = mongoose_1.SchemaFactory.createForClass(Log);
 //# sourceMappingURL=Log.model.js.map

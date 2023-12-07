@@ -23,7 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Document } from "mongoose";
-import { Roles } from "../enums";
+import { Roles } from "../types";
 export type UserDocument = User & Document & UserMethods;
 export interface UserMethods {
     comparePasswords(password: string): Promise<boolean>;

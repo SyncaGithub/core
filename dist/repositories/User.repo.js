@@ -23,12 +23,12 @@ let UserRepo = class UserRepo extends Base_repo_1.BaseRepo {
         super(connection, userModel);
     }
 };
-UserRepo = __decorate([
+exports.UserRepo = UserRepo;
+exports.UserRepo = UserRepo = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectConnection)()),
     __param(1, (0, mongoose_1.InjectModel)(models_1.User.name)),
     __metadata("design:paramtypes", [mongoose_2.Connection,
         mongoose_2.Model])
 ], UserRepo);
-exports.UserRepo = UserRepo;
 //# sourceMappingURL=User.repo.js.map

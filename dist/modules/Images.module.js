@@ -32,8 +32,8 @@ let ImagesModule = ImagesModule_1 = class ImagesModule {
         };
     }
 };
-ImagesModule = ImagesModule_1 = __decorate([
+exports.ImagesModule = ImagesModule;
+exports.ImagesModule = ImagesModule = ImagesModule_1 = __decorate([
     (0, common_1.Module)({})
 ], ImagesModule);
-exports.ImagesModule = ImagesModule;
 //# sourceMappingURL=Images.module.js.map

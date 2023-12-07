@@ -12,9 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSchema = exports.User = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const bcrypt = require("bcrypt");
-const enums_1 = require("../enums");
+const types_1 = require("../types");
 let User = class User {
 };
+exports.User = User;
 __decorate([
     (0, mongoose_1.Prop)(String),
     __metadata("design:type", String)
@@ -36,17 +37,16 @@ __decorate([
     __metadata("design:type", Boolean)
 ], User.prototype, "isActivated", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: [String], default: [], enum: enums_1.Roles }),
+    (0, mongoose_1.Prop)({ type: [String], default: [], enum: types_1.Roles }),
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
 ], User.prototype, "passwordResetToken", void 0);
-User = __decorate([
+exports.User = User = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], User);
-exports.User = User;
 exports.UserSchema = mongoose_1.SchemaFactory.createForClass(User);
 exports.UserSchema.pre("save", async function (next) {
     const user = this;

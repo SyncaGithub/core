@@ -8,3 +8,4 @@ export * from "./cashcow.interfaces";
 export * from "./cashcow.enums";
 export * from "./tempEnums";
 export * from "./woo-commerce";
+export * from "./roles.enum";

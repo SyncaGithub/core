@@ -23,6 +23,5 @@ __exportStar(require("./services"), exports);
 __exportStar(require("./converters"), exports);
 __exportStar(require("./interceptors"), exports);
 __exportStar(require("./constants"), exports);
-__exportStar(require("./enums"), exports);
 __exportStar(require("./classes"), exports);
 //# sourceMappingURL=index.js.map

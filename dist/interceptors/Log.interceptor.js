@@ -70,9 +70,9 @@ let LoggingInterceptor = LoggingInterceptor_1 = class LoggingInterceptor {
         }));
     }
 };
-LoggingInterceptor = LoggingInterceptor_1 = __decorate([
+exports.LoggingInterceptor = LoggingInterceptor;
+exports.LoggingInterceptor = LoggingInterceptor = LoggingInterceptor_1 = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [repositories_1.LogRepo])
 ], LoggingInterceptor);
-exports.LoggingInterceptor = LoggingInterceptor;
 //# sourceMappingURL=Log.interceptor.js.map

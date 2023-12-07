@@ -15,6 +15,7 @@ const mongoose_2 = require("mongoose");
 const jobs_enums_1 = require("../types/jobs.enums");
 let JobHistory = class JobHistory {
 };
+exports.JobHistory = JobHistory;
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: "User" }),
     __metadata("design:type", Object)
@@ -51,9 +52,8 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], JobHistory.prototype, "error", void 0);
-JobHistory = __decorate([
+exports.JobHistory = JobHistory = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], JobHistory);
-exports.JobHistory = JobHistory;
 exports.JobHistorySchema = mongoose_1.SchemaFactory.createForClass(JobHistory);
 //# sourceMappingURL=JobHistory.model.js.map

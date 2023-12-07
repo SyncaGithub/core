@@ -9,7 +9,7 @@ var ECashcowAddOrUpdateQtyType;
     ECashcowAddOrUpdateQtyType[ECashcowAddOrUpdateQtyType["Liter"] = 3] = "Liter";
     ECashcowAddOrUpdateQtyType[ECashcowAddOrUpdateQtyType["Meter"] = 4] = "Meter";
     ECashcowAddOrUpdateQtyType[ECashcowAddOrUpdateQtyType["Cm"] = 5] = "Cm";
-})(ECashcowAddOrUpdateQtyType = exports.ECashcowAddOrUpdateQtyType || (exports.ECashcowAddOrUpdateQtyType = {}));
+})(ECashcowAddOrUpdateQtyType || (exports.ECashcowAddOrUpdateQtyType = ECashcowAddOrUpdateQtyType = {}));
 var ECashcowOrderStatus;
 (function (ECashcowOrderStatus) {
     ECashcowOrderStatus[ECashcowOrderStatus["PhoneBankTransfer"] = 1] = "PhoneBankTransfer";
@@ -20,7 +20,7 @@ var ECashcowOrderStatus;
     ECashcowOrderStatus[ECashcowOrderStatus["PendingReview"] = 7] = "PendingReview";
     ECashcowOrderStatus[ECashcowOrderStatus["Canceled"] = 8] = "Canceled";
     ECashcowOrderStatus[ECashcowOrderStatus["Claimed"] = 9] = "Claimed";
-})(ECashcowOrderStatus = exports.ECashcowOrderStatus || (exports.ECashcowOrderStatus = {}));
+})(ECashcowOrderStatus || (exports.ECashcowOrderStatus = ECashcowOrderStatus = {}));
 var ECashcowOrderPaymentType;
 (function (ECashcowOrderPaymentType) {
     ECashcowOrderPaymentType[ECashcowOrderPaymentType["Paypal"] = 1] = "Paypal";
@@ -56,5 +56,5 @@ var ECashcowOrderPaymentType;
     ECashcowOrderPaymentType[ECashcowOrderPaymentType["PayPlusEMV"] = 59] = "PayPlusEMV";
     ECashcowOrderPaymentType[ECashcowOrderPaymentType["ZCreditEMV"] = 60] = "ZCreditEMV";
     ECashcowOrderPaymentType[ECashcowOrderPaymentType["Api"] = 61] = "Api";
-})(ECashcowOrderPaymentType = exports.ECashcowOrderPaymentType || (exports.ECashcowOrderPaymentType = {}));
+})(ECashcowOrderPaymentType || (exports.ECashcowOrderPaymentType = ECashcowOrderPaymentType = {}));
 //# sourceMappingURL=cashcow.enums.js.map

@@ -32,8 +32,8 @@ let QueueModule = QueueModule_1 = class QueueModule {
         };
     }
 };
-QueueModule = QueueModule_1 = __decorate([
+exports.QueueModule = QueueModule;
+exports.QueueModule = QueueModule = QueueModule_1 = __decorate([
     (0, common_1.Module)({})
 ], QueueModule);
-exports.QueueModule = QueueModule;
 //# sourceMappingURL=Queue.module.js.map

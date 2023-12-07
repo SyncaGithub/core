@@ -28,12 +28,12 @@ let ProductRepo = class ProductRepo extends Base_repo_1.BaseRepo {
         return products.reduce((obj, item) => Object.assign(obj, { [item[primaryKey]]: item }), {});
     }
 };
-ProductRepo = __decorate([
+exports.ProductRepo = ProductRepo;
+exports.ProductRepo = ProductRepo = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectConnection)()),
     __param(1, (0, mongoose_1.InjectModel)(models_1.Product.name)),
     __metadata("design:paramtypes", [mongoose_2.Connection,
         mongoose_2.Model])
 ], ProductRepo);
-exports.ProductRepo = ProductRepo;
 //# sourceMappingURL=Product.repo.js.map

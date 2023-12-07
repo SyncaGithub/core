@@ -5,15 +5,15 @@ var EQtyType;
 (function (EQtyType) {
     EQtyType["UNIT"] = "UNIT";
     EQtyType["BOX"] = "BOX";
-})(EQtyType = exports.EQtyType || (exports.EQtyType = {}));
+})(EQtyType || (exports.EQtyType = EQtyType = {}));
 var EInject;
 (function (EInject) {
     EInject["Queue"] = "QUEUE_SERVICE";
     EInject["Images"] = "IMAGES_SERVICE";
-})(EInject = exports.EInject || (exports.EInject = {}));
+})(EInject || (exports.EInject = EInject = {}));
 var EProductSellProperty;
 (function (EProductSellProperty) {
     EProductSellProperty["SKU"] = "SKU";
     EProductSellProperty["BARCODE"] = "BARCODE";
-})(EProductSellProperty = exports.EProductSellProperty || (exports.EProductSellProperty = {}));
+})(EProductSellProperty || (exports.EProductSellProperty = EProductSellProperty = {}));
 //# sourceMappingURL=tempEnums.js.map

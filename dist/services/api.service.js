@@ -78,10 +78,10 @@ let ApiService = ApiService_1 = class ApiService {
         return this.wrap(url, undefined, config, 'delete', () => this.httpService.delete(url, config));
     }
 };
-ApiService = ApiService_1 = __decorate([
+exports.ApiService = ApiService;
+exports.ApiService = ApiService = ApiService_1 = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [axios_1.HttpService,
         Log_repo_1.LogRepo])
 ], ApiService);
-exports.ApiService = ApiService;
 //# sourceMappingURL=api.service.js.map
