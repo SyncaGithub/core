@@ -36,12 +36,12 @@ class CashcowConverter {
         }
         return temp;
     }
-    static generateUpdateOrderObject(job, client) {
+    static generateUpdateOrderObject(order, client) {
         return {
             token: client.cashcow.token,
             store_id: client.cashcow.store_id,
-            order_id: job.configuration.orders[0].Id,
-            email_address: job.configuration.orders[0].Email,
+            order_id: order.Id,
+            email_address: order.Email,
             order_status_type: types_1.ECashcowOrderStatus.Claimed
         };
     }
