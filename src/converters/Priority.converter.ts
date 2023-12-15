@@ -1,5 +1,17 @@
 import { ClientDocument, IRaw, ProductDocument } from '../models';
-import { EClientType, EProductSellProperty, IPriority_LOGCOUNTERS_SUBFORM, IPriority_PARTBALANCE_SUBFORM, IPriority_PARTINCUSTPLISTS_SUBFORM, IPriority_PARTPACK_SUBFORM, IRawPriorityProduct, PriorityClientPriceKey } from '../types';
+import {DateTime} from 'luxon';
+import {
+    ECashcowOrderPaymentType,
+    EClientType,
+    EProductSellProperty,
+    IOrder,
+    IPriority_LOGCOUNTERS_SUBFORM, IPriority_ORDERITEMS_SUBFORM,
+    IPriority_PARTBALANCE_SUBFORM,
+    IPriority_PARTINCUSTPLISTS_SUBFORM,
+    IPriority_PARTPACK_SUBFORM, IPrioritySendInvoice, IPrioritySendOrder,
+    IRawPriorityProduct,
+    PriorityClientPriceKey, PriorityShippingMethods, PriorityShippingMethodsName
+} from '../types';
 import { get } from '../utils';
 
 export interface IPriorityConverter {
@@ -7,7 +19,8 @@ export interface IPriorityConverter {
     productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[];
     // convertOrderToSyncaFormat(): void;
     // convertProductToPriorityFormat(): void;
-    // convertOrderToPriorityFormat(): void;
+    convertOrderToPriorityOrderFormat(order: IOrder, client: ClientDocument): IPrioritySendOrder;
+    convertOrderToPriorityInvoiceFormat(order: IOrder, client: ClientDocument): IPrioritySendInvoice;
 }
 
 export class PriorityConverter {
@@ -61,6 +74,83 @@ export class PriorityConverter {
             lastUpdate: lastUpdateISO,
             isApprovedForWeb
         };
+    }
+
+    static convertOrderToPriorityOrderFormat(order: IOrder, client: ClientDocument, currentProductsHashTable: {
+        [key: string]: ProductDocument;
+    }): IPrioritySendOrder{
+        const orderProducts: IPriority_ORDERITEMS_SUBFORM[] = order.Products.map(
+            (oP) => ({
+                PARTNAME: currentProductsHashTable[oP.sku].clientBarcode,
+                TQUANT: oP.Qty
+            })
+        );
+        if (
+            client.minPriceForFreeDelivery &&
+            client.deliveryBarcode &&
+            order.TotalPrice < client.minPriceForFreeDelivery &&
+            !order.IsSelfDelivery
+        ) {
+            orderProducts.push({
+                PARTNAME: client.deliveryBarcode,
+                TQUANT: 1
+            });
+        }
+        const totalPrice = order.CuponDiscountPrice ? (order.CuponDiscountPrice + order.TotalPrice) : order.TotalPrice;
+        const discountPrice = order.CuponDiscountPrice ? ((order.CuponDiscountPrice * 100) / totalPrice) : undefined;
+        return {
+            AGENTNAME: client.priority.agentName,
+            CUSTNAME: client.priority.customerNumber,
+            QPRICE: totalPrice,
+            PERCENT: discountPrice,
+            SHIPTO2_SUBFORM: {
+                EMAIL: order.Email,
+                ADDRESS: order.Address + ', ' + order.StreetNameAndNumber,
+                ADDRESS2:
+                    'מספר קומה: ' +
+                    order.FloorNumber +
+                    ', מספר דירה' +
+                    order.ApartmentNumber,
+                STATE: order.City,
+                PHONENUM: order.Phone,
+                CUSTDES: order.FirstName + ' ' + order.LastName
+            },
+            ORDERITEMS_SUBFORM: orderProducts,
+            CDES: order.FirstName + ' ' + order.LastName + ' ' + order.Phone,
+            TYPECODE: order.IsSelfDelivery
+                ? PriorityShippingMethods.PICK_UP
+                : PriorityShippingMethods.Shipping,
+            TYPEDES: order.IsSelfDelivery
+                ? PriorityShippingMethodsName.PICK_UP
+                : PriorityShippingMethodsName.Shipping,
+            DETAILS: `${order.Id}`
+        };
+    }
+
+    static convertOrderToPriorityInvoiceFormat(order: IOrder, client: ClientDocument): IPrioritySendInvoice{
+        return {
+            ACCNAME: client.priority.customerNumber,
+            CASHNAME: client.priority.cashNumber,
+            TPAYMENT2_SUBFORM: [
+                {
+                    PAYACCOUNT: order.LastDigits,
+                    PAYDATE: PriorityConverter.generateInvoiceDateFormat(order.OrderDate),
+                    QPRICE: order.TotalPrice,
+                    PAYMENTCODE: [ECashcowOrderPaymentType.Paypal, ECashcowOrderPaymentType.PaypalExpress].includes(order.PaymentOptionType)
+                        ? client.priority.paymentCodePaypal
+                        : client.priority.paymentCode
+                }
+            ]
+        }
+    }
+
+    private static generateInvoiceDateFormat(notFormatedDate: string): string {
+        const tempDate = DateTime.fromISO(notFormatedDate, {zone: process.env.TZ});
+
+        const date = notFormatedDate.split('T')[0];
+        const hour = String(tempDate.hour).padStart(2, '0');
+        const min = String(tempDate.minute).padStart(2, '0');
+        return `${date}T${hour}:${min}:00+02:00`;
     }
 
     private static getIsApprovedForWeb(rawProduct: IRawPriorityProduct, client: ClientDocument) {

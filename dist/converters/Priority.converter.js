@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PriorityConverter = void 0;
+const luxon_1 = require("luxon");
 const types_1 = require("../types");
 const utils_1 = require("../utils");
 class PriorityConverter {
@@ -44,6 +45,72 @@ class PriorityConverter {
             lastUpdate: lastUpdateISO,
             isApprovedForWeb
         };
+    }
+    static convertOrderToPriorityOrderFormat(order, client, currentProductsHashTable) {
+        const orderProducts = order.Products.map((oP) => ({
+            PARTNAME: currentProductsHashTable[oP.sku].clientBarcode,
+            TQUANT: oP.Qty
+        }));
+        if (client.minPriceForFreeDelivery &&
+            client.deliveryBarcode &&
+            order.TotalPrice < client.minPriceForFreeDelivery &&
+            !order.IsSelfDelivery) {
+            orderProducts.push({
+                PARTNAME: client.deliveryBarcode,
+                TQUANT: 1
+            });
+        }
+        const totalPrice = order.CuponDiscountPrice ? (order.CuponDiscountPrice + order.TotalPrice) : order.TotalPrice;
+        const discountPrice = order.CuponDiscountPrice ? ((order.CuponDiscountPrice * 100) / totalPrice) : undefined;
+        return {
+            AGENTNAME: client.priority.agentName,
+            CUSTNAME: client.priority.customerNumber,
+            QPRICE: totalPrice,
+            PERCENT: discountPrice,
+            SHIPTO2_SUBFORM: {
+                EMAIL: order.Email,
+                ADDRESS: order.Address + ', ' + order.StreetNameAndNumber,
+                ADDRESS2: 'מספר קומה: ' +
+                    order.FloorNumber +
+                    ', מספר דירה' +
+                    order.ApartmentNumber,
+                STATE: order.City,
+                PHONENUM: order.Phone,
+                CUSTDES: order.FirstName + ' ' + order.LastName
+            },
+            ORDERITEMS_SUBFORM: orderProducts,
+            CDES: order.FirstName + ' ' + order.LastName + ' ' + order.Phone,
+            TYPECODE: order.IsSelfDelivery
+                ? types_1.PriorityShippingMethods.PICK_UP
+                : types_1.PriorityShippingMethods.Shipping,
+            TYPEDES: order.IsSelfDelivery
+                ? types_1.PriorityShippingMethodsName.PICK_UP
+                : types_1.PriorityShippingMethodsName.Shipping,
+            DETAILS: `${order.Id}`
+        };
+    }
+    static convertOrderToPriorityInvoiceFormat(order, client) {
+        return {
+            ACCNAME: client.priority.customerNumber,
+            CASHNAME: client.priority.cashNumber,
+            TPAYMENT2_SUBFORM: [
+                {
+                    PAYACCOUNT: order.LastDigits,
+                    PAYDATE: PriorityConverter.generateInvoiceDateFormat(order.OrderDate),
+                    QPRICE: order.TotalPrice,
+                    PAYMENTCODE: [types_1.ECashcowOrderPaymentType.Paypal, types_1.ECashcowOrderPaymentType.PaypalExpress].includes(order.PaymentOptionType)
+                        ? client.priority.paymentCodePaypal
+                        : client.priority.paymentCode
+                }
+            ]
+        };
+    }
+    static generateInvoiceDateFormat(notFormatedDate) {
+        const tempDate = luxon_1.DateTime.fromISO(notFormatedDate, { zone: process.env.TZ });
+        const date = notFormatedDate.split('T')[0];
+        const hour = String(tempDate.hour).padStart(2, '0');
+        const min = String(tempDate.minute).padStart(2, '0');
+        return `${date}T${hour}:${min}:00+02:00`;
     }
     static getIsApprovedForWeb(rawProduct, client) {
         var _a;

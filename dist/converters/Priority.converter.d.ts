@@ -1,14 +1,21 @@
 import { ClientDocument, IRaw, ProductDocument } from '../models';
-import { IRawPriorityProduct } from '../types';
+import { IOrder, IPrioritySendInvoice, IPrioritySendOrder, IRawPriorityProduct } from '../types';
 export interface IPriorityConverter {
     convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO: string): Partial<ProductDocument>;
     productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[];
+    convertOrderToPriorityOrderFormat(order: IOrder, client: ClientDocument): IPrioritySendOrder;
+    convertOrderToPriorityInvoiceFormat(order: IOrder, client: ClientDocument): IPrioritySendInvoice;
 }
 export declare class PriorityConverter {
     static BarcodeSeparator: string;
     static PARTNAMESeparator: string;
     static productWithSubBarcodesToProducts(rawProduct: IRawPriorityProduct): IRawPriorityProduct[];
     static convertProductToSyncaFormat(rawProduct: IRawPriorityProduct, client: ClientDocument, lastUpdateISO?: string): Partial<ProductDocument<IRaw>>;
+    static convertOrderToPriorityOrderFormat(order: IOrder, client: ClientDocument, currentProductsHashTable: {
+        [key: string]: ProductDocument;
+    }): IPrioritySendOrder;
+    static convertOrderToPriorityInvoiceFormat(order: IOrder, client: ClientDocument): IPrioritySendInvoice;
+    private static generateInvoiceDateFormat;
     private static getIsApprovedForWeb;
     private static getName;
     private static getDescription;

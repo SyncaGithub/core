@@ -224,6 +224,7 @@ export interface IPriority_New_Order_Response {
 }
 
 export interface IPrioritySendOrder {
+	QPRICE?: number; //PRICE
 	CUSTNAME: string; //CUSTOMER NUMBER (FOR RONEN ITS 100111 AND ITS DIFFERENT FOR SHALED)
 	CDES: string; //CUSTOMER NAME AND PHONE NUMBER
 	TYPECODE: string; //ORDER TYPE NUMBER (FOR RONEN ITTS "004")

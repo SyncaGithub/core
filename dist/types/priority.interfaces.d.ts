@@ -213,6 +213,7 @@ export interface IPriority_New_Order_Response {
     FOLLOWUPIV: number;
 }
 export interface IPrioritySendOrder {
+    QPRICE?: number;
     CUSTNAME: string;
     CDES: string;
     TYPECODE: string;
