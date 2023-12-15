@@ -1,5 +1,5 @@
 import {Injectable, Logger} from "@nestjs/common";
-import {catchError, map, Observable, tap, throwError} from "rxjs";
+import {catchError, firstValueFrom, map, Observable, tap, throwError} from "rxjs";
 import {HttpService} from "@nestjs/axios";
 import {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 import {LogRepo} from "../repositories/Log.repo";
@@ -82,5 +82,30 @@ export class ApiService {
 
     delete<T = any>(url: string, config?: AxiosRequestConfig<any>): Observable<AxiosResponse<T, any>> {
         return this.wrap<T>(url, undefined, config, 'delete', () => this.httpService.delete(url, config));
+    }
+
+    async getImageSize(imageUrl: string, retryCount = 0, maxRetries = 2): Promise<string | undefined> {
+        try {
+            const response = await firstValueFrom(
+                this.get(imageUrl).pipe(
+                    catchError((error: AxiosError) => {
+                        throw new Error('Failed to fetch image size');
+                    }),
+                ),
+            );
+
+            if (!response.headers['content-type']?.toUpperCase().startsWith('IMAGE/')) {
+                throw new Error('URL does not point to an image');
+            }
+
+            return response.headers['content-length'] ?? undefined;
+        } catch (error) {
+            // Handle or log the error as needed
+            if (retryCount < maxRetries) {
+                console.log(`Retires Failed: ${retryCount}`);
+                return this.getImageSize(imageUrl, retryCount + 1, maxRetries);
+            }
+            return undefined;
+        }
     }
 }

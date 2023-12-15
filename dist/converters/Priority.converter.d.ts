@@ -15,6 +15,9 @@ export declare class PriorityConverter {
         [key: string]: ProductDocument;
     }): IPrioritySendOrder;
     static convertOrderToPriorityInvoiceFormat(order: IOrder, client: ClientDocument): IPrioritySendInvoice;
+    static getToken(client: ClientDocument): string;
+    static generateProductsApiURL(client: ClientDocument): string;
+    static generateProductsLookupApiURL(client: ClientDocument): string;
     private static generateInvoiceDateFormat;
     private static getIsApprovedForWeb;
     private static getName;

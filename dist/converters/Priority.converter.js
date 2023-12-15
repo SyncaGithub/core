@@ -105,6 +105,73 @@ class PriorityConverter {
             ]
         };
     }
+    static getToken(client) {
+        return Buffer.from(`${client.priority.username}:${client.priority.password}`).toString('base64');
+    }
+    static generateProductsApiURL(client) {
+        const select = client.priority.getProductsSelect
+            ? '&$select=' + client.priority.getProductsSelect
+            : '';
+        const filters = [...client.priority.getProductsFilters];
+        let filter = '';
+        if (filters.length > 0) {
+            filter += '&$filter=(';
+            for (let i = 0; i < filters.length; i++) {
+                if (i !== 0) {
+                    filter += ' and ';
+                }
+                filter += `${filters[i].key} ${filters[i].operator} '${filters[i].value}'`;
+            }
+            filter += ')';
+        }
+        const tempLastFetch = client.lastUpdate
+            ? luxon_1.DateTime.fromISO(client.lastUpdate, { zone: process.env.TZ })
+            : luxon_1.DateTime.local({ zone: process.env.TZ }).minus(luxon_1.Duration.fromObject({ year: 1 }));
+        filter += filter === '' ? '&$filter=(' : 'and (';
+        const dates = [
+            'UDATE',
+            'COSTDATE',
+            'SALETRANSDATE',
+            'PURTRANSDATE',
+            'WARHSTRANSDATE'
+        ];
+        for (let date of dates) {
+            filter += `${date} ge ${tempLastFetch.toISO({ includeOffset: false }) + 'Z'}`;
+            if (date !== 'WARHSTRANSDATE') {
+                filter += ` or `;
+            }
+        }
+        filter += ')';
+        let endPoint = client.priority.baseUrl + client.priority.productsEndPoint + '?';
+        endPoint += client.priority.getProductsExpand
+            ? client.priority.getProductsExpand
+            : '';
+        endPoint += select ? select : '';
+        endPoint += filter ? filter : '';
+        return endPoint;
+    }
+    static generateProductsLookupApiURL(client) {
+        const { baseUrl, productsEndPoint, getProductsFilters } = client.priority;
+        const filters = [...getProductsFilters];
+        let filter = '';
+        const opposite = {
+            'eq': 'ne',
+            'ne': 'eq'
+        };
+        if (filters.length > 0) {
+            filter += '&$filter=(';
+            for (let i = 0; i < filters.length; i++) {
+                if (i !== 0) {
+                    filter += ' and ';
+                }
+                filter += `${filters[i].key} ${opposite[filters[i].operator]} '${filters[i].value}'`;
+            }
+            filter += ')';
+        }
+        const select = '&$select=BARCODE,PARTNAME';
+        let endPoint = `${baseUrl}${productsEndPoint}?${select}${filter}`;
+        return endPoint;
+    }
     static generateInvoiceDateFormat(notFormatedDate) {
         const tempDate = luxon_1.DateTime.fromISO(notFormatedDate, { zone: process.env.TZ });
         const date = notFormatedDate.split('T')[0];

@@ -77,6 +77,25 @@ let ApiService = ApiService_1 = class ApiService {
     delete(url, config) {
         return this.wrap(url, undefined, config, 'delete', () => this.httpService.delete(url, config));
     }
+    async getImageSize(imageUrl, retryCount = 0, maxRetries = 2) {
+        var _a, _b;
+        try {
+            const response = await (0, rxjs_1.firstValueFrom)(this.get(imageUrl).pipe((0, rxjs_1.catchError)((error) => {
+                throw new Error('Failed to fetch image size');
+            })));
+            if (!((_a = response.headers['content-type']) === null || _a === void 0 ? void 0 : _a.toUpperCase().startsWith('IMAGE/'))) {
+                throw new Error('URL does not point to an image');
+            }
+            return (_b = response.headers['content-length']) !== null && _b !== void 0 ? _b : undefined;
+        }
+        catch (error) {
+            if (retryCount < maxRetries) {
+                console.log(`Retires Failed: ${retryCount}`);
+                return this.getImageSize(imageUrl, retryCount + 1, maxRetries);
+            }
+            return undefined;
+        }
+    }
 };
 exports.ApiService = ApiService;
 exports.ApiService = ApiService = ApiService_1 = __decorate([
