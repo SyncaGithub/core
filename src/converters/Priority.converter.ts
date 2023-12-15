@@ -99,7 +99,8 @@ export class PriorityConverter {
         const totalPrice = order.CuponDiscountPrice ? (order.CuponDiscountPrice + order.TotalPrice) : order.TotalPrice;
         const discountPrice = order.CuponDiscountPrice ? ((order.CuponDiscountPrice * 100) / totalPrice) : undefined;
         return {
-            AGENTNAME: client.priority.agentName,
+            AGENTCODE: client.priority.agentCode,
+            // AGENTNAME: client.priority.agentName,
             CUSTNAME: client.priority.customerNumber,
             QPRICE: totalPrice,
             PERCENT: discountPrice,

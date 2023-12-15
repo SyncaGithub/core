@@ -33,7 +33,7 @@ export declare class Action<P extends IPopulated | IRaw = IRaw> {
     client: P extends IRaw ? ObjectId : Client;
     action: EActionType;
 }
-export declare const JobActionSchema: mongoose.Schema<Action<IRaw | IPopulated>, mongoose.Model<Action<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Action<IRaw | IPopulated>>;
+export declare const JobActionSchema: mongoose.Schema<Action<IPopulated | IRaw>, mongoose.Model<Action<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Action<IPopulated | IRaw>>;
 export declare class JobConfiguration<P extends IPopulated | IRaw = IRaw> {
     client?: P extends IRaw ? ObjectId : Client;
     isFullFetch?: boolean;
@@ -54,4 +54,4 @@ export declare class Job<P extends IPopulated | IRaw = IRaw> {
     currentActionHistoryId?: string;
     currentActionIndex: number;
 }
-export declare const JobSchema: mongoose.Schema<Job<IRaw | IPopulated>, mongoose.Model<Job<IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IRaw | IPopulated>>;
+export declare const JobSchema: mongoose.Schema<Job<IPopulated | IRaw>, mongoose.Model<Job<IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Job<IPopulated | IRaw>>;

@@ -218,7 +218,8 @@ export interface IPrioritySendOrder {
     CDES: string;
     TYPECODE: string;
     TYPEDES: string;
-    AGENTNAME: string;
+    AGENTNAME?: string;
+    AGENTCODE: string;
     ORDERITEMS_SUBFORM: IPriority_ORDERITEMS_SUBFORM[];
     SHIPTO2_SUBFORM: IPriority_SHIPTO2_SUBFORM;
     DETAILS: string;
