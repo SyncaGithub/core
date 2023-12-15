@@ -59,6 +59,7 @@ export class Job<P extends IPopulated | IRaw = IRaw> {
 	configuration?: JobConfiguration;
 
 	currentActionHistoryId?: string;
+	isDelayDisabled: boolean;
 	currentActionIndex: number;
 }
 
