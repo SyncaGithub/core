@@ -242,6 +242,7 @@ export interface IPriority_ORDERITEMS_SUBFORM {
 export interface IPrioritySendInvoice {
     ACCNAME: string;
     CASHNAME: string;
+    CDES: string;
     TPAYMENT2_SUBFORM: IPriority_INVOICE_TPAYMENT2_SUBFORM[];
 }
 export interface IPriority_INVOICE_TPAYMENT2_SUBFORM {
@@ -251,11 +252,6 @@ export interface IPriority_INVOICE_TPAYMENT2_SUBFORM {
     QPRICE: number;
 }
 export interface IPriortiyRawProductToSystemProductMap {
-}
-export interface IPrioritySendInvoice {
-    ACCNAME: string;
-    CASHNAME: string;
-    TPAYMENT2_SUBFORM: IPriority_INVOICE_TPAYMENT2_SUBFORM[];
 }
 export interface IPriority_New_Invoice_Response {
     "@odata.context": "https://rgallery.agascloud.co.il/odata/Priority/tabula.ini/a050520/$metadata#TINVOICES/$entity";

@@ -93,6 +93,7 @@ class PriorityConverter {
         return {
             ACCNAME: client.priority.customerNumber,
             CASHNAME: client.priority.cashNumber,
+            CDES: order.FirstName + ' ' + order.LastName + ' ' + order.Phone,
             TPAYMENT2_SUBFORM: [
                 {
                     PAYACCOUNT: order.LastDigits,

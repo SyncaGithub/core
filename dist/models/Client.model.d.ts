@@ -103,4 +103,4 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     isUsingBlackList: boolean;
     blackListProducts: mongoose.Types.ObjectId[];
 }
-export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IPopulated | IRaw>>;
+export declare const ClientSchema: mongoose.Schema<Client<unknown, IRaw | IPopulated>, mongoose.Model<Client<unknown, IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IRaw | IPopulated>>;
