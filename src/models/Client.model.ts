@@ -82,6 +82,9 @@ export class PriorityClientConfiguration {
 	agentName: string;
 
 	@Prop()
+	agentCode: string;
+
+	@Prop()
 	paymentCode: string;
 
 	@Prop()

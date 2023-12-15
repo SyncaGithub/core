@@ -99,6 +99,10 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
+], PriorityClientConfiguration.prototype, "agentCode", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
 ], PriorityClientConfiguration.prototype, "paymentCode", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),

@@ -1,5 +1,5 @@
-import { AxiosResponse, AxiosError } from "axios";
-import { Observable } from "rxjs";
+import { ApiService } from "./api.service";
 export declare class UtilsService {
-    obsToPromise<T = any>(obs: Observable<AxiosResponse<T>>): Promise<AxiosResponse<T> | AxiosError<T>>;
+    private httpService;
+    constructor(httpService: ApiService);
 }

@@ -1,5 +1,5 @@
 import { ClientDocument, IRaw, ProductDocument } from '../models';
-import {DateTime} from 'luxon';
+import {DateTime, Duration} from 'luxon';
 import {
     ECashcowOrderPaymentType,
     EClientType,
@@ -99,7 +99,8 @@ export class PriorityConverter {
         const totalPrice = order.CuponDiscountPrice ? (order.CuponDiscountPrice + order.TotalPrice) : order.TotalPrice;
         const discountPrice = order.CuponDiscountPrice ? ((order.CuponDiscountPrice * 100) / totalPrice) : undefined;
         return {
-            AGENTNAME: client.priority.agentName,
+            AGENTCODE: client.priority.agentCode,
+            // AGENTNAME: client.priority.agentName,
             CUSTNAME: client.priority.customerNumber,
             QPRICE: totalPrice,
             PERCENT: discountPrice,
@@ -142,6 +143,110 @@ export class PriorityConverter {
                 }
             ]
         }
+    }
+
+    static getToken(client: ClientDocument): string {
+        return Buffer.from(
+            `${client.priority.username}:${client.priority.password}`
+        ).toString('base64');
+    }
+
+    static generateProductsApiURL(
+        client: ClientDocument
+        // isfullFetch: boolean = false
+    ): string {
+        const select = client.priority.getProductsSelect
+            ? '&$select=' + client.priority.getProductsSelect
+            : '';
+        const filters = [...client.priority.getProductsFilters];
+        let filter = '';
+
+        if (filters.length > 0) {
+            filter += '&$filter=(';
+            for (let i = 0; i < filters.length; i++) {
+                if (i !== 0) {
+                    filter += ' and ';
+                }
+                filter += `${filters[i].key} ${filters[i].operator} '${filters[i].value}'`;
+            }
+            filter += ')';
+        }
+
+        // if (!isfullFetch && client.lastUpdate) {
+        // 	const tempLastFetch = new Date(client.lastUpdate);
+        // 	tempLastFetch.setDate(tempLastFetch.getDate() - 1);
+        // 	filter += filter === '' ? '&$filter=(' : 'and (';
+        // 	const dates = [
+        // 		'UDATE',
+        // 		'COSTDATE',
+        // 		'SALETRANSDATE',
+        // 		'PURTRANSDATE',
+        // 		'WARHSTRANSDATE'
+        // 	];
+        // 	for (let date of dates) {
+        // 		filter += `${date} ge ${tempLastFetch.toISOString()}`;
+        // 		if (date !== 'WARHSTRANSDATE') {
+        // 			filter += ` or `;
+        // 		}
+        // 	}
+        // 	filter += ')';
+        // }
+        const tempLastFetch = client.lastUpdate
+            ? DateTime.fromISO(client.lastUpdate, {zone: process.env.TZ})
+            : DateTime.local({zone: process.env.TZ}).minus(Duration.fromObject({year: 1}));
+        filter += filter === '' ? '&$filter=(' : 'and (';
+        const dates = [
+            'UDATE',
+            'COSTDATE',
+            'SALETRANSDATE',
+            'PURTRANSDATE',
+            'WARHSTRANSDATE'
+        ];
+        for (let date of dates) {
+            filter += `${date} ge ${tempLastFetch.toISO({includeOffset: false}) + 'Z'}`;
+            if (date !== 'WARHSTRANSDATE') {
+                filter += ` or `;
+            }
+        }
+        filter += ')';
+        let endPoint =
+            client.priority.baseUrl + client.priority.productsEndPoint + '?';
+        endPoint += client.priority.getProductsExpand
+            ? client.priority.getProductsExpand
+            : '';
+        endPoint += select ? select : '';
+        endPoint += filter ? filter : '';
+        return endPoint;
+    }
+
+
+    static generateProductsLookupApiURL(
+        client: ClientDocument
+    ): string {
+        const {baseUrl, productsEndPoint, getProductsFilters} = client.priority;
+
+        const filters = [...getProductsFilters];
+        let filter = '';
+
+        const opposite = {
+            'eq': 'ne',
+            'ne': 'eq'
+        }
+
+        if (filters.length > 0) {
+            filter += '&$filter=(';
+            for (let i = 0; i < filters.length; i++) {
+                if (i !== 0) {
+                    filter += ' and ';
+                }
+                filter += `${filters[i].key} ${opposite[filters[i].operator]} '${filters[i].value}'`;
+            }
+            filter += ')';
+        }
+
+        const select = '&$select=BARCODE,PARTNAME';
+        let endPoint = `${baseUrl}${productsEndPoint}?${select}${filter}`;
+        return endPoint;
     }
 
     private static generateInvoiceDateFormat(notFormatedDate: string): string {
