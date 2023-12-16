@@ -19,7 +19,7 @@ export declare abstract class BaseService {
 export interface IHandleActionConfig {
     isClientStatusAffected: boolean;
     isClientUpdateTimeAffected: boolean;
-    emailService: EmailService;
+    emailService?: EmailService;
 }
 export interface IHandleActionReturn<T = any> {
     jobHistoryUpdate: Partial<JobHistoryDocument>;

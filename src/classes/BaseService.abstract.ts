@@ -84,13 +84,15 @@ Action Index: ${job.currentActionIndex}
                             ? error?.message
                             : JSON.stringify(error, null, 4)
             });
-            await client.populate('user');
-            config.emailService.sendEmail(
-                ['shalev140@gmail.com', 'srek123@gmail.com'],
-                client.user as any,
-                EEmailTemplates.JobFailed,
-                {jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action}
-            )
+            if(config.emailService){
+                await client.populate('user');
+                config.emailService.sendEmail(
+                    ['shalev140@gmail.com', 'srek123@gmail.com'],
+                    client.user as any,
+                    EEmailTemplates.JobFailed,
+                    {jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action}
+                )
+            }
             return Promise.reject(error);
         }
     }
@@ -132,7 +134,7 @@ Action Index: ${job.currentActionIndex}
 export interface IHandleActionConfig{
     isClientStatusAffected: boolean;
     isClientUpdateTimeAffected: boolean;
-    emailService: EmailService;
+    emailService?: EmailService;
 }
 
 export interface IHandleActionReturn<T = any> {
