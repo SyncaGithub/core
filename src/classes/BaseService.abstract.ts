@@ -1,6 +1,6 @@
 import {take} from "rxjs";
 import {ClientProxy} from "@nestjs/microservices";
-import {ClientRepo, ProductRepo} from "../repositories";
+import {ClientRepo, ProductRepo, UserRepo} from "../repositories";
 import {EActionStatus, EActionType, EEmailTemplates, EntityStatus, IJobFinish, IUpdateJobHistory} from "../types";
 import {ClientDocument, JobDocument, JobHistoryDocument, UserDocument} from "../models";
 import {Logger} from "@nestjs/common";
@@ -12,17 +12,20 @@ export abstract class BaseService {
 
     private readonly _productRepo: ProductRepo;
     private readonly _clientRepo: ClientRepo;
+    private readonly _userRepo: UserRepo;
     private readonly _queueClient: ClientProxy;
 
 
     protected constructor(
         productRepo: ProductRepo,
         clientRepo: ClientRepo,
+        userRepo: UserRepo,
         queueClient: ClientProxy
     ) {
         this._productRepo = productRepo;
         this._clientRepo = clientRepo;
         this._queueClient = queueClient;
+        this._userRepo = userRepo;
     }
 
     async handleAction<T>(
@@ -33,6 +36,13 @@ export abstract class BaseService {
         let client: ClientDocument;
         let user: UserDocument;
         const type: EActionType = job.actionList[job.currentActionIndex].action;
+        try {
+            user = await this._userRepo.findOne({
+                _id: job.user,
+            });
+        }catch (error){
+            return Promise.reject(`Cannot find user with id: ${job.user}`);
+        }
         try {
             client = await this._clientRepo.findOne({
                 user: job.user,
@@ -85,10 +95,9 @@ Action Index: ${job.currentActionIndex}
                             : JSON.stringify(error, null, 4)
             });
             if(config.emailService){
-                await client.populate('user');
                 config.emailService.sendEmail(
                     ['shalev140@gmail.com', 'srek123@gmail.com'],
-                    client.user as any,
+                    user,
                     EEmailTemplates.JobFailed,
                     {jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action}
                 )

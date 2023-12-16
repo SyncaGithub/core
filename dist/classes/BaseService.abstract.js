@@ -5,15 +5,24 @@ const rxjs_1 = require("rxjs");
 const types_1 = require("../types");
 const luxon_1 = require("luxon");
 class BaseService {
-    constructor(productRepo, clientRepo, queueClient) {
+    constructor(productRepo, clientRepo, userRepo, queueClient) {
         this._productRepo = productRepo;
         this._clientRepo = clientRepo;
         this._queueClient = queueClient;
+        this._userRepo = userRepo;
     }
     async handleAction(job, cb, config) {
         let client;
         let user;
         const type = job.actionList[job.currentActionIndex].action;
+        try {
+            user = await this._userRepo.findOne({
+                _id: job.user,
+            });
+        }
+        catch (error) {
+            return Promise.reject(`Cannot find user with id: ${job.user}`);
+        }
         try {
             client = await this._clientRepo.findOne({
                 user: job.user,
@@ -61,8 +70,7 @@ Action Index: ${job.currentActionIndex}
                         : JSON.stringify(error, null, 4)
             });
             if (config.emailService) {
-                await client.populate('user');
-                config.emailService.sendEmail(['shalev140@gmail.com', 'srek123@gmail.com'], client.user, types_1.EEmailTemplates.JobFailed, { jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action });
+                config.emailService.sendEmail(['shalev140@gmail.com', 'srek123@gmail.com'], user, types_1.EEmailTemplates.JobFailed, { jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action });
             }
             return Promise.reject(error);
         }

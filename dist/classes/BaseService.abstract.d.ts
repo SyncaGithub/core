@@ -1,5 +1,5 @@
 import { ClientProxy } from "@nestjs/microservices";
-import { ClientRepo, ProductRepo } from "../repositories";
+import { ClientRepo, ProductRepo, UserRepo } from "../repositories";
 import { EActionType, IUpdateJobHistory } from "../types";
 import { ClientDocument, JobDocument, JobHistoryDocument } from "../models";
 import { Logger } from "@nestjs/common";
@@ -9,8 +9,9 @@ export declare abstract class BaseService {
     abstract readonly _logger: Logger;
     private readonly _productRepo;
     private readonly _clientRepo;
+    private readonly _userRepo;
     private readonly _queueClient;
-    protected constructor(productRepo: ProductRepo, clientRepo: ClientRepo, queueClient: ClientProxy);
+    protected constructor(productRepo: ProductRepo, clientRepo: ClientRepo, userRepo: UserRepo, queueClient: ClientProxy);
     handleAction<T>(job: JobDocument, cb: (lastUpdate: DateTime, client: ClientDocument) => Promise<IHandleActionReturn<T>>, config: IHandleActionConfig): Promise<T>;
     finishJob(job: JobDocument, jobActionType: EActionType, jobHistory: Partial<JobHistoryDocument>): void;
     updateJobHistory(jobHistoryUpdate: IUpdateJobHistory): void;
