@@ -4,6 +4,7 @@ import { EActionType, IUpdateJobHistory } from "../types";
 import { ClientDocument, JobDocument, JobHistoryDocument } from "../models";
 import { Logger } from "@nestjs/common";
 import { DateTime } from "luxon";
+import { EmailService } from "../services";
 export declare abstract class BaseService {
     abstract readonly _logger: Logger;
     private readonly _productRepo;
@@ -18,6 +19,7 @@ export declare abstract class BaseService {
 export interface IHandleActionConfig {
     isClientStatusAffected: boolean;
     isClientUpdateTimeAffected: boolean;
+    emailService: EmailService;
 }
 export interface IHandleActionReturn<T = any> {
     jobHistoryUpdate: Partial<JobHistoryDocument>;

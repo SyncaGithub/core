@@ -12,20 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailService = void 0;
 const mailer_1 = require("@nestjs-modules/mailer");
 const common_1 = require("@nestjs/common");
+const types_1 = require("../types");
 let EmailService = class EmailService {
     constructor(mailerService) {
         this.mailerService = mailerService;
     }
-    async sendUserWelcome(user, token) {
-        const confirmation_url = `example.com/auth/confirm?token=${token}`;
+    async sendEmail(to, user, template, context) {
         await this.mailerService.sendMail({
-            to: user.email,
-            subject: 'Welcome to Nice App! Confirm your Email',
-            template: 'welcome',
-            context: {
-                name: `${user.firstName} ${user.lastName}`,
-                url: confirmation_url,
-            },
+            to: to,
+            from: "No Replay <info@synca.co.il>",
+            subject: types_1.EmailTemplateSubjects[template],
+            template,
+            context: Object.assign({ name: `${user.firstName} ${user.lastName}`, email: user.email }, context),
         });
     }
 };

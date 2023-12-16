@@ -1,10 +1,11 @@
 import {take} from "rxjs";
 import {ClientProxy} from "@nestjs/microservices";
 import {ClientRepo, ProductRepo} from "../repositories";
-import {EActionStatus, EActionType, EntityStatus, IJobFinish, IUpdateJobHistory} from "../types";
-import {ClientDocument, JobDocument, JobHistoryDocument} from "../models";
+import {EActionStatus, EActionType, EEmailTemplates, EntityStatus, IJobFinish, IUpdateJobHistory} from "../types";
+import {ClientDocument, JobDocument, JobHistoryDocument, UserDocument} from "../models";
 import {Logger} from "@nestjs/common";
 import {DateTime} from "luxon";
+import {EmailService} from "../services";
 
 export abstract class BaseService {
     abstract readonly _logger: Logger;
@@ -30,6 +31,7 @@ export abstract class BaseService {
         config: IHandleActionConfig
     ) {
         let client: ClientDocument;
+        let user: UserDocument;
         const type: EActionType = job.actionList[job.currentActionIndex].action;
         try {
             client = await this._clientRepo.findOne({
@@ -82,6 +84,13 @@ Action Index: ${job.currentActionIndex}
                             ? error?.message
                             : JSON.stringify(error, null, 4)
             });
+            await client.populate('user');
+            config.emailService.sendEmail(
+                ['shalev140@gmail.com', 'srek123@gmail.com'],
+                client.user as any,
+                EEmailTemplates.JobFailed,
+                {jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action}
+            )
             return Promise.reject(error);
         }
     }
@@ -123,6 +132,7 @@ Action Index: ${job.currentActionIndex}
 export interface IHandleActionConfig{
     isClientStatusAffected: boolean;
     isClientUpdateTimeAffected: boolean;
+    emailService: EmailService;
 }
 
 export interface IHandleActionReturn<T = any> {

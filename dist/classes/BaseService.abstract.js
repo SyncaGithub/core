@@ -12,6 +12,7 @@ class BaseService {
     }
     async handleAction(job, cb, config) {
         let client;
+        let user;
         const type = job.actionList[job.currentActionIndex].action;
         try {
             client = await this._clientRepo.findOne({
@@ -59,6 +60,8 @@ Action Index: ${job.currentActionIndex}
                         ? error === null || error === void 0 ? void 0 : error.message
                         : JSON.stringify(error, null, 4)
             });
+            await client.populate('user');
+            config.emailService.sendEmail(['shalev140@gmail.com', 'srek123@gmail.com'], client.user, types_1.EEmailTemplates.JobFailed, { jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action });
             return Promise.reject(error);
         }
     }
