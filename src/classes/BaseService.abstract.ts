@@ -99,7 +99,12 @@ Action Index: ${job.currentActionIndex}
                     ['shalev140@gmail.com', 'srek123@gmail.com'],
                     user,
                     EEmailTemplates.JobFailed,
-                    {jobHistoryId: job.jobHistoryId, jobType: job.actionList[job.currentActionIndex].action}
+                    {
+                        jobHistoryId: job.jobHistoryId,
+                        jobType: job.actionList[job.currentActionIndex].action,
+                        error,
+                        clientName: client.nickname
+                    }
                 )
             }
             return Promise.reject(error);
