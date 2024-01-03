@@ -50,6 +50,12 @@ export class WooCommerceClientConfiguration {
 
 	@Prop({ type: [String], default: [] })
 	keysToIgnoreInExistingProduct: string[]
+
+	@Prop()
+	isUsingManagedStock: boolean;
+
+	@Prop()
+	is
 }
 
 export class GenericApiClientConfiguration {

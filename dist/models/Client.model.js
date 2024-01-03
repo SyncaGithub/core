@@ -55,6 +55,14 @@ __decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)
 ], WooCommerceClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], WooCommerceClientConfiguration.prototype, "isUsingManagedStock", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Object)
+], WooCommerceClientConfiguration.prototype, "is", void 0);
 class GenericApiClientConfiguration {
 }
 exports.GenericApiClientConfiguration = GenericApiClientConfiguration;
