@@ -46,7 +46,6 @@ export declare class WooCommerceClientConfiguration {
     productsChunkLimit: number;
     keysToIgnoreInExistingProduct: string[];
     isUsingManagedStock: boolean;
-    is: any;
 }
 export declare class GenericApiClientConfiguration {
     apiUrl: string;

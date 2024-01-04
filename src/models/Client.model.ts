@@ -53,9 +53,6 @@ export class WooCommerceClientConfiguration {
 
 	@Prop()
 	isUsingManagedStock: boolean;
-
-	@Prop()
-	is
 }
 
 export class GenericApiClientConfiguration {
