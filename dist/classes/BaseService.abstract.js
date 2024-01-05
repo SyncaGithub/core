@@ -70,7 +70,7 @@ Action Index: ${job.currentActionIndex}
                         : JSON.stringify(error, null, 4)
             });
             if (config.emailService) {
-                config.emailService.sendEmail(['shalev140@gmail.com', 'srek123@gmail.com'], user, types_1.EEmailTemplates.JobFailed, {
+                config.emailService.sendEmail(['shalev140@gmail.com', 'srek123@gmail.com'], user, types_1.EEmailTemplates.JobError, {
                     jobHistoryId: job.jobHistoryId,
                     jobType: job.actionList[job.currentActionIndex].action,
                     error,

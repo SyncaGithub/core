@@ -98,7 +98,7 @@ Action Index: ${job.currentActionIndex}
                 config.emailService.sendEmail(
                     ['shalev140@gmail.com', 'srek123@gmail.com'],
                     user,
-                    EEmailTemplates.JobFailed,
+                    EEmailTemplates.JobError,
                     {
                         jobHistoryId: job.jobHistoryId,
                         jobType: job.actionList[job.currentActionIndex].action,
