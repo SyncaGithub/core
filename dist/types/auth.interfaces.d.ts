@@ -10,6 +10,11 @@ export interface ILoginOrRegister {
     email: string;
     password: string;
 }
+export interface ILoginWithOTP {
+    email: string;
+    password: string;
+    verifyCode?: string;
+}
 export interface ILoginOrRegisterResponse {
     _id: string;
     email: string;

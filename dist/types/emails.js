@@ -7,6 +7,7 @@ var EEmailTemplates;
     EEmailTemplates["ResetPassword"] = "reset-password";
     EEmailTemplates["JobError"] = "job-error";
     EEmailTemplates["JobFailed"] = "job-failed";
+    EEmailTemplates["OTPCode"] = "otp-code";
 })(EEmailTemplates || (exports.EEmailTemplates = EEmailTemplates = {}));
 ;
 exports.EmailTemplateSubjects = {

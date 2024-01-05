@@ -3,6 +3,7 @@ export enum EEmailTemplates{
     ResetPassword = 'reset-password',
     JobError = 'job-error',
     JobFailed = 'job-failed',
+    OTPCode = 'otp-code',
 };
 
 export const EmailTemplateSubjects = {
