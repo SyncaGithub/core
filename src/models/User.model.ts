@@ -27,7 +27,7 @@ export class User {
 	@Prop({ default: false })
 	isActivated: boolean;
 
-	@Prop({ type: [String], enum: Roles, default: [Roles.USER] })
+	@Prop({ type: [Number], enum: Roles, default: [Roles.USER] })
 	roles: Roles[];
 
 	@Prop({type: String })

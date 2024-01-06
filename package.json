@@ -1,6 +1,6 @@
 {
 	"name": "@synca/core",
-	"version": "0.1.31",
+	"version": "0.1.32",
 	"description": "Synca Application Core Library",
 	"private": true,
 	"main": "dist/index.js",
