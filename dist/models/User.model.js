@@ -37,7 +37,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], User.prototype, "isActivated", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: [String], default: [], enum: types_1.Roles }),
+    (0, mongoose_1.Prop)({ type: [String], enum: types_1.Roles, default: [types_1.Roles.USER] }),
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
 __decorate([

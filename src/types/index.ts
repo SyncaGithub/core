@@ -9,4 +9,5 @@ export * from "./cashcow.enums";
 export * from "./tempEnums";
 export * from "./woo-commerce";
 export * from "./roles.enum";
+export * from "./permissions.enum";
 export * from "./emails";
