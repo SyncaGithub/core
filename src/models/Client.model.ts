@@ -28,9 +28,6 @@ export class CashcowClientConfiguration {
 	@Prop()
 	token: string;
 
-	@Prop()
-	isUploadingProductsWithoutQty: boolean;
-
 	@Prop({ type: [String], default: [] })
 	keysToIgnoreInExistingProduct: string[]
 }
@@ -215,6 +212,9 @@ export class Client<
 
 	@Prop([String])
 	blackListProducts: mongoose.Types.ObjectId[];
+
+	@Prop()
+	isUploadingProductsWithoutQty: boolean;
 }
 
 export const ClientSchema = SchemaFactory.createForClass(Client);

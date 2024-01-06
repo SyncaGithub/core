@@ -25,10 +25,6 @@ __decorate([
     __metadata("design:type", String)
 ], CashcowClientConfiguration.prototype, "token", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Boolean)
-], CashcowClientConfiguration.prototype, "isUploadingProductsWithoutQty", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)
 ], CashcowClientConfiguration.prototype, "keysToIgnoreInExistingProduct", void 0);
@@ -271,6 +267,10 @@ __decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)
 ], Client.prototype, "blackListProducts", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], Client.prototype, "isUploadingProductsWithoutQty", void 0);
 exports.Client = Client = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Client);

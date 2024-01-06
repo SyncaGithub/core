@@ -36,7 +36,6 @@ export type ClientConfigurationTypes = PriorityClientConfiguration | CashcowClie
 export declare class CashcowClientConfiguration {
     store_id: number;
     token: string;
-    isUploadingProductsWithoutQty: boolean;
     keysToIgnoreInExistingProduct: string[];
 }
 export declare class WooCommerceClientConfiguration {
@@ -104,5 +103,6 @@ export declare class Client<T = ClientConfigurationTypes, P extends IPopulated |
     whiteListProducts: mongoose.Types.ObjectId[];
     isUsingBlackList: boolean;
     blackListProducts: mongoose.Types.ObjectId[];
+    isUploadingProductsWithoutQty: boolean;
 }
-export declare const ClientSchema: mongoose.Schema<Client<unknown, IRaw | IPopulated>, mongoose.Model<Client<unknown, IRaw | IPopulated>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IRaw | IPopulated>>;
+export declare const ClientSchema: mongoose.Schema<Client<unknown, IPopulated | IRaw>, mongoose.Model<Client<unknown, IPopulated | IRaw>, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Client<unknown, IPopulated | IRaw>>;
